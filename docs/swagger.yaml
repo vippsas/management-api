@@ -2,7 +2,10 @@ openapi: 3.0.0
 info:
   title: Vipps MobilePay Management API
   version: "1.0.0"
-  description: |
+  description: |-
+
+    **DRAFT!** Work in progress, possibly with many errors.
+
     The Vipps MobilePay Management API lets partners and merchants manage
     their sales units, etc.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api)
@@ -16,8 +19,10 @@ servers:
   - url: https://apitest.vipps.no
     description: Test environment (uses the test API keys, the test app and test data)
 tags:
+  - name: Partners
+    description: Functionality for (or about) partners
   - name: Product orders
-    description: Submit product orders on behalf of their merchants
+    description: Product orders for, on or nehalf of, merchants
   - name: Merchants
     description: Manage merchants
   - name: Sales units
@@ -25,76 +30,135 @@ tags:
 paths:
   /management/v1/partners/{partner-id}:
     parameters: []
-  get:
-    tags:
-      - Partners
-    security:
-      - Bearer-Authorization: []
-    summary: Get partner by partner id
-    operationId: getPartner
-    parameters:
-      - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
-      - name: partner-id
-        in: path
-        description: The partner's partner id
-        required: true
-        schema:
-          maxLength: 10
-          minLength: 3
-          pattern: ^\d{3}+$
-          type: string
-          example: 12345
-    responses:
-      "200":
-        description: OK
-        content:
-          application/json;charset=UTF-8:
-            schema:
-              $ref: "#/components/schemas/GetOrg"
-      "400":
-        description: Invalid request, check request parameters
-        content:
-          application/json;charset=UTF-8:
-            schema:
-              $ref: "#/components/schemas/Error"
-      "401":
-        description: Unauthorized
-        content:
-          application/json;charset=UTF-8:
-            schema:
-              $ref: "#/components/schemas/MiddlewareError"
-      "403":
-        description: Forbidden
-        content:
-          application/json;charset=UTF-8:
-            schema:
-              $ref: "#/components/schemas/Error"
-      "404":
-        description: Item does not exist
-        content:
-          application/json;charset=UTF-8:
-            schema:
-              $ref: "#/components/schemas/Error"
-      "405":
-        description: Request method not supported
-        content:
-          application/json;charset=UTF-8:
-            schema:
-              $ref: "#/components/schemas/Error"
-      "429":
-        description: Too Many Requests
-        content:
-          application/problem+json:
-            schema:
-              $ref: "#/components/schemas/Error"
-      "500":
-        description: Internal server error
-        content:
-          application/json;charset=UTF-8:
-            schema:
-              $ref: "#/components/schemas/Error"
-  /management-api/v1/products/orders:
-    parameters: []
+    get:
+      tags:
+        - Partners
+      security:
+        - Bearer-Authorization: []
+      summary: Get partner by partner id
+      operationId: getPartner
+      parameters:
+        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - name: partner-id
+          in: path
+          description: The partner's partner id
+          required: true
+          schema:
+            maxLength: 10
+            minLength: 3
+            pattern: ^\d{3,}$
+            type: string
+            example: 12345
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetOrg"
+        "400":
+          description: Invalid request, check request parameters
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/MiddlewareError"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Item does not exist
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Request method not supported
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "429":
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /management/v1/partners/{partner-id}/prices:
+    get:
+      arameters:
+        - name: partner-id
+          in: path
+          description: The partner's id
+          required: true
+          schema:
+            maxLength: 3
+            minLength: 10
+            pattern: ^\d{3,}$
+            type: string
+            example: 12345
+      tags:
+        - Partners
+      security:
+        - Bearer-Authorization: []
+      summary: Get price packages for a partner
+      operationId: getPartnerPrices
+      responses:
+        "200":
+          description: OK
+  
+  /management/v1/partners:
+    post:
+      parameters: []
+      tags:
+       - Partners
+      security:
+        - Bearer-Authorization: []
+      summary: Create a new partner
+      operationId: createPartner
+      responses:
+        "201":
+          description: Created
+
+  /management/v1/product-orders/{product-order-id}:
+    get:
+      tags:
+      - Product orders
+      parameters:
+        - name: partner-id
+          in: path
+          description: The partner's id
+          required: true
+          schema:
+            maxLength: 3
+            minLength: 10
+            pattern: ^\d{3,}$
+            type: string
+            example: 12345
+      summary: Get information about a product order
+      operationId: orderProductDetails
+      description: Very limited..
+      responses:
+        "200":
+          description: OK
+
+  /management/v1/product-orders:  
+    parameters: []      
     post:
       summary: Pre-fill a product order on behalf of a merchant
       operationId: orderProduct
@@ -174,8 +238,8 @@ paths:
                     donation:
                       acceptDonations: true
       responses:
-        "200":
-          description: OK
+        "201":
+          description: Created
           content:
             application/json:
               schema:
@@ -216,7 +280,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: "#/components/schemas/Problem"
-  /management-api/v1/merchants/{orgno}:
+  /management/v1/merchants/{orgno}/sales-units:
     get:
       tags:
         - Merchants
@@ -285,7 +349,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/Error"
-  /management-api/v1/salesunits/{msn}:
+  /management/v1/salesunits/{msn}:
     get:
       tags:
         - Sales units
@@ -401,7 +465,7 @@ components:
       properties:
         orgno:
           type: string
-          pattern: "^[0-9]{9,9}$"
+          pattern: ^[0-9]{9,9}$
           minLength: 9
           maxLength: 9
           example: "987654321"
@@ -793,34 +857,34 @@ components:
                 See: https://developer.vippsmobilepay.com/docs/APIs/recurring-api
               default: true
               example: false
-      GetPartner:
-        required:
-          - partnerId
-          - name
-        type: object
-        properties:
-          partnerId:
-            minLength: 3
-            maxLength: 10
-            pattern: ^\d{3}+$
-            type: string
-            description: Partner id
-            example: "123456"
-          name:
-            type: string
-            description: "The partner's name"
-            example: "ACME Partner Inc"
+    GetPartner:
+      required:
+        - partnerId
+        - name
+      type: object
+      properties:
+        partnerId:
+          minLength: 3
+          maxLength: 10
+          pattern: ^\d{3}+$
+          type: string
+          description: Partner id
+          example: "123456"
+        name:
+          type: string
+          description: "The partner's name"
+          example: "ACME Partner Inc"
 
-      GetPartnerPrices:
-        type: object
-        description: List of the partner's price packages
-        properties:
-          pricesPackages:
-            type: array
-            description: List of Vipps MSNs (merchant serial numbers)
-            items:
-              description: Price package
-              type: string
+    GetPartnerPrices:
+      type: object
+      description: List of the partner's price packages
+      properties:
+        pricesPackages:
+          type: array
+          description: List of Vipps MSNs (merchant serial numbers)
+          items:
+            description: Price package name
+            type: string
     GetOrg:
       required:
         - msn
@@ -832,7 +896,7 @@ components:
           items:
             maxLength: 6
             minLength: 5
-            pattern: ^\d{5,6}$
+            pattern: '^\d{5,6}$'
             type: string
             description: Vipps MSN (merchant serial number)
             example: "123456"
