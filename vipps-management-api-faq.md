@@ -11,8 +11,7 @@ END_METADATA -->
 
 # Frequently asked questions
 
-The Management API lets partners use their partner keys to retrieve information
-about their merchants and their sales units.
+The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
 
 See the
 [Management API Guide](vipps-partner-api.md)

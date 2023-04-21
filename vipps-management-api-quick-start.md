@@ -1,9 +1,9 @@
 <!-- START_METADATA
 ---
-title: Quick start for the Partner API
+title: Quick start for the Management API
 sidebar_label: Quick start
 sidebar_position: 20
-description: Quick start guide for the using the Partner API with Postman.
+description: Quick start guide for the using the Management API with Postman.
 pagination_next: null
 pagination_prev: null
 ---
@@ -11,29 +11,9 @@ END_METADATA -->
 
 # Quick start
 
-Use the Partner API to get details for their own sales units and merchants.
-In addition, you can order products on behalf of your merchants.
+The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
 
-Be aware that these are running on the production server.
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/).
-
-## Table of contents
-
-* [Postman](#postman)
-  * [Prerequisites](#prerequisites)
-  * [Step 1: Get the Postman collection and environment](#step-1-get-the-postman-collection-and-environment)
-  * [Step 2: Import the Postman files](#step-2-import-the-postman-files)
-  * [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
-* [Make API calls](#make-api-calls)
-  * [Get sales unit by Merchant Serial Number](#get-sales-unit-by-merchant-serial-number)
-  * [Get merchant by organization number](#get-merchant-by-organization-number)
-  * [Order products on behalf of merchants](#order-products-on-behalf-of-merchants)
-
-<!-- END_COMMENT -->
+**Important:** Be aware that these are running on the production server.
 
 ## Postman
 
@@ -46,7 +26,7 @@ Review
 
 Save the following files to your computer:
 
-* [Partner API Postman collection](tools/vipps-partner-api-postman-collection.json)
+* [Management API Postman collection](tools/vipps-partner-api-postman-collection.json)
 * [Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Postman files
@@ -72,7 +52,7 @@ the partner keys in a secure way. See
    * `orgno` -The Organization number for the merchant. It is only used in `Get merchant by organization number`.
    * `base_url_production` - Set to: `https://api.vipps.no`.
 
-  The Partner API only works in the production environment, so `base_url` is set to `api.vipps.no`.
+  The Management API only works in the production environment, so `base_url` is set to `api.vipps.no`.
 
 ## Make API calls
 

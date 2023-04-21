@@ -4,7 +4,7 @@ title: Introduction to the Management API
 sidebar_label: Introduction
 sidebar_position: 1
 hide_table_of_contents: true
-description: The Management API allows partners to retrieve information about their merchants and their sales units by using their partner keys.
+description: The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
 pagination_next: null
 pagination_prev: null
 ---
@@ -12,14 +12,7 @@ END_METADATA -->
 
 # Management API
 
-<!-- START_COMMENT -->
-
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/).
-
-<!-- END_COMMENT -->
-
-The Management API allows partners to retrieve information about their merchants and their sales units by using their partner keys.
+The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
 
 For general information for Vipps partners, see
 [Vipps Partners](https://developer.vippsmobilepay.com/docs/vipps-partner).
@@ -32,7 +25,7 @@ for information about API keys, product activation, how to make API calls, etc.
 
 ## Next steps
 
-The API is available for all partners using
+The API is available for all merchants, and for partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
 
 This repository contains developer resources for the Vipps Management API.

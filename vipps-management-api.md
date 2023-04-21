@@ -7,16 +7,9 @@ END_METADATA -->
 
 # API guide
 
-The Vipps Management API allows you, as a partner, to retrieve information about your merchants and sales units by using your partner keys.
+The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
 
 API version: 1.0.0.
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/).
-
-<!-- END_COMMENT -->
 
 ## Information for Vipps partners
 
