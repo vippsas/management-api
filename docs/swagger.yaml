@@ -316,6 +316,32 @@ paths:
         "200":
           description: OK
 
+  /management/v1/merchants/{orgno}/contracts:
+    get:
+      tags:
+        - Merchants
+      security:
+        - Bearer-Authorization: []
+      summary: Get a merchant's contract(s)
+      description: |-
+        May return a (link to a) PDF.
+      operationId: getMerchant
+      parameters:
+        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - name: orgno
+          in: path
+          description: The organization number for the merchant
+          required: true
+          schema:
+            maxLength: 9
+            minLength: 9
+            pattern: ^\d{9}$
+            type: string
+            example: 987654321
+      responses:
+        "200":
+          description: OK        
+
   /management/v1/merchants/{orgno}/sales-units:
     get:
       tags:
@@ -388,6 +414,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/Error"
+  
   /management/v1/sales-units/{msn}:
     get:
       tags:
@@ -450,6 +477,30 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/Error"
+
+  /management/v1/sales-units/{msn}/api-quality:
+    get:
+      tags:
+        - Sales units
+      security:
+        - Bearer-Authorization: []
+      summary: "Get information about the API quality: Errors, etc"
+      operationId: getApiQuality
+      parameters:
+        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - name: msn
+          in: path
+          description: The Vipps MSN (merchant serial number) for the sales unit.
+          required: true
+          schema:
+            maxLength: 6
+            minLength: 5
+            pattern: ^\d{5,6}$
+            type: string
+      responses:
+        "200":
+          description: OK
+
 components:
   schemas:
     Problem:
