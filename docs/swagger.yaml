@@ -23,6 +23,76 @@ tags:
   - name: Sales units
     description: Manage sales units
 paths:
+  /management/v1/partners/{partner-id}:
+    parameters: []
+  get:
+    tags:
+      - Partners
+    security:
+      - Bearer-Authorization: []
+    summary: Get partner by partner id
+    operationId: getPartner
+    parameters:
+      - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+      - name: partner-id
+        in: path
+        description: The partner's partner id
+        required: true
+        schema:
+          maxLength: 10
+          minLength: 3
+          pattern: ^\d{3}+$
+          type: string
+          example: 12345
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/GetOrg"
+      "400":
+        description: Invalid request, check request parameters
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/Error"
+      "401":
+        description: Unauthorized
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/MiddlewareError"
+      "403":
+        description: Forbidden
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/Error"
+      "404":
+        description: Item does not exist
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/Error"
+      "405":
+        description: Request method not supported
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/Error"
+      "429":
+        description: Too Many Requests
+        content:
+          application/problem+json:
+            schema:
+              $ref: "#/components/schemas/Error"
+      "500":
+        description: Internal server error
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/Error"
   /management-api/v1/products/orders:
     parameters: []
     post:
@@ -146,7 +216,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: "#/components/schemas/Problem"
-  /management-api/v0/merchants/{orgno}:
+  /management-api/v1/merchants/{orgno}:
     get:
       tags:
         - Merchants
@@ -215,7 +285,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/Error"
-  /management-api/v0/salesunits/{msn}:
+  /management-api/v1/salesunits/{msn}:
     get:
       tags:
         - Sales units
@@ -659,6 +729,7 @@ components:
           description: A URL for the merchant to complete the signup.
           example: "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
     SalesUnit:
+      description: Details of a sales unit
       required:
         - msn
         - name
@@ -722,7 +793,34 @@ components:
                 See: https://developer.vippsmobilepay.com/docs/APIs/recurring-api
               default: true
               example: false
-      description: Details of a sales unit
+      GetPartner:
+        required:
+          - partnerId
+          - name
+        type: object
+        properties:
+          partnerId:
+            minLength: 3
+            maxLength: 10
+            pattern: ^\d{3}+$
+            type: string
+            description: Partner id
+            example: "123456"
+          name:
+            type: string
+            description: "The partner's name"
+            example: "ACME Partner Inc"
+
+      GetPartnerPrices:
+        type: object
+        description: List of the partner's price packages
+        properties:
+          pricesPackages:
+            type: array
+            description: List of Vipps MSNs (merchant serial numbers)
+            items:
+              description: Price package
+              type: string
     GetOrg:
       required:
         - msn
@@ -740,6 +838,7 @@ components:
             example: "123456"
             x-order: 4
       description: Response of successful getSalesUnits operation
+
     Error:
       required:
         - detail
