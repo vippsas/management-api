@@ -19,12 +19,14 @@ servers:
   - url: https://apitest.vipps.no
     description: Test environment (uses the test API keys, the test app and test data)
 tags:
-  - name: Partners
-    description: Functionality for (or about) partners
-  - name: Product orders
-    description: Product orders for, on or nehalf of, merchants
+  - name: Merchants
+    description: Manage merchants
   - name: Sales units
     description: Manage sales units
+  - name: Product orders
+    description: Product orders for, on or behalf of, merchants
+  - name: Partners
+    description: Functionality for (or about) partners
 paths:
   /management/v1/partners/{partner-id}:
     parameters: []
@@ -134,23 +136,32 @@ paths:
           description: Created
 
   /management/v1/product-orders/{product-order-id}:
+    parameters:
+      - name: partner-id
+        in: path
+        description: The partner's id
+        required: true
+        schema:
+          maxLength: 3
+          minLength: 10
+          pattern: ^\d{3,}$
+          type: string
+          example: 12345
     get:
       tags:
       - Product orders
-      parameters:
-        - name: partner-id
-          in: path
-          description: The partner's id
-          required: true
-          schema:
-            maxLength: 3
-            minLength: 10
-            pattern: ^\d{3,}$
-            type: string
-            example: 12345
       summary: Get information about a product order
       operationId: orderProductDetails
       description: Very limited..
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags:
+        - Product orders
+      summary: Delete a product order
+      operationId: orderProductDelete
+      description: Undo
       responses:
         "200":
           description: OK
@@ -278,14 +289,44 @@ paths:
             application/problem+json:
               schema:
                 $ref: "#/components/schemas/Problem"
+  
+  /management/v1/merchants/{orgno}:
+    get:
+      tags:
+        - Merchants
+      security:
+        - Bearer-Authorization: []
+      summary: Get a merchant by by organization number
+      description: |-
+        May be used to check if the merchant is active.
+      operationId: getMerchant
+      parameters:
+        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - name: orgno
+          in: path
+          description: The organization number for the merchant
+          required: true
+          schema:
+            maxLength: 9
+            minLength: 9
+            pattern: ^\d{9}$
+            type: string
+            example: 987654321
+      responses:
+        "200":
+          description: OK
+
   /management/v1/merchants/{orgno}/sales-units:
     get:
       tags:
-        - Sales units
+        - Merchants
       security:
         - Bearer-Authorization: []
-      summary: Get merchant by organization number
-      operationId: getMerchant
+      summary: Get sales units for a merchhant by by organization number
+      description: |-
+        Get a list of sales units for the merchant.
+        When used by a partner: Only returns sales units connected to the partner.
+      operationId: getMerchantsales-units
       parameters:
         - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
         - name: orgno
@@ -347,7 +388,7 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/Error"
-  /management/v1/salesunits/{msn}:
+  /management/v1/sales-units/{msn}:
     get:
       tags:
         - Sales units
@@ -899,7 +940,7 @@ components:
             description: Vipps MSN (merchant serial number)
             example: "123456"
             x-order: 4
-      description: Response of successful getSalesUnits operation
+      description: Response of successful getsales-units operation
 
     Error:
       required:
