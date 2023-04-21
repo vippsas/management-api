@@ -23,8 +23,6 @@ tags:
     description: Functionality for (or about) partners
   - name: Product orders
     description: Product orders for, on or nehalf of, merchants
-  - name: Merchants
-    description: Manage merchants
   - name: Sales units
     description: Manage sales units
 paths:
@@ -283,7 +281,7 @@ paths:
   /management/v1/merchants/{orgno}/sales-units:
     get:
       tags:
-        - Merchants
+        - Sales units
       security:
         - Bearer-Authorization: []
       summary: Get merchant by organization number
