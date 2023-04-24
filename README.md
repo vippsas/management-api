@@ -17,6 +17,8 @@ The Vipps MobilePay Management API lets partners and merchants manage their sale
 For general information for Vipps partners, see
 [Vipps Partners](https://developer.vippsmobilepay.com/docs/vipps-partner).
 
+Internal documentation/worknotes: https://confluence.vipps.io/display/TIM/Management+API%3A+Managing+sale+units%2C+partners%2C+prices%2C+etc
+
 ## Getting started
 
 See
