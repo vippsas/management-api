@@ -106,7 +106,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /management/v1/partners/{partner-id}/prices:
+  /management/v1/partners/{partner-id}/price-packages:
     get:
       parameters:
         - name: partner-id
@@ -128,6 +128,52 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetPartnerPrices"
+        "400":
+          description: Invalid request, check request parameters
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/MiddlewareError"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Item does not exist
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Request method not supported
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "429":
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"  
 
   /management/v1/product-orders/{product-order-id}:
     parameters:
@@ -965,10 +1011,10 @@ components:
       properties:
         pricesPackages:
           type: array
-          description: List of Vipps MSNs (merchant serial numbers)
+          description: List of price packages
           items:
-            description: Price package name
-            type: string
+            $ref: '#/components/schemas/PricePackage'
+    
     GetOrg:
       required:
         - msn
@@ -986,6 +1032,24 @@ components:
             example: "123456"
             x-order: 4
       description: Response of successful getsales-units operation
+
+    PricePackage:
+      required:
+        - pricePackageId
+        - name
+      type: object
+      properties:
+        pricePackageId:
+          type: string
+          description: The unique id for the price package
+          format: uuid
+          example: "8a11afb7-c223-48ed-8ca6-4722b97261aa"
+        name:
+          type: string
+          description: The price package' name
+          maxLength: 30
+          example: "POS standard"
+
 
     Error:
       required:
