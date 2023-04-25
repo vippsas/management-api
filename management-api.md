@@ -29,7 +29,7 @@ Integration should be straight-forward.
 Use the
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
 See the Postman collection and environment, and the
-[Quick start guide](vipps-partner-api-quick-start.md).
+[Quick start guide](vipps-management-api-quick-start.md).
 
 The Postman collection can also be used to manually make API calls,
 even without an integration in place.
