@@ -38,6 +38,6 @@ The API is available for all merchants, and for partners using
 This repository contains developer resources for the Vipps Management API.
 
 * [API Quick Start](management-api-quick-start.md):  Quick start.
-* [API Guide](management-api.md): Developer guide for Vipps Management API.
+* [API Guide](management-api-guide.md): Developer guide for Vipps Management API.
 * [API FAQ](management-api-faq.md): Questions and answers.
 * [API Reference](https://developer.vippsmobilepay.com/api/management): Management API Specifications.

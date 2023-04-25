@@ -19,7 +19,7 @@ and that we are implementing the right functionality.
 The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
 
 See the
-[Management API Guide](management-api.md)
+[Management API Guide](management-api-guide.md)
 for all the technical details.
 
 See also:
