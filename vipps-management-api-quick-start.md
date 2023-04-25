@@ -14,7 +14,7 @@ END_METADATA -->
 💥 
 DRAFT! The Management API is in development, but not yet available.
 This documentation is a working document, and used in discussions with
-merchants and partners to make sure we are prioritizing rightm,
+merchants and partners to make sure we are prioritizing right,
 and that we are implementing the right functionality.
 💥
 
