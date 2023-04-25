@@ -32,7 +32,7 @@ tags:
     description: Product orders for, on or behalf of, merchants
   - name: Partners
     description: Functionality for (or about) partners
-  - name: Api quality
+  - name: API quality
     description: Information regarding a partner, merchant, or sales units integration
 paths:
   /management/v1/partners/{partner-id}:
@@ -136,7 +136,7 @@ paths:
       tags:
       - Product orders
       summary: Get information about a product order
-      operationId: orderProductDetails
+      operationId: productOrderDetails
       description: |-
         For both merchants and partners.
         The best way to check the status of a oroduct order is on portal.vipps.no.
@@ -146,6 +146,12 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/ProductOrderDetailsResponse"
+      default:
+          $ref: "#/components/schemas/Error"
     delete:
       tags:
         - Product orders
@@ -155,6 +161,8 @@ paths:
       responses:
         "200":
           description: OK
+        default:
+          $ref: "#/components/schemas/Error"
 
   /management/v1/product-orders:
     parameters: []
@@ -454,7 +462,7 @@ paths:
   /management/v1/api-quality/sales-units/{msn}:
     get:
       tags:
-        - Api quality
+        - API quality
       security:
         - Bearer-Authorization: []
       summary: "Get information about the API quality: Errors, etc"
@@ -480,6 +488,12 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/ApiQualityResponse"
+        default:
+          $ref: "#/components/schemas/Error"  
 
 components:
   schemas:
@@ -819,7 +833,7 @@ components:
                   nullable: true
     
     ProductOrderResponse:
-      title: Product Order Response
+      title: Product Order response
       type: object
       properties:
         prefilledOrderId:
@@ -833,6 +847,88 @@ components:
           description: A URL for the merchant to complete the signup.
           example: "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
     
+    ProductOrderDetailsResponse:
+      title: Product Order details response
+      description: |-
+        **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
+        a partner, as this requires active consent from the merchant, and the merchant must also
+        be able to withdraw the consent.
+      type: object
+      properties:
+        prefilledOrderId:
+          type: string
+          format: uuid
+          description: A UUID reference that identifies the product order request submitted by the partner.
+          example: 81b83246-5c19-7b94-875b-ea6d1114f099
+        status:
+          type: string
+          description: The status of the PO
+          enum:
+            - RECEIVED
+            - PROCESSING
+            - WAITING_FOR_MERCHANT
+            - COMPLETED
+          example: PROCESSING
+
+    ApiQualityResponse:
+      title: API quality response
+      type: object
+      required:
+        - ApiQualityItems
+      properties:
+        ApiQualityItems:
+          type: array
+          description: List of API quality items
+          items:
+            $ref: '#/components/schemas/ApiQualityItem'
+
+    ApiQualityItem:
+      title: API quality item.
+      description: Needs work, but it's a start.
+      type: object
+      properties:
+        endpoint:
+          type: string
+          description: URL of the endpoint
+          example: "POST:/epayment/v1/payments"
+        total Requests: 
+          type: number
+          description: The number of requests to this endpoint.
+          example: 1000
+        successRate: 
+          type: number
+          description: The percentage of sucessful (HTTP 2XX) requests.
+          example: 95
+        status200: 
+          type: integer 
+          description: The number of `HTTP 200 OK` responses.
+          example: 950
+        status400:
+          type: integer
+          description: The number of `HTTP 400 Bad Request` responses.
+          example: 10         
+        status401: 
+          type: integer 
+          description: The number of `HTTP 401 Unauthorized` responses.
+          example: 10         
+        status403: 
+          type: integer
+          description: The number of `HTTP 402 Forbidden` responses.
+          example: 10         
+        status404: 
+          type: integer
+          description: The number of `HTTP 404 Not Found` responses.
+          example: 10          
+        status429: 
+          type: integer
+          description: The number of `HTTP 429 Too Many Requests` responses.
+          example: 10          
+        status500: 
+          type: integer
+          description: The number of `HTTP 500 Server Error` responses.
+          example: 0         
+
+
     SalesUnit:
       description: Details of a sales unit
       required:
@@ -926,10 +1022,23 @@ components:
             - "Vipps Partner Plus"
             - "Vipps Partner Premium"
           example: "Vipps Partner Premium"
-        partnerContact:
+        partnerContactName:
           type: string
           description: The partner's contact person in Vipps MobilePay.
           example: "Firstname Lastname"
+        partnerContactEmail:
+          type: string
+          description: The partner's contact person's email address.
+          example: "firstname.lastname@vippsmobilepay.com"
+        status:
+          type: string
+          description: Status of the partner
+          enum:
+            - PENDING
+            - ACTIVE
+            - DEACTIVATED
+          default: ACTIVE
+          example: ACTIVE  
 
     GetPartnerPricePackagesResponse:
       description: List of the partner's price packages
@@ -992,7 +1101,7 @@ components:
           items:
             type: string
             description: URL for downloading PDF contract
-            example: "https://example.com/contracts/contrsct-12345.pdf"
+            example: "https://example.com/contracts/contract-12345.pdf"
 
     PatchMSN:
       title: PatchMSN
