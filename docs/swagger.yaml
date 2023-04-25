@@ -34,22 +34,22 @@ tags:
     description: Functionality for (or about) partners
   - name: API quality
     description: Information regarding a partner, merchant, or sales units integration
+
+security:
+  - Bearer-Authorization: []
+    Ocp-Apim-Subscription-Key: []
+
 paths:
   /management/v1/partners/{partner-id}:
     get:
       tags:
         - Partners
-      security:
-        - Bearer-Authorization: []
       summary: |-
         Get partner by partner Id.
         Possibly a "Who am I"-type endpoint where a partner can fetch
         the information that Vipps MobilePay has stored about them.
       operationId: getPartner
       parameters:
-        - $ref: "#/components/parameters/Authorization"
-        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -78,9 +78,6 @@ paths:
   /management/v1/partners/{partner-id}/price-packages:
     get:
       parameters:
-        - $ref: "#/components/parameters/Authorization"
-        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -98,8 +95,6 @@ paths:
             example: 12345
       tags:
         - Partners
-      security:
-        - Bearer-Authorization: []
       summary: Get price packages for a partner
       operationId: getPartnerPricePackages
       responses:
@@ -114,9 +109,6 @@ paths:
 
   /management/v1/product-orders/{product-order-id}:
     parameters:
-      - $ref: "#/components/parameters/Authorization"
-      - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-      - $ref: "#/components/parameters/Content-Type"
       - $ref: "#/components/parameters/Merchant-Serial-Number"
       - $ref: "#/components/parameters/Vipps-System-Name"
       - $ref: "#/components/parameters/Vipps-System-Version"
@@ -150,8 +142,8 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/ProductOrderDetailsResponse"
-      default:
-          $ref: "#/components/schemas/Error"
+        default:
+            $ref: "#/components/schemas/Error"
     delete:
       tags:
         - Product orders
@@ -188,17 +180,12 @@ paths:
       tags:
         - Product orders
       parameters:
-        - $ref: "#/components/parameters/Authorization"
-        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - $ref: "#/components/parameters/Idempotency-Key"
-      security:
-        - Bearer-Authorization: []
       requestBody:
         description: Product order for a merchant request body
         required: true
@@ -268,8 +255,6 @@ paths:
     get:
       tags:
         - Merchants
-      security:
-        - Bearer-Authorization: []
       summary: Get a merchant by by organization number
       description: |-
         Get basic information about a merchant.
@@ -278,9 +263,6 @@ paths:
         be able to withdraw the consent.
       operationId: getMerchant
       parameters:
-        - $ref: "#/components/parameters/Authorization"
-        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -310,16 +292,11 @@ paths:
     get:
       tags:
         - Merchants
-      security:
-        - Bearer-Authorization: []
       summary: Get a merchant's contract(s)
       description: |-
         May return a (link to a) PDF.
       operationId: getMerchantContracts
       parameters:
-        - $ref: "#/components/parameters/Authorization"
-        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -349,17 +326,12 @@ paths:
     get:
       tags:
         - Merchants
-      security:
-        - Bearer-Authorization: []
       summary: Get sales units for a merchant by by organization number
       description: |-
         Get a list of sales units (MSNs) for the merchant.
         When used by a partner: Only returns sales units connected to the partner.
       operationId: getMerchantSalesUnits
       parameters:
-        - $ref: "#/components/parameters/Authorization"
-        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -389,14 +361,9 @@ paths:
     get:
       tags:
         - Sales units
-      security:
-        - Bearer-Authorization: []
       summary: Get sales unit details based on MSN
       operationId: getMSN
       parameters:
-        - $ref: "#/components/parameters/Authorization"
-        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -424,14 +391,9 @@ paths:
     patch:
       tags:
         - Sales units
-      security:
-        - Bearer-Authorization: []
       summary: "Update sales unit: Name or status"
       operationId: patchMSN
       parameters:
-        - $ref: "#/components/parameters/Authorization"
-        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -463,14 +425,9 @@ paths:
     get:
       tags:
         - API quality
-      security:
-        - Bearer-Authorization: []
       summary: "Get information about the API quality: Errors, etc"
       operationId: getApiQuality
       parameters:
-        - $ref: "#/components/parameters/Authorization"
-        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -496,6 +453,27 @@ paths:
           $ref: "#/components/schemas/Error"  
 
 components:
+
+  securitySchemes:
+    Bearer-Authorization:
+      type: http
+      scheme: bearer
+      description: |-
+        The access token is a base64-encoded string that is required for all API calls.
+        It is a JWT (JSON Web Token).
+        The access token is fetched from the
+        [`POST:/accesstoken/get`](https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost)
+        endpoint.
+        It is valid for 1 hour in the test environment and 24 hours in the production environment.
+
+    Ocp-Apim-Subscription-Key:
+      type: apiKey
+      in: header
+      name: Ocp-Apim-Subscription-Key
+      description: |-
+        The subscription key for your API product is available on portal.vipps.no, under the 'Utvikler' tab.
+        Keep it secret. Usually looks similar to this: 0f14ebcab0ec4b29ae0cb90d91b4a84a
+
   schemas:
     
     ExtraDetails:
@@ -1195,45 +1173,7 @@ components:
           example: MSN must be at least five digits
           x-order: 2
   
-  securitySchemes:
-    Bearer-Authorization:
-      name: Authorization
-      type: apiKey
-      in: header
-      description: |-
-        The access token is a base64-encoded string that is required for all API calls.
-        It is a JWT (JSON Web Token).
-        The access token is fetched from the
-        [`POST:/accesstoken/get`](https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost)
-        endpoint.
-        It is valid for 1 hour in the test environment and 24 hours in the production environment.
-  
-  
   parameters:
-
-    Authorization:
-      in: header
-      name: Authorization
-      description: >-
-        The access token is a base64-encoded string that is required for all API calls.
-        It is a JWT (JSON Web Token).
-        The access token is fetched from the `POST:/accesstoken/get` endpoint.
-        It is valid for 1 hour in the test environment and 24 hours in the production environment.
-      required: true
-      schema:
-        type: string
-
-    Ocp-Apim-Subscription-Key:
-      in: header
-      name: Ocp-Apim-Subscription-Key
-      description: |-
-        The subscription key for your API product is available on portal.vipps.no, under the 'Utvikler' tab.
-        Keep it secret.
-      required: true
-      schema:
-        type: string
-      example: 0f14ebcab0ec4b29ae0cb90d91b4a84a
-
     Vipps-System-Name:
       name: Vipps-System-Name
       in: header
@@ -1265,14 +1205,6 @@ components:
       schema:
         type: string
       example: "1.2.1"
-
-    Content-Type:
-      in: header
-      name: Content-Type
-      description: "The content type must be `application/json`"
-      schema:
-        type: string
-      example: application/json
 
     Idempotency-Key:
       in: header
