@@ -147,8 +147,8 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/ProductOrderDetailsResponse"
-      default:
-          $ref: "#/components/schemas/Error"
+        default:
+            $ref: "#/components/schemas/Error"
     delete:
       tags:
         - Product orders
