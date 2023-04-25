@@ -43,8 +43,8 @@ paths:
         - Bearer-Authorization: []
       summary: |-
         Get partner by partner Id.
-        Possibly a "who am I"-tyupe endpoint where a partner can fetch
-        the information that Vipps MobilePay has storted about them.
+        Possibly a "Who am I"-type endpoint where a partner can fetch
+        the information that Vipps MobilePay has stored about them.
       operationId: getPartner
       parameters:
         - $ref: "#/components/parameters/Authorization"
@@ -139,10 +139,10 @@ paths:
       operationId: orderProductDetails
       description: |-
         For both merchants and partners.
-        There are strict rules for what information Vipps MobilePay is allowed to share with
-        a partner, as this requires active consent from the merchant, and the merchant mustalso
-        be able to withdraw the consent. The best way to check the status of a poroduct order
-        is on portal.vipps.no.
+        The best way to check the status of a oroduct order is on portal.vipps.no.
+        **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
+        a partner, as this requires active consent from the merchant, and the merchant must also
+        be able to withdraw the consent.
       responses:
         "200":
           description: OK
@@ -165,15 +165,18 @@ paths:
         Submit data that pre-fills the order form on portal.vipps.no,
         so the merchant can review the information and submit the product order.
 
-        Please note complianceData and website information are required for the `VIPPS_PA_NETT` product type.
+        Please note that `complianceData` and `website` information are required for the `VIPPS_PA_NETT` product type.
         Partners can still submit the product orders without it, but the merchant will have to fill
-        website and compliance data information manually in the merchant portal product order form and submit.
+        in compliance data and website information manually in the merchant portal product order form and submit,
+        and this is a common source of problems.
 
         We have made as many of the fields as possible optional, but please
-        try to send as much as you can, to make it easy for the merchant.
+        try to send as much as you can, to make it easy for the merchant and
+        make the processing as fast as possible.
 
-        IMPORTANT: Please provide all the necessary details, so it will not be necessary for merchants to request
-        more details. This is the most common reason for delays.
+        **IMPORTANT:** Please provide all the necessary details, so it will not be necessary for us
+        to request more details. This is the most common reason for delays. See:
+        https://developer.vippsmobilepay.com/docs/vipps-partner/#typical-reasons-for-delays
       tags:
         - Product orders
       parameters:
@@ -261,7 +264,10 @@ paths:
         - Bearer-Authorization: []
       summary: Get a merchant by by organization number
       description: |-
-        May be used to check if the merchant is active.
+        Get basic information about a merchant.
+        **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
+        a partner, as this requires active consent from the merchant, and the merchant must also
+        be able to withdraw the consent.
       operationId: getMerchant
       parameters:
         - $ref: "#/components/parameters/Authorization"
@@ -337,9 +343,9 @@ paths:
         - Merchants
       security:
         - Bearer-Authorization: []
-      summary: Get sales units for a merchhant by by organization number
+      summary: Get sales units for a merchant by by organization number
       description: |-
-        Get a list of sales units for the merchant.
+        Get a list of sales units (MSNs) for the merchant.
         When used by a partner: Only returns sales units connected to the partner.
       operationId: getMerchantSalesUnits
       parameters:
