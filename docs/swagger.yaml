@@ -42,7 +42,10 @@ paths:
         - Partners
       security:
         - Bearer-Authorization: []
-      summary: Get partner by partner id
+      summary: |-
+        Get partner by partner Id.
+        Possibly a "who am I"-tyupe endpoint where a partner can fetch
+        the information that Vipps MobilePay has storted about them.
       operationId: getPartner
       parameters:
         - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
@@ -62,7 +65,7 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/GetOrg"
+                $ref: "#/components/schemas/GetPartnerResponse"
         "400":
           description: Invalid request, check request parameters
           content:
@@ -124,14 +127,14 @@ paths:
       security:
         - Bearer-Authorization: []
       summary: Get price packages for a partner
-      operationId: getPartnerPrices
+      operationId: getPartnerPricePackages
       responses:
         "200":
           description: OK
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/GetPartnerPrices"
+                $ref: "#/components/schemas/GetPartnerPricePackagesResponse"
         "400":
           description: Invalid request, check request parameters
           content:
@@ -355,6 +358,52 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetMerchantResponse"
+        "400":
+          description: Invalid request, check request parameters
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/MiddlewareError"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Item does not exist
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Request method not supported
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "429":
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
 
   /management/v1/merchants/{orgno}/contracts:
     get:
@@ -381,6 +430,52 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetMerchantContractsResponse"
+        "400":
+          description: Invalid request, check request parameters
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/MiddlewareError"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Item does not exist
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Request method not supported
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "429":
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
 
   /management/v1/merchants/{orgno}/sales-units:
     get:
@@ -392,7 +487,7 @@ paths:
       description: |-
         Get a list of sales units for the merchant.
         When used by a partner: Only returns sales units connected to the partner.
-      operationId: getMerchantsales-units
+      operationId: getMerchantSalesUnits
       parameters:
         - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
         - name: orgno
@@ -411,7 +506,7 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/GetOrg"
+                $ref: "#/components/schemas/GetMSNResponse"
         "400":
           description: Invalid request, check request parameters
           content:
@@ -987,7 +1082,8 @@ components:
                 See: https://developer.vippsmobilepay.com/docs/APIs/recurring-api
               default: true
               example: false
-    GetPartner:
+    
+    GetPartnerResponse:
       required:
         - partnerId
         - name
@@ -1004,10 +1100,26 @@ components:
           type: string
           description: "The partner's name"
           example: "ACME Partner Inc"
+        level:
+          type: string
+          description: |-
+            The partner's level.
+            See: https://developer.vippsmobilepay.com/docs/vipps-partner/partner-level-up/
+          enum:
+            - "Vipps Partner"
+            - "Vipps Partner Plus"
+            - "Vipps Partner Premium"
+          example: "Vipps Partner Premium"
+        partnerContact:
+          type: string
+          description: The partner's contact person in Vipps MobilePay.
+          example: "Firstname Lastname"
 
-    GetPartnerPrices:
-      type: object
+    GetPartnerPricePackagesResponse:
       description: List of the partner's price packages
+      type: object
+      required:
+        - pricesPackages  
       properties:
         pricesPackages:
           type: array
@@ -1015,7 +1127,29 @@ components:
           items:
             $ref: '#/components/schemas/PricePackage'
     
-    GetOrg:
+    GetMerchantResponse:
+      description: Response of a successful get merchant operation
+      required:
+        - orgno
+        - name
+      type: object
+      properties:
+        orgno:
+          type: string
+          description: The organization number for the merchant
+          minLength: 9
+          maxLength: 9
+          pattern: ^\d{9}$
+          example: 987654321
+        name:
+          type: string
+          description: The name of the merchant
+          minLength: 1
+          maxLength: 50
+          example: ACME Fantastic Fitness
+
+    GetMSNResponse:
+      description: Response of a successful get sales units operation
       required:
         - msn
       type: object
@@ -1030,8 +1164,19 @@ components:
             type: string
             description: Vipps MSN (merchant serial number)
             example: "123456"
-            x-order: 4
-      description: Response of successful getsales-units operation
+
+    GetMerchantContractsResponse:
+      description: Response of a successful get contracts operation
+      required:
+        - urls
+      type: object
+      properties:
+        urls:
+          description: List of URLs to download PDF contracts
+          items:
+            type: string
+            description: URL for downloading PDF contract
+            example: "https://example.com/contracts/contrsct-12345.pdf"
 
     PricePackage:
       required:
@@ -1049,7 +1194,6 @@ components:
           description: The price package' name
           maxLength: 30
           example: "POS standard"
-
 
     Error:
       required:
@@ -1094,6 +1238,7 @@ components:
             "Unique ID for the request which can be used to find related events (logs)"
           example: https://example.com/validation-error/msn
           x-order: 5
+    
     MiddlewareError:
       type: object
       description: |-
@@ -1111,6 +1256,7 @@ components:
             "A human-readable explanation specific to this occurrence of the problem."
           example: MSN must be at least five digits
           x-order: 2
+  
   securitySchemes:
     Bearer-Authorization:
       name: Authorization
