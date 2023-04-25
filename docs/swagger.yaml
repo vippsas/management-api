@@ -36,7 +36,6 @@ tags:
     description: Information regarding a partner, merchant, or sales units integration
 paths:
   /management/v1/partners/{partner-id}:
-    parameters: []
     get:
       tags:
         - Partners
@@ -48,7 +47,14 @@ paths:
         the information that Vipps MobilePay has storted about them.
       operationId: getPartner
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: partner-id
           in: path
           description: The partner's partner id
@@ -112,6 +118,14 @@ paths:
   /management/v1/partners/{partner-id}/price-packages:
     get:
       parameters:
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: partner-id
           in: path
           description: The partner's id
@@ -180,6 +194,14 @@ paths:
 
   /management/v1/product-orders/{product-order-id}:
     parameters:
+      - $ref: "#/components/parameters/Authorization"
+      - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+      - $ref: "#/components/parameters/Content-Type"
+      - $ref: "#/components/parameters/Merchant-Serial-Number"
+      - $ref: "#/components/parameters/Vipps-System-Name"
+      - $ref: "#/components/parameters/Vipps-System-Version"
+      - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+      - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
       - name: product-order-id
         in: path
         description: The product order's id
@@ -230,7 +252,14 @@ paths:
       tags:
         - Product orders
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - $ref: "#/components/parameters/Idempotency-Key"
       security:
         - Bearer-Authorization: []
@@ -344,7 +373,14 @@ paths:
         May be used to check if the merchant is active.
       operationId: getMerchant
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: orgno
           in: path
           description: The organization number for the merchant
@@ -416,7 +452,14 @@ paths:
         May return a (link to a) PDF.
       operationId: getMerchantContracts
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: orgno
           in: path
           description: The organization number for the merchant
@@ -489,7 +532,14 @@ paths:
         When used by a partner: Only returns sales units connected to the partner.
       operationId: getMerchantSalesUnits
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: orgno
           in: path
           description: The organization number for the merchant
@@ -548,7 +598,7 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/Error"
+                $ref: "#/components/schemas/Error"                
 
   /management/v1/sales-units/{msn}:
     get:
@@ -559,7 +609,14 @@ paths:
       summary: Get sales unit details based on MSN
       operationId: getMSN
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: msn
           in: path
           description: The Vipps MSN (merchant serial number) for the sales unit.
@@ -613,6 +670,78 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+    patch:
+      tags:
+        - Sales units
+      security:
+        - Bearer-Authorization: []
+      summary: Update sales unit
+      operationId: patchMSN
+      parameters:
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
+        - name: msn
+          in: path
+          description: The Vipps MSN (merchant serial number) for the sales unit.
+          required: true
+          schema:
+            minLength: 5
+            maxLength: 6
+            pattern: ^\d{5,6}$
+            type: string
+      requestBody:
+        description: What to patch
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchMSN'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Invalid request, check request parameters
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/MiddlewareError"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Item does not exist
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Request method not supported
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/Error"               
+
   /management/v1/api-quality/sales-units/{msn}:
     get:
       tags:
@@ -622,7 +751,14 @@ paths:
       summary: "Get information about the API quality: Errors, etc"
       operationId: getApiQuality
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: msn
           in: path
           description: The Vipps MSN (merchant serial number) for the sales unit.
@@ -671,6 +807,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ExtraDetails"
+    
     ExtraDetails:
       type: object
       properties:
@@ -682,6 +819,7 @@ components:
           type: string
           example: "9000"
           description: Value
+    
     ProductOrderRequest:
       title: Product Order Request for a merchant
       required:
@@ -1003,6 +1141,7 @@ components:
                   default: false
                   example: false
                   nullable: true
+    
     ProductOrderResponse:
       title: Product Order Response
       type: object
@@ -1017,6 +1156,7 @@ components:
           format: uri
           description: A URL for the merchant to complete the signup.
           example: "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
+    
     SalesUnit:
       description: Details of a sales unit
       required:
@@ -1178,6 +1318,24 @@ components:
             description: URL for downloading PDF contract
             example: "https://example.com/contracts/contrsct-12345.pdf"
 
+    PatchMSN:
+      title: PatchMSN
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the sales unit.
+          example: ACME Fantastic Fitness DeLuxe
+          maxLength: 50
+        status:
+          type: string
+          description: Status of the sales unit.
+          enum:
+            - ACTIVE
+            - DEACTIVATED
+          default: ACTIVE
+          example: active
+
     PricePackage:
       required:
         - pricePackageId
@@ -1269,23 +1427,101 @@ components:
         [`POST:/accesstoken/get`](https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost)
         endpoint.
         It is valid for 1 hour in the test environment and 24 hours in the production environment.
+  
+  
   parameters:
-    Idempotency-Key:
-      name: Idempotency-Key
+
+    Authorization:
       in: header
+      name: Authorization
+      description: >-
+        The access token is a base64-encoded string that is required for all API calls.
+        It is a JWT (JSON Web Token).
+        The access token is fetched from the `POST:/accesstoken/get` endpoint.
+        It is valid for 1 hour in the test environment and 24 hours in the production environment.
       required: true
       schema:
         type: string
-        example: 81b83246-5c19-7b94-875b-ea6d1114f099
-      description: "Idempotency key for the request, ensures idempotent actions. Not required, but recommended."
-    Ocp-APIM-Subscription-Key:
+
+    Ocp-Apim-Subscription-Key:
+      in: header
       name: Ocp-Apim-Subscription-Key
-      in: header
+      description: |-
+        The subscription key for your API product is available on portal.vipps.no, under the 'Utvikler' tab.
+        Keep it secret.
       required: true
       schema:
         type: string
-        example: da7d5b0e18a84aeda961c0c31b75c2a9
-      description: Vipps Subscription Key
+      example: 0f14ebcab0ec4b29ae0cb90d91b4a84a
+
+    Vipps-System-Name:
+      name: Vipps-System-Name
+      in: header
+      description: The name of the ecommerce solution. One word in lowercase letters is good.
+      schema:
+        type: string
+      example: woocommerce
+    
+    Vipps-System-Version:
+      name: Vipps-System-Version
+      in: header
+      description: The version number of the ecommerce solution.
+      schema:
+        type: string
+      example: "5.4"
+    
+    Vipps-System-Plugin-Name:
+      name: Vipps-System-Plugin-Name
+      in: header
+      description: The name of the ecommerce plugin (if applicable). One word in lowercase letters is good.
+      schema:
+        type: string
+      example: "vipps-woocommerce"
+    
+    Vipps-System-Plugin-Version:
+      name: Vipps-System-Plugin-Version
+      in: header
+      description: The version number of the ecommerce plugin (if applicable).
+      schema:
+        type: string
+      example: "1.2.1"
+
+    Content-Type:
+      in: header
+      name: Content-Type
+      description: "The content type must be `application/json`"
+      schema:
+        type: string
+      example: application/json
+
+    Idempotency-Key:
+      in: header
+      name: Idempotency-Key
+      description: |-
+        An Idempotency key must be provided to ensure idempotent requests.
+        Key size can be between 1 to 40 characters.
+      required: true
+      schema:
+        type: string
+        maxLength: 40
+        pattern: ^[a-zA-Z0-9]*$
+        example: kRk3uEeiogxLu1yGSZRlNgsIv3TuNS
+
+    Merchant-Serial-Number:
+      name: Merchant-Serial-Number
+      in: header
+      description: |-
+        The Merchant Serial Number (MSN) is a unique id for the sale unit
+        that this payment is made for.
+        This is a required parameter if you are a Vipps Recurring partner
+        making payments on behalf of a merchant.
+        The partner must use the merchant's MSN (not the partner's MSN).
+        This parameter is optional, and recommended, for regular Vipps
+        merchants making payments for themselves.
+      schema:
+        type: string
+      example: 123456
+
     orgno:
       name: orgno
       in: path
