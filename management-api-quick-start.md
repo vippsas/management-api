@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Quick start for the Management API
 sidebar_label: Quick start
@@ -7,7 +6,6 @@ description: Quick start guide for the using the Management API with Postman.
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # Quick start
 

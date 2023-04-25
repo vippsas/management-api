@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Management API Frequently Asked Questions
 sidebar_label: FAQ
@@ -7,7 +6,6 @@ description: Frequently asked questions for the Management API.
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # Frequently asked questions
 

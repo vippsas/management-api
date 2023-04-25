@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Introduction to the Management API
 sidebar_label: Introduction
@@ -6,7 +5,6 @@ sidebar_position: 1
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 
 # API guide

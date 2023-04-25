@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Introduction to the Management API
 sidebar_label: Introduction
@@ -8,7 +7,6 @@ description: The Vipps MobilePay Management API lets partners and merchants mana
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # Management API
 
