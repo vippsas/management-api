@@ -12,6 +12,13 @@ END_METADATA -->
 
 # Management API
 
+💥 
+DRAFT! The Management API is in development, but not yet available.
+This documentation is a working document, and used in discussions with
+merchants and partners to make sure we are prioritizing rightm,
+and that we are implementing the right functionality.
+💥
+
 The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
 
 For general information for Vipps partners, see
@@ -32,7 +39,7 @@ The API is available for all merchants, and for partners using
 
 This repository contains developer resources for the Vipps Management API.
 
-* [API Quick Start](vipps-partner-api-quick-start.md):  Quick start.
-* [API Guide](vipps-partner-api.md): Developer guide for Vipps Management API.
-* [API FAQ](vipps-partner-api-faq.md): Questions and answers.
-* [API Reference](https://developer.vippsmobilepay.com/api/partner): Management API Specifications.
+* [API Quick Start](vipps-management-api-quick-start.md):  Quick start.
+* [API Guide](vipps-management-api.md): Developer guide for Vipps Management API.
+* [API FAQ](vipps-management-api-faq.md): Questions and answers.
+* [API Reference](https://developer.vippsmobilepay.com/api/management): Management API Specifications.

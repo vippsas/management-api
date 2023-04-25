@@ -4,8 +4,12 @@ info:
   version: "1.0.0"
   description: |-
 
-
-    **DRAFT!** Work in progress, possibly with many errors.
+    💥 
+    DRAFT! The Management API is in development, but not yet available.
+    This documentation is a working document, and used in discussions with
+    merchants and partners to make sure we are prioritizing rightm,
+    and that we are implementing the right functionality.
+    💥
 
     The Vipps MobilePay Management API lets partners and merchants manage
     their sales units, etc.
@@ -32,24 +36,33 @@ tags:
     description: Information regarding a partner, merchant, or sales units integration
 paths:
   /management/v1/partners/{partner-id}:
-    parameters: []
     get:
       tags:
         - Partners
       security:
         - Bearer-Authorization: []
-      summary: Get partner by partner id
+      summary: |-
+        Get partner by partner Id.
+        Possibly a "Who am I"-type endpoint where a partner can fetch
+        the information that Vipps MobilePay has stored about them.
       operationId: getPartner
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: partner-id
           in: path
           description: The partner's partner id
           required: true
           schema:
-            maxLength: 10
             minLength: 3
-            pattern: ^\d{3,}$
+            maxLength: 10
+            pattern: ^\d{3,10}$
             type: string
             example: 12345
       responses:
@@ -58,61 +71,29 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/GetOrg"
-        "400":
-          description: Invalid request, check request parameters
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "401":
-          description: Unauthorized
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/MiddlewareError"
-        "403":
-          description: Forbidden
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "404":
-          description: Item does not exist
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "405":
-          description: Request method not supported
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "429":
-          description: Too Many Requests
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
+                $ref: "#/components/schemas/GetPartnerResponse"
+        default:
+          $ref: "#/components/schemas/Error"
 
-  /management/v1/partners/{partner-id}/prices:
+  /management/v1/partners/{partner-id}/price-packages:
     get:
-      arameters:
+      parameters:
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: partner-id
           in: path
           description: The partner's id
           required: true
           schema:
-            maxLength: 3
-            minLength: 10
-            pattern: ^\d{3,}$
+            minLength: 3
+            maxLength: 10
+            pattern: ^\d{3,10}$
             type: string
             example: 12345
       tags:
@@ -120,21 +101,35 @@ paths:
       security:
         - Bearer-Authorization: []
       summary: Get price packages for a partner
-      operationId: getPartnerPrices
+      operationId: getPartnerPricePackages
       responses:
         "200":
           description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetPartnerPricePackagesResponse"
+        default:
+          $ref: "#/components/schemas/Error"
 
   /management/v1/product-orders/{product-order-id}:
     parameters:
-      - name: partner-id
+      - $ref: "#/components/parameters/Authorization"
+      - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+      - $ref: "#/components/parameters/Content-Type"
+      - $ref: "#/components/parameters/Merchant-Serial-Number"
+      - $ref: "#/components/parameters/Vipps-System-Name"
+      - $ref: "#/components/parameters/Vipps-System-Version"
+      - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+      - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
+      - name: product-order-id
         in: path
-        description: The partner's id
+        description: The product order's id
         required: true
         schema:
-          maxLength: 3
-          minLength: 10
-          pattern: ^\d{3,}$
+          minLength: 3
+          maxLength: 10
+          pattern: ^\d{3,10}$
           type: string
           example: 12345
     get:
@@ -142,7 +137,12 @@ paths:
       - Product orders
       summary: Get information about a product order
       operationId: orderProductDetails
-      description: Very limited..
+      description: |-
+        For both merchants and partners.
+        The best way to check the status of a oroduct order is on portal.vipps.no.
+        **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
+        a partner, as this requires active consent from the merchant, and the merchant must also
+        be able to withdraw the consent.
       responses:
         "200":
           description: OK
@@ -165,19 +165,29 @@ paths:
         Submit data that pre-fills the order form on portal.vipps.no,
         so the merchant can review the information and submit the product order.
 
-        Please note complianceData and website information are required for the `VIPPS_PA_NETT` product type.
+        Please note that `complianceData` and `website` information are required for the `VIPPS_PA_NETT` product type.
         Partners can still submit the product orders without it, but the merchant will have to fill
-        website and compliance data information manually in the merchant portal product order form and submit.
+        in compliance data and website information manually in the merchant portal product order form and submit,
+        and this is a common source of problems.
 
         We have made as many of the fields as possible optional, but please
-        try to send as much as you can, to make it easy for the merchant.
+        try to send as much as you can, to make it easy for the merchant and
+        make the processing as fast as possible.
 
-        IMPORTANT: Please provide all the necessary details, so it will not be necessary for merchants to request
-        more details. This is the most common reason for delays.
+        **IMPORTANT:** Please provide all the necessary details, so it will not be necessary for us
+        to request more details. This is the most common reason for delays. See:
+        https://developer.vippsmobilepay.com/docs/vipps-partner/#typical-reasons-for-delays
       tags:
         - Product orders
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - $ref: "#/components/parameters/Idempotency-Key"
       security:
         - Bearer-Authorization: []
@@ -243,42 +253,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ProductOrderResponse"
-        "400":
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/Problem"
-        "401":
-          description: Unauthorized
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/Problem"
-        "405":
-          description: Request method not supported
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Problem"
-        "422":
-          description: Unprocessable Entity
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/Problem"
-        "429":
-          description: Too Many Requests
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/Problem"
-        "500":
-          description: Server Error
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/Problem"
+        default:
+          $ref: "#/components/schemas/Error"
 
   /management/v1/merchants/{orgno}:
     get:
@@ -288,23 +264,39 @@ paths:
         - Bearer-Authorization: []
       summary: Get a merchant by by organization number
       description: |-
-        May be used to check if the merchant is active.
+        Get basic information about a merchant.
+        **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
+        a partner, as this requires active consent from the merchant, and the merchant must also
+        be able to withdraw the consent.
       operationId: getMerchant
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: orgno
           in: path
           description: The organization number for the merchant
           required: true
           schema:
-            maxLength: 9
             minLength: 9
+            maxLength: 9
             pattern: ^\d{9}$
             type: string
             example: 987654321
       responses:
         "200":
           description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetMerchantResponse"
+        default:
+          $ref: "#/components/schemas/Error"
 
   /management/v1/merchants/{orgno}/contracts:
     get:
@@ -315,9 +307,16 @@ paths:
       summary: Get a merchant's contract(s)
       description: |-
         May return a (link to a) PDF.
-      operationId: getMerchant
+      operationId: getMerchantContracts
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: orgno
           in: path
           description: The organization number for the merchant
@@ -331,6 +330,12 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetMerchantContractsResponse"
+        default:
+          $ref: "#/components/schemas/Error"
 
   /management/v1/merchants/{orgno}/sales-units:
     get:
@@ -338,20 +343,27 @@ paths:
         - Merchants
       security:
         - Bearer-Authorization: []
-      summary: Get sales units for a merchhant by by organization number
+      summary: Get sales units for a merchant by by organization number
       description: |-
-        Get a list of sales units for the merchant.
+        Get a list of sales units (MSNs) for the merchant.
         When used by a partner: Only returns sales units connected to the partner.
-      operationId: getMerchantsales-units
+      operationId: getMerchantSalesUnits
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: orgno
           in: path
           description: The organization number for the merchant
           required: true
           schema:
-            maxLength: 9
             minLength: 9
+            maxLength: 9
             pattern: ^\d{9}$
             type: string
             example: 987654321
@@ -361,49 +373,9 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/GetOrg"
-        "400":
-          description: Invalid request, check request parameters
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "401":
-          description: Unauthorized
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/MiddlewareError"
-        "403":
-          description: Forbidden
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "404":
-          description: Item does not exist
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "405":
-          description: Request method not supported
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "429":
-          description: Too Many Requests
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
+                $ref: "#/components/schemas/GetMSNResponse"
+        default:
+          $ref: "#/components/schemas/Error"
 
   /management/v1/sales-units/{msn}:
     get:
@@ -414,14 +386,21 @@ paths:
       summary: Get sales unit details based on MSN
       operationId: getMSN
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: msn
           in: path
           description: The Vipps MSN (merchant serial number) for the sales unit.
           required: true
           schema:
-            maxLength: 6
             minLength: 5
+            maxLength: 6
             pattern: ^\d{5,6}$
             type: string
       responses:
@@ -431,42 +410,46 @@ paths:
             application/json;charset=UTF-8:
               schema:
                 $ref: "#/components/schemas/SalesUnit"
-        "400":
-          description: Invalid request, check request parameters
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "401":
-          description: Unauthorized
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/MiddlewareError"
-        "403":
-          description: Forbidden
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "404":
-          description: Item does not exist
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "405":
-          description: Request method not supported
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/Error"
+        default:
+          $ref: "#/components/schemas/Error"
+
+    patch:
+      tags:
+        - Sales units
+      security:
+        - Bearer-Authorization: []
+      summary: Update sales unit
+      operationId: patchMSN
+      parameters:
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
+        - name: msn
+          in: path
+          description: The Vipps MSN (merchant serial number) for the sales unit.
+          required: true
+          schema:
+            minLength: 5
+            maxLength: 6
+            pattern: ^\d{5,6}$
+            type: string
+      requestBody:
+        description: What to patch
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchMSN'
+      responses:
+        "200":
+          description: OK
+        default:
+          $ref: "#/components/schemas/Error"        
 
   /management/v1/api-quality/sales-units/{msn}:
     get:
@@ -477,14 +460,21 @@ paths:
       summary: "Get information about the API quality: Errors, etc"
       operationId: getApiQuality
       parameters:
-        - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
+        - $ref: "#/components/parameters/Authorization"
+        - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
         - name: msn
           in: path
           description: The Vipps MSN (merchant serial number) for the sales unit.
           required: true
           schema:
-            maxLength: 6
             minLength: 5
+            maxLength: 6
             pattern: ^\d{5,6}$
             type: string
       responses:
@@ -493,39 +483,7 @@ paths:
 
 components:
   schemas:
-    Problem:
-      title: Problem
-      type: object
-      properties:
-        type:
-          type: string
-          format: uri
-          example: "https://example.com/problem/unauthorized"
-          description: A URI reference that identifies the problem type.
-        title:
-          type: string
-          example: "Not authorized to create a product order"
-          description: "A short, human-readable summary of the problem type.  It will not change from occurrence to occurrence of the problem."
-        status:
-          type: integer
-          description: The HTTP response code
-          example: 401
-        detail:
-          type: string
-          example: "Not authorized to create a product order. Check whether Authorization token and Ocp-Apim-Subscription-Key are correct."
-          description: A human-readable explanation specific to this occurrence of the problem.
-        instance:
-          type: string
-          example: "/products/orders"
-          description: A URI reference that identifies the specific occurrence of the problem
-        traceId:
-          type: string
-          example: "81b83246-5c19-7b94-875b-ea6d1114f099"
-          description: An id that can be used to facilitate in tracing the error.
-        extraDetails:
-          type: array
-          items:
-            $ref: "#/components/schemas/ExtraDetails"
+    
     ExtraDetails:
       type: object
       properties:
@@ -537,6 +495,7 @@ components:
           type: string
           example: "9000"
           description: Value
+    
     ProductOrderRequest:
       title: Product Order Request for a merchant
       required:
@@ -546,8 +505,8 @@ components:
         orgno:
           type: string
           pattern: ^[0-9]{9,9}$
-          minLength: 9
           maxLength: 9
+          minLength: 9
           example: "987654321"
           description: |-
             Organisation number of the merchant for whom the partner is submitting the product order.
@@ -858,6 +817,7 @@ components:
                   default: false
                   example: false
                   nullable: true
+    
     ProductOrderResponse:
       title: Product Order Response
       type: object
@@ -872,6 +832,7 @@ components:
           format: uri
           description: A URL for the merchant to complete the signup.
           example: "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
+    
     SalesUnit:
       description: Details of a sales unit
       required:
@@ -881,8 +842,8 @@ components:
       type: object
       properties:
         msn:
-          maxLength: 6
           minLength: 5
+          maxLength: 6
           pattern: ^\d{5,6}$
           type: string
           description: Vipps MSN (merchant serial number)
@@ -937,7 +898,8 @@ components:
                 See: https://developer.vippsmobilepay.com/docs/APIs/recurring-api
               default: true
               example: false
-    GetPartner:
+    
+    GetPartnerResponse:
       required:
         - partnerId
         - name
@@ -946,7 +908,7 @@ components:
         partnerId:
           minLength: 3
           maxLength: 10
-          pattern: ^\d{3}+$
+          pattern: ^\d{3,10}$
           type: string
           description: Partner id
           example: "123456"
@@ -954,18 +916,56 @@ components:
           type: string
           description: "The partner's name"
           example: "ACME Partner Inc"
+        level:
+          type: string
+          description: |-
+            The partner's level.
+            See: https://developer.vippsmobilepay.com/docs/vipps-partner/partner-level-up/
+          enum:
+            - "Vipps Partner"
+            - "Vipps Partner Plus"
+            - "Vipps Partner Premium"
+          example: "Vipps Partner Premium"
+        partnerContact:
+          type: string
+          description: The partner's contact person in Vipps MobilePay.
+          example: "Firstname Lastname"
 
-    GetPartnerPrices:
-      type: object
+    GetPartnerPricePackagesResponse:
       description: List of the partner's price packages
+      type: object
+      required:
+        - pricesPackages  
       properties:
         pricesPackages:
           type: array
-          description: List of Vipps MSNs (merchant serial numbers)
+          description: List of price packages
           items:
-            description: Price package name
-            type: string
-    GetOrg:
+            $ref: '#/components/schemas/PricePackage'
+    
+    GetMerchantResponse:
+      description: Response of a successful get merchant operation
+      required:
+        - orgno
+        - name
+      type: object
+      properties:
+        orgno:
+          type: string
+          description: The organization number for the merchant
+          minLength: 9
+          maxLength: 9
+          pattern: ^\d{9}$
+          example: 987654321
+        name:
+          type: string
+          description: The name of the merchant
+          minLength: 1
+          maxLength: 50
+          example: ACME Fantastic Fitness
+
+    GetMSNResponse:
+      description: Response of a successful get sales units operation
       required:
         - msn
       type: object
@@ -974,58 +974,100 @@ components:
           type: array
           description: List of Vipps MSNs (merchant serial numbers)
           items:
-            maxLength: 6
             minLength: 5
+            maxLength: 6
             pattern: '^\d{5,6}$'
             type: string
             description: Vipps MSN (merchant serial number)
             example: "123456"
-            x-order: 4
-      description: Response of successful getsales-units operation
+
+    GetMerchantContractsResponse:
+      description: Response of a successful get contracts operation
+      required:
+        - urls
+      type: object
+      properties:
+        urls:
+          description: List of URLs to download PDF contracts
+          items:
+            type: string
+            description: URL for downloading PDF contract
+            example: "https://example.com/contracts/contrsct-12345.pdf"
+
+    PatchMSN:
+      title: PatchMSN
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the sales unit.
+          example: ACME Fantastic Fitness DeLuxe
+          maxLength: 50
+        status:
+          type: string
+          description: Status of the sales unit.
+          enum:
+            - ACTIVE
+            - DEACTIVATED
+          default: ACTIVE
+          example: ACTIVE
+
+    PricePackage:
+      required:
+        - pricePackageId
+        - name
+      type: object
+      properties:
+        pricePackageId:
+          type: string
+          description: The unique id for the price package
+          format: uuid
+          example: "8a11afb7-c223-48ed-8ca6-4722b97261aa"
+        name:
+          type: string
+          description: The price package' name
+          maxLength: 30
+          example: "POS standard"
 
     Error:
-      required:
-        - detail
-        - instance
-        - status
-        - title
+      oneOf:
+        - $ref: "#/components/schemas/Problem"
+        - $ref: "#/components/schemas/MiddlewareError"
+
+    Problem:
+      title: Problem
       type: object
-      description: |-
-        Problem details for errors from the Partner API.
-        See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors
       properties:
         type:
           type: string
-          description: |
-            "A URI reference that identifies the problem type"
-          example: https://example.com/validation-error
-          x-order: 1
+          format: uri
+          example: "https://example.com/problem/unauthorized"
+          description: A URI reference that identifies the problem type.
         title:
           type: string
-          description: |
-            "A short, human-readable summary of the problem type"
-          example: MSN validation error
-          x-order: 2
+          example: "Not authorized to create a product order"
+          description: "A short, human-readable summary of the problem type.  It will not change from occurrence to occurrence of the problem."
         status:
           type: integer
-          description: |
-            "The code generated by the origin server for this occurrence of the problem"
-          example: 400
-          x-order: 3
+          description: The HTTP response code
+          example: 401
         detail:
           type: string
-          description: |
-            "A human-readable explanation specific to this occurrence of the problem.
-            The detail member, if present, ought to focus on helping the client correct the problem,
-            rather than giving debugging information."
-          example: MSN must be 5 or 6 digits
-          x-order: 4
+          example: "Not authorized to create a product order. Check whether Authorization token and Ocp-Apim-Subscription-Key are correct."
+          description: A human-readable explanation specific to this occurrence of the problem.
         instance:
           type: string
-          description: |
-            "Unique ID for the request which can be used to find related events (logs)"
-          example: https://example.com/validation-error/msn
-          x-order: 5
+          example: "/products/orders"
+          description: A URI reference that identifies the specific occurrence of the problem
+        traceId:
+          type: string
+          example: "81b83246-5c19-7b94-875b-ea6d1114f099"
+          description: An id that can be used to facilitate in tracing the error.
+        extraDetails:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExtraDetails"
+
     MiddlewareError:
       type: object
       description: |-
@@ -1043,6 +1085,7 @@ components:
             "A human-readable explanation specific to this occurrence of the problem."
           example: MSN must be at least five digits
           x-order: 2
+  
   securitySchemes:
     Bearer-Authorization:
       name: Authorization
@@ -1055,31 +1098,109 @@ components:
         [`POST:/accesstoken/get`](https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost)
         endpoint.
         It is valid for 1 hour in the test environment and 24 hours in the production environment.
+  
+  
   parameters:
-    Idempotency-Key:
-      name: Idempotency-Key
+
+    Authorization:
       in: header
+      name: Authorization
+      description: >-
+        The access token is a base64-encoded string that is required for all API calls.
+        It is a JWT (JSON Web Token).
+        The access token is fetched from the `POST:/accesstoken/get` endpoint.
+        It is valid for 1 hour in the test environment and 24 hours in the production environment.
       required: true
       schema:
         type: string
-        example: 81b83246-5c19-7b94-875b-ea6d1114f099
-      description: "Idempotency key for the request, ensures idempotent actions. Not required, but recommended."
-    Ocp-APIM-Subscription-Key:
+
+    Ocp-Apim-Subscription-Key:
+      in: header
       name: Ocp-Apim-Subscription-Key
-      in: header
+      description: |-
+        The subscription key for your API product is available on portal.vipps.no, under the 'Utvikler' tab.
+        Keep it secret.
       required: true
       schema:
         type: string
-        example: da7d5b0e18a84aeda961c0c31b75c2a9
-      description: Vipps Subscription Key
+      example: 0f14ebcab0ec4b29ae0cb90d91b4a84a
+
+    Vipps-System-Name:
+      name: Vipps-System-Name
+      in: header
+      description: The name of the ecommerce solution. One word in lowercase letters is good.
+      schema:
+        type: string
+      example: woocommerce
+    
+    Vipps-System-Version:
+      name: Vipps-System-Version
+      in: header
+      description: The version number of the ecommerce solution.
+      schema:
+        type: string
+      example: "5.4"
+    
+    Vipps-System-Plugin-Name:
+      name: Vipps-System-Plugin-Name
+      in: header
+      description: The name of the ecommerce plugin (if applicable). One word in lowercase letters is good.
+      schema:
+        type: string
+      example: "vipps-woocommerce"
+    
+    Vipps-System-Plugin-Version:
+      name: Vipps-System-Plugin-Version
+      in: header
+      description: The version number of the ecommerce plugin (if applicable).
+      schema:
+        type: string
+      example: "1.2.1"
+
+    Content-Type:
+      in: header
+      name: Content-Type
+      description: "The content type must be `application/json`"
+      schema:
+        type: string
+      example: application/json
+
+    Idempotency-Key:
+      in: header
+      name: Idempotency-Key
+      description: |-
+        An Idempotency key must be provided to ensure idempotent requests.
+        Key size can be between 1 to 40 characters.
+      required: true
+      schema:
+        type: string
+        maxLength: 40
+        pattern: ^[a-zA-Z0-9]*$
+        example: kRk3uEeiogxLu1yGSZRlNgsIv3TuNS
+
+    Merchant-Serial-Number:
+      name: Merchant-Serial-Number
+      in: header
+      description: |-
+        The Merchant Serial Number (MSN) is a unique id for the sale unit
+        that this payment is made for.
+        This is a required parameter if you are a partner
+        making payments on behalf of a merchant.
+        The partner must use the merchant's MSN (not the partner's MSN).
+        This parameter is optional, and recommended, for regular Vipps
+        merchants making payments for themselves.
+      schema:
+        type: string
+      example: 123456
+
     orgno:
       name: orgno
       in: path
       description: The organization number for the merchant
       required: true
       schema:
-        maxLength: 9
         minLength: 9
+        maxLength: 9
         pattern: ^\d{9}$
         type: string
         example: 987654321
@@ -1089,8 +1210,8 @@ components:
       description: The Vipps MSN (merchant serial number)
       required: true
       schema:
+        minLength: 5 
         maxLength: 6
-        minLength: 5
         pattern: ^\d{5,6}$
         type: string
         example: 123456
