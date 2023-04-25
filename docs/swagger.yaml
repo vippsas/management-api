@@ -127,9 +127,9 @@ paths:
 
   /management/v1/product-orders/{product-order-id}:
     parameters:
-      - name: partner-id
+      - name: product-order-id
         in: path
-        description: The partner's id
+        description: The product order's id
         required: true
         schema:
           minLength: 3
