@@ -11,6 +11,13 @@ END_METADATA -->
 
 # Quick start
 
+💥 
+DRAFT! The Management API is in development, but not yet available.
+This documentation is a working document, and used in discussions with
+merchants and partners to make sure we are prioritizing rightm,
+and that we are implementing the right functionality.
+💥
+
 The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
 
 **Important:** Be aware that these are running on the production server.
