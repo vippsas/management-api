@@ -1334,7 +1334,7 @@ components:
             - ACTIVE
             - DEACTIVATED
           default: ACTIVE
-          example: active
+          example: ACTIVE
 
     PricePackage:
       required:
