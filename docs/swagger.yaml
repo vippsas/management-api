@@ -47,8 +47,8 @@ paths:
           description: The partner's partner id
           required: true
           schema:
-            maxLength: 10
             minLength: 3
+            maxLength: 10
             pattern: ^\d{3,}$
             type: string
             example: 12345
@@ -104,14 +104,14 @@ paths:
 
   /management/v1/partners/{partner-id}/prices:
     get:
-      arameters:
+      parameters:
         - name: partner-id
           in: path
           description: The partner's id
           required: true
           schema:
-            maxLength: 3
-            minLength: 10
+            minLength: 3
+            maxLength: 10
             pattern: ^\d{3,}$
             type: string
             example: 12345
@@ -132,8 +132,8 @@ paths:
         description: The partner's id
         required: true
         schema:
-          maxLength: 3
-          minLength: 10
+          minLength: 3
+          maxLength: 10
           pattern: ^\d{3,}$
           type: string
           example: 12345
@@ -297,8 +297,8 @@ paths:
           description: The organization number for the merchant
           required: true
           schema:
-            maxLength: 9
             minLength: 9
+            maxLength: 9
             pattern: ^\d{9}$
             type: string
             example: 987654321
@@ -350,8 +350,8 @@ paths:
           description: The organization number for the merchant
           required: true
           schema:
-            maxLength: 9
             minLength: 9
+            maxLength: 9
             pattern: ^\d{9}$
             type: string
             example: 987654321
@@ -420,8 +420,8 @@ paths:
           description: The Vipps MSN (merchant serial number) for the sales unit.
           required: true
           schema:
-            maxLength: 6
             minLength: 5
+            maxLength: 6
             pattern: ^\d{5,6}$
             type: string
       responses:
@@ -483,8 +483,8 @@ paths:
           description: The Vipps MSN (merchant serial number) for the sales unit.
           required: true
           schema:
-            maxLength: 6
             minLength: 5
+            maxLength: 6
             pattern: ^\d{5,6}$
             type: string
       responses:
@@ -546,8 +546,8 @@ components:
         orgno:
           type: string
           pattern: ^[0-9]{9,9}$
-          minLength: 9
           maxLength: 9
+          minLength: 9
           example: "987654321"
           description: |-
             Organisation number of the merchant for whom the partner is submitting the product order.
@@ -881,8 +881,8 @@ components:
       type: object
       properties:
         msn:
-          maxLength: 6
           minLength: 5
+          maxLength: 6
           pattern: ^\d{5,6}$
           type: string
           description: Vipps MSN (merchant serial number)
@@ -974,8 +974,8 @@ components:
           type: array
           description: List of Vipps MSNs (merchant serial numbers)
           items:
-            maxLength: 6
             minLength: 5
+            maxLength: 6
             pattern: '^\d{5,6}$'
             type: string
             description: Vipps MSN (merchant serial number)
@@ -1078,8 +1078,8 @@ components:
       description: The organization number for the merchant
       required: true
       schema:
-        maxLength: 9
         minLength: 9
+        maxLength: 9
         pattern: ^\d{9}$
         type: string
         example: 987654321
@@ -1089,8 +1089,8 @@ components:
       description: The Vipps MSN (merchant serial number)
       required: true
       schema:
+        minLength: 5 
         maxLength: 6
-        minLength: 5
         pattern: ^\d{5,6}$
         type: string
         example: 123456
