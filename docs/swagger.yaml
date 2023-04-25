@@ -315,7 +315,7 @@ paths:
       summary: Get a merchant's contract(s)
       description: |-
         May return a (link to a) PDF.
-      operationId: getMerchant
+      operationId: getMerchantContracts
       parameters:
         - $ref: "#/components/parameters/Ocp-APIM-Subscription-Key"
         - name: orgno
