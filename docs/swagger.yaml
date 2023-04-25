@@ -426,7 +426,7 @@ paths:
         - Sales units
       security:
         - Bearer-Authorization: []
-      summary: Update sales unit
+      summary: "Update sales unit: Name or status"
       operationId: patchMSN
       parameters:
         - $ref: "#/components/parameters/Authorization"
@@ -1091,7 +1091,7 @@ components:
             example: "123456"
 
     GetMerchantContractsResponse:
-      description: Response of a successful get contracts operation
+      description: "Response of a successful get contracts operation"
       required:
         - urls
       type: object
