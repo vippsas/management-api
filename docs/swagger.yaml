@@ -50,7 +50,6 @@ paths:
       operationId: getPartner
       parameters:
         - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -80,7 +79,6 @@ paths:
     get:
       parameters:
         - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -113,7 +111,6 @@ paths:
   /management/v1/product-orders/{product-order-id}:
     parameters:
       - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-      - $ref: "#/components/parameters/Content-Type"
       - $ref: "#/components/parameters/Merchant-Serial-Number"
       - $ref: "#/components/parameters/Vipps-System-Name"
       - $ref: "#/components/parameters/Vipps-System-Version"
@@ -186,7 +183,6 @@ paths:
         - Product orders
       parameters:
         - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -271,7 +267,6 @@ paths:
       operationId: getMerchant
       parameters:
         - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -307,7 +302,6 @@ paths:
       operationId: getMerchantContracts
       parameters:
         - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -344,7 +338,6 @@ paths:
       operationId: getMerchantSalesUnits
       parameters:
         - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -378,7 +371,6 @@ paths:
       operationId: getMSN
       parameters:
         - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -410,7 +402,6 @@ paths:
       operationId: patchMSN
       parameters:
         - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -446,7 +437,6 @@ paths:
       operationId: getApiQuality
       parameters:
         - $ref: "#/components/parameters/Ocp-Apim-Subscription-Key"
-        - $ref: "#/components/parameters/Content-Type"
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
@@ -1227,14 +1217,6 @@ components:
       schema:
         type: string
       example: "1.2.1"
-
-    Content-Type:
-      in: header
-      name: Content-Type
-      description: "The content type must be `application/json`"
-      schema:
-        type: string
-      example: application/json
 
     Idempotency-Key:
       in: header
