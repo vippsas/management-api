@@ -10,10 +10,12 @@ pagination_prev: null
 # API guide
 
 💥 
-DRAFT! The Management API is in development, but not yet available.
+**DRAFT!** The Management API is in development, but not yet available.
 This documentation is a working document, and used in discussions with
 merchants and partners to make sure we are prioritizing right,
 and that we are implementing the right functionality.
+The Management API will replace the
+[Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
 💥
 
 The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
@@ -98,7 +100,7 @@ Some candidates:
 * A list of people with admin rights on portal.vipps.no (depends on GDPR, etc)
 * Changelog: What was changed when by who?
 
-### In the meantime
+#### In the meantime
 
 All merchants can see and manage their information on
 [portal.vipps.no](https://portal.vipps.no).
@@ -160,7 +162,7 @@ Some candidates:
 * Transaction cost (price package)
 * Status: Active or deactivated
 
-### In the meantime
+#### In the meantime
 
 Until more functionality is available in this API, there are some workarounds:
 
@@ -373,23 +375,3 @@ May be used if an incorrect PO has been pre-filled with
 
 [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProductDelete)
 
-## Future plans for this API
-
-Changes to a sales unit currently requires BankID login to
-[portal.vipps.no](https://portal.vipps.no),
-but a partner should be able to make changes to the sales units connected to
-the partner.
-
-Some candidates:
-
-- Price: Update
-- Logo: Update
-
-In the meantime:
-Merchants can create a user for their partner on
-[portal.vipps.no](https://portal.vipps.no),
-so the partner can do this directly
-as described here:
-[Partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys)
-and
-[How to add a user on portal.vipps.no](https://developer.vippsmobilepay.com/docs/vipps-partner/add-portal-user).
