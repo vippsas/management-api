@@ -134,7 +134,7 @@ paths:
       operationId: productOrderDetails
       description: |-
         For both merchants and partners.
-        The best way to check the status of a oroduct order is on portal.vipps.no.
+        The best way to check the status of a product order is on portal.vipps.no.
         **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
         a partner, as this requires active consent from the merchant, and the merchant must also
         be able to withdraw the consent.
@@ -878,7 +878,7 @@ components:
           example: 1000
         successRate: 
           type: number
-          description: The percentage of sucessful (HTTP 2XX) requests.
+          description: The percentage of successful (HTTP 2XX) requests.
           example: 95
         status200: 
           type: integer 
