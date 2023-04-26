@@ -1270,7 +1270,9 @@ components:
     Vipps-System-Name:
       name: Vipps-System-Name
       in: header
-      description: The name of the solution. One word in lowercase letters is good.
+      description: |-
+        The name of the solution. One word in lowercase letters is good.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
       schema:
         type: string
       example: woocommerce
@@ -1278,7 +1280,9 @@ components:
     Vipps-System-Version:
       name: Vipps-System-Version
       in: header
-      description: The version number of the solution.
+      description: |-
+        The version number of the solution.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
       schema:
         type: string
       example: "5.4"
@@ -1286,7 +1290,9 @@ components:
     Vipps-System-Plugin-Name:
       name: Vipps-System-Plugin-Name
       in: header
-      description: The name of the plugin (if applicable). One word in lowercase letters is good.
+      description: |-
+        The name of the plugin (if applicable). One word in lowercase letters is good.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
       schema:
         type: string
       example: "vipps-woocommerce"
@@ -1294,7 +1300,9 @@ components:
     Vipps-System-Plugin-Version:
       name: Vipps-System-Plugin-Version
       in: header
-      description: The version number of the plugin (if applicable).
+      description: |-
+        The version number of the plugin (if applicable).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
       schema:
         type: string
       example: "1.2.1"
