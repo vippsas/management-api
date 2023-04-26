@@ -1272,7 +1272,7 @@ components:
       in: header
       description: |-
         The name of the solution. One word in lowercase letters is good.
-        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
       schema:
         type: string
       example: woocommerce
@@ -1282,7 +1282,7 @@ components:
       in: header
       description: |-
         The version number of the solution.
-        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
       schema:
         type: string
       example: "5.4"
@@ -1292,7 +1292,7 @@ components:
       in: header
       description: |-
         The name of the plugin (if applicable). One word in lowercase letters is good.
-        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
       schema:
         type: string
       example: "vipps-woocommerce"
@@ -1302,7 +1302,7 @@ components:
       in: header
       description: |-
         The version number of the plugin (if applicable).
-        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
       schema:
         type: string
       example: "1.2.1"
