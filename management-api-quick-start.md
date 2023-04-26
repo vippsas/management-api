@@ -16,11 +16,6 @@ merchants and partners to make sure we are prioritizing right,
 and that we are implementing the right functionality.
 The Management API will replace the
 [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
-💥
-
-The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
-
-**Important:** Be aware that these are running on the production server.
 
 ## Postman
 

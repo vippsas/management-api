@@ -6,7 +6,6 @@ pagination_next: null
 pagination_prev: null
 ---
 
-
 # API guide
 
 💥 
@@ -17,10 +16,6 @@ and that we are implementing the right functionality.
 The Management API will replace the
 [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
 💥
-
-The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
-
-API version: 1.0.0.
 
 ## Integrating with this API
 
