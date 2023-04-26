@@ -1006,7 +1006,7 @@ components:
         partnerContactName:
           type: string
           description: The partner's contact person in Vipps MobilePay.
-          example: "Firstname Lastname"
+          example: "firstName lastName"
         partnerContactEmail:
           type: string
           description: The partner's contact person's email address.
