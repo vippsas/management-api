@@ -377,7 +377,7 @@ and the merchant must also be able to withdraw the consent.
 
 An "undo" endpoint to delete a PO.
 This may be used if an incorrect PO has been pre-filled with
-[`POST:/product-orders](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct).
+[`POST:/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct).
 
 [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProductDelete)
 
