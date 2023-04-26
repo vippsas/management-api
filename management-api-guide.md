@@ -1,6 +1,6 @@
 ---
-title: Introduction to the Management API
-sidebar_label: Introduction
+title: Management API guide
+sidebar_label: API guide
 sidebar_position: 1
 pagination_next: null
 pagination_prev: null
