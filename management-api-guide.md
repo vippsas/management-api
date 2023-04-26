@@ -24,6 +24,9 @@ API version: 1.0.0.
 
 ## Integrating with this API
 
+Both partners and merchants can use the Management API, and we use "partner/merchant" to
+indicate that this is the actor making the API request.
+
 Authentication:
 * Merchants use their normal
   [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/).
@@ -32,7 +35,6 @@ Authentication:
 
 See the Postman collection and environment, and the
 [Quick start guide](management-api-quick-start.md).
-
 The Postman collection can also be used to manually make API calls,
 even without an integration in place.
 
@@ -46,8 +48,8 @@ Sequence diagram:
 
 ```mermaid
 sequenceDiagram
-    Merchant/Partner->>+API: GET:/merchants/{orgno}
-    API->>+Merchant/Partner: A list of the orgno's MSNs (partners only get the MSNs connected to the partner)
+    Partner/Merchant->>+API: GET:/merchants/{orgno}
+    API->>+Partner/Merchant: A list of the orgno's MSNs (partners only get the MSNs connected to the partner)
 ```
 
 The response (see
@@ -191,14 +193,14 @@ PO: Product order. MA: Merchant agreement.
 
 ```mermaid
 sequenceDiagram
-    participant Merchant/Partner
+    participant Partner/Merchant
     participant Merchant
     participant Portal
     participant API
     participant Vipps
-    Merchant/Partner->>API: POST:/products-orders
-    API->>Merchant/Partner: URL to pre-filled signup form
-    Merchant/Partner->>Merchant: Here is your pre-filled form on Portal
+    Partner/Merchant->>API: POST:/products-orders
+    API->>Partner/Merchant: URL to pre-filled signup form
+    Partner/Merchant->>Merchant: Here is your pre-filled form on Portal
     Merchant->>Portal: Logs in with BankID and accesses form
     Portal->>API: Requests pre-filled data
     Portal->>Portal: Validate MA and pre-fill request?
@@ -221,7 +223,7 @@ sequenceDiagram
         Merchant->>Vipps: Sometimes: Provide additional information
     end
     Vipps->>Merchant: Email with MSN and other details
-    Vipps->>Merchant/Partner: Email with MSN and other details
+    Vipps->>Partner/Merchant: Email with MSN and other details
 ```
 
 Here is a sample request to
@@ -261,7 +263,7 @@ The response:
 something needs to be corrected, a new request with the correct details must be made.
 
 When the submitted order has been processed, an email is sent to both the
-merchant/partner making the request and the merchant that submitted the pre-filled product order
+partner/merchant making the request and the merchant that submitted the pre-filled product order
 with information about:
 
 * The merchant's organization number
@@ -284,7 +286,7 @@ The user will then automatically be presented with the pre-filled PO.
 
 #### Scenario 1: The merchant does not have a Merchant Agreement
 
-1. The merchant/partner pre-fills the PO using
+1. The partner/merchant pre-fills the PO using
    [`POST:/products-orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
    and gets a link to the pre-filled PO on
    [portal.vipps.no](https://portal.vipps.no).
@@ -297,8 +299,8 @@ The user will then automatically be presented with the pre-filled PO.
    [portal.vipps.no](https://portal.vipps.no)
    and is presented with the pre-filled PO,
    checks the details in the PO and submits it.
-5. Vipps processes the PO and sends both the merchant and merchant/partner who made the pre-fill request an
-   email when done. The merchant/partner who made the pre-fill request can also check with the API:
+5. Vipps processes the PO and sends both the merchant and partner/merchant who made the pre-fill request an
+   email when done. The partner/merchant who made the pre-fill request can also check with the API:
    [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 When using the pre-fill link without a valid MA:
@@ -316,7 +318,7 @@ person that has signatory rights for the merchant. The form looks like this:
 
 The merchant has a MA, and probably also a Vipps product.
 
-1. The merchant/partner pre-fills the PO using
+1. The partner/merchant pre-fills the PO using
    [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
    and gets a link to the pre-filled PO on
    [portal.vipps.no](https://portal.vipps.no).
@@ -324,9 +326,9 @@ The merchant has a MA, and probably also a Vipps product.
    [portal.vipps.no](https://portal.vipps.no).
 3. The merchant is presented with the pre-filled PO,
    checks the details in the PO and submits it.
-4. Vipps processes the PO and sends both the merchant and merchant/partner an
+4. Vipps processes the PO and sends both the merchant and partner/merchant an
    email when done. 
-   The merchant/partner who made the pre-fill request can also check with the API:
+   The partner/merchant who made the pre-fill request can also check with the API:
    [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 ### Future improvements
