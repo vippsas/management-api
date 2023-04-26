@@ -475,7 +475,7 @@ paths:
     get:
       tags:
         - API quality
-      summary: "Get information about the API quality: Errors, etc"
+      summary: "Get API quality info: Errors, etc"
       operationId: getApiQuality
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
@@ -902,17 +902,17 @@ components:
       title: API quality response
       type: object
       required:
-        - ApiQualityItems
+        - ApiQualityEndpointData
       properties:
         ApiQualityItems:
           type: array
-          description: List of API quality items
+          description: List of API endpoint quality items
           items:
-            $ref: '#/components/schemas/ApiQualityItem'
+            $ref: '#/components/schemas/ApiQualityEndpointData'
 
-    ApiQualityItem:
-      title: API quality item.
-      description: Needs work, but it's a start.
+    ApiQualityEndpointData:
+      title: API quality item
+      description: Quality stats for the use of one API endpoint.
       type: object
       properties:
         endpoint:
