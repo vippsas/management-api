@@ -121,19 +121,17 @@ May return a (link to a) PDF.
 
 This endpoint is for retrieving details about one sales unit (MSN):
 
-[`GET:/saleunits/{msn}`](https://developer.vippsmobilepay.com/api/partner#tag/Sales-units/operation/getMSN)
+[`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMSN)
 
 Sequence diagram:
 
 ```mermaid
 sequenceDiagram
-    Partner->>+API: GET:/saleunits/{msn}
-    API->>+Partner: The details for the MSN (if the MSN is connected to the partner)
+    Partner->>+API: GET:/sales-units/{msn}
+    API->>+Partner: The details for the MSN (partners only get the details if the MSN is connected to the partner)
 ```
 
-The response (see
-[`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMSN)
-for details):
+The response (work in progress, we would like input on what is needed here):
 
 ```json
 {
@@ -182,7 +180,7 @@ This endpoint lets a partner "pre-fill" the product order form on
 on behalf of a merchant, so the merchant can log in, check the data, and submit
 the product order:
 
-[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
+[`POST:/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct)
 
 ### About "Product Order" (PO) and "Merchant Agreement" (MA)
 
@@ -214,7 +212,7 @@ sequenceDiagram
     participant Portal
     participant API
     participant Vipps
-    Partner->>API: POST:/products/orders
+    Partner->>API: POST:/products-orders
     API->>Partner: URL to pre-filled signup form
     Partner->>Merchant: Here is your pre-filled form on Portal
     Merchant->>Portal: Logs in with BankID and accesses form
@@ -272,7 +270,7 @@ for details):
 ```json
 {
   "prefilledOrderId": "81b83246-5c19-7b94-875b-ea6d1114f099",
-  "returnUrl": "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
+  "prefillUrl": "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
 }
 ```
 
@@ -306,7 +304,7 @@ The user will then automatically be presented with the pre-filled PO.
 #### Scenario 1: The merchant does not have a Merchant Agreement
 
 1. The partner pre-fills the PO using
-   [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
+   [`POST:/products-orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
    and gets a link to the pre-filled PO on
    [portal.vipps.no](https://portal.vipps.no).
 2. The merchant uses the link and logs in with BankID on

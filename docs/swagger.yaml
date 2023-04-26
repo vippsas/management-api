@@ -820,10 +820,10 @@ components:
           format: uuid
           description: A UUID reference that identifies the product order request submitted by the partner.
           example: 81b83246-5c19-7b94-875b-ea6d1114f099
-        returnUrl:
+        prefillUrl:
           type: string
           format: uri
-          description: A URL for the merchant to complete the signup.
+          description: A URL for the merchant to the pre-filled product order to complete the signup.
           example: "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
     
     ProductOrderDetailsResponse:
