@@ -11,10 +11,12 @@ pagination_prev: null
 # Management API
 
 💥 
-DRAFT! The Management API is in development, but not yet available.
+**DRAFT!** The Management API is in development, but not yet available.
 This documentation is a working document, and used in discussions with
-merchants and partners to make sure we are prioritizing rightm,
+merchants and partners to make sure we are prioritizing right,
 and that we are implementing the right functionality.
+The Management API will replace the
+[Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
 💥
 
 The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
