@@ -254,6 +254,31 @@ paths:
         default:
           $ref: "#/components/schemas/Error"
 
+  /management/v1/merchants:
+    get:
+      tags:
+        - Merchants
+      summary: Get all merchants
+      description: |-
+        For partners.
+        Get a (long) list of all orgnos that have one or more sale units registered with the partner making the API call.
+      operationId: getAllMerchants
+      parameters:
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetAllMerchantsResponse"
+        default:
+          $ref: "#/components/schemas/Error"
+
   /management/v1/merchants/{orgno}:
     get:
       tags:
@@ -264,7 +289,7 @@ paths:
         **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
         a partner, as this requires active consent from the merchant, and the merchant must also
         be able to withdraw the consent.
-      operationId: getMerchant
+      operationId: getMerchantByOrgno
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
@@ -360,6 +385,28 @@ paths:
         default:
           $ref: "#/components/schemas/Error"
 
+  /management/v1/sales-units:
+    get:
+      tags:
+        - Sales units
+      summary: Get all sales units that a merchant or partner has access to
+      operationId: getAllSalesUnits
+      parameters:
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetMSNResponse"
+        default:
+          $ref: "#/components/schemas/Error"
+
   /management/v1/sales-units/{msn}:
     get:
       tags:
@@ -428,7 +475,7 @@ paths:
     get:
       tags:
         - API quality
-      summary: "Get information about the API quality: Errors, etc"
+      summary: "Get API quality info: Errors, etc"
       operationId: getApiQuality
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
@@ -855,17 +902,17 @@ components:
       title: API quality response
       type: object
       required:
-        - ApiQualityItems
+        - ApiQualityEndpointData
       properties:
         ApiQualityItems:
           type: array
-          description: List of API quality items
+          description: List of API endpoint quality items
           items:
-            $ref: '#/components/schemas/ApiQualityItem'
+            $ref: '#/components/schemas/ApiQualityEndpointData'
 
-    ApiQualityItem:
-      title: API quality item.
-      description: Needs work, but it's a start.
+    ApiQualityEndpointData:
+      title: API quality item
+      description: Quality stats for the use of one API endpoint.
       type: object
       properties:
         endpoint:
@@ -1033,8 +1080,8 @@ components:
           items:
             $ref: '#/components/schemas/PricePackage'
     
-    GetMerchantResponse:
-      description: Response of a successful get merchant operation
+    Merchant:
+      description: A merchant
       required:
         - orgno
         - name
@@ -1053,6 +1100,22 @@ components:
           minLength: 1
           maxLength: 50
           example: ACME Fantastic Fitness
+
+    GetMerchantResponse:
+      description: Response of a successful get merchant(s) operation
+      $ref: '#/components/schemas/Merchant'
+    
+    GetAllMerchantsResponse:
+      description: List of the merchants a partner has access to
+      type: object
+      required:
+        - pricesPackages  
+      properties:
+        pricesPackages:
+          type: array
+          description: List of merchants
+          items:
+            $ref: '#/components/schemas/Merchant'
 
     GetMSNResponse:
       description: Response of a successful get sales units operation
