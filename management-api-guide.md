@@ -33,6 +33,13 @@ See the Postman collection and environment, and the
 The Postman collection can also be used to manually make API calls,
 even without an integration in place.
 
+## Get all merchants
+
+For partners:
+Get a (long) list of all orgnos that have one or more sale units registered with the partner making the API call.
+
+[`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants)
+
 ## Get information about a merchant
 
 This endpoint is for retrieving basic information about the merchant:
@@ -44,21 +51,12 @@ Sequence diagram:
 ```mermaid
 sequenceDiagram
     Partner/Merchant->>+API: GET:/merchants/{orgno}
-    API->>+Partner/Merchant: A list of the orgno's MSNs (partners only get the MSNs connected to the partner)
+    API->>+Partner/Merchant: Some details for the merchant
 ```
 
 The response (see
-[`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant)
+[`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
 for details):
-
-```json
-{
-  "msn": [
-     "123456",
-     "123457"
-   ]
-}
-```
 
 This is an endpoint for getting information about the _merchant_, not all the
 merchant's MSNs.
@@ -94,9 +92,42 @@ and
 
 ## Get a merchant's contract(s)
 
-May return a (link to a) PDF.
+Just an idea. May return a (link to a) PDF.
 
 [`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts)
+
+## Get all sales units for the merchant or partner
+
+For partners:
+Get a (long) list of all sales units registered with the partner making the API call.
+
+[`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
+
+Response:
+
+```json
+{
+  "msn": [
+     "123456",
+     "123457"
+   ]
+}
+```
+
+## Get the sales units for a merchant by orgno
+
+[`GET:/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
+
+Response:
+
+```json
+{
+  "msn": [
+     "123456",
+     "123457"
+   ]
+}
+```
 
 ## Get information about a sales unit
 
