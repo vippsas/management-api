@@ -35,7 +35,8 @@ even without an integration in place.
 
 ## Get all merchants
 
-For partners using partner keys:
+For partners using
+[partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
 Get a (long) list of all orgnos that have one or more sale units registered with the partner making the API call.
 
 [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants)
@@ -90,7 +91,8 @@ Just an idea. May return a (link to a) PDF.
 
 ## Get all sales units
 
-For partners using partner keys:
+For partners using
+[partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
 Get a (long) list of all sales units registered with the partner making the API call.
 
 [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
@@ -379,3 +381,23 @@ This may be used if an incorrect PO has been pre-filled with
 
 [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProductDelete)
 
+## Get information about a partner
+
+For partners using
+[partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
+Get details for the partner making the request.
+
+[`GET:/partners/whoami`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerWhoami)
+
+Response:
+
+```
+{
+   "partnerId": "123456",
+   "name": "ACME Partner Inc",
+   "level": "Vipps Partner Premium",
+   "partnerContactName": "firstName lastName",
+   "partnerContactEmail": "firstname.lastname@vippsmobilepay.com",
+   "status": "ACTIVE"
+}
+```

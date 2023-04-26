@@ -42,15 +42,42 @@ security:
     Ocp-Apim-Subscription-Key: []
 
 paths:
+
+  /management/v1/partners/whoami:
+    get:
+      tags:
+        - Partners
+      summary: |-
+        Get details for the partner making the request
+      description: |-
+        A "Who am I"-type endpoint where a partner can fetch
+        the information stored about them.
+      operationId: getPartnerWhoami
+      parameters:
+        - $ref: "#/components/parameters/Merchant-Serial-Number"
+        - $ref: "#/components/parameters/Vipps-System-Name"
+        - $ref: "#/components/parameters/Vipps-System-Version"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
+        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: "#/components/schemas/GetPartnerResponse"
+        default:
+          $ref: "#/components/schemas/Error"
+
   /management/v1/partners/{partner-id}:
     get:
       tags:
         - Partners
       summary: |-
-        Get partner by partner Id.
+        Get partner by partner id
       description: |-
         Possibly a "Who am I"-type endpoint where a partner can fetch
-        the information that Vipps MobilePay has stored about them.
+        the information stored about them.
       operationId: getPartner
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
