@@ -35,16 +35,32 @@ even without an integration in place.
 
 ## Get all merchants
 
-For partners:
+For partners using partner keys:
 Get a (long) list of all orgnos that have one or more sale units registered with the partner making the API call.
 
 [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants)
 
-## Get information about a merchant
+Sequence diagram:
+
+```mermaid
+sequenceDiagram
+    Partner/Merchant->>+API: GET:/merchants
+    API->>+Partner/Merchant: List of merchants
+```
+
+## Get one merchant by orgno
 
 This endpoint is for retrieving basic information about the merchant:
 
 [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
+
+Response:
+```
+{
+  "orgno": 987654321,
+  "name": "ACME Fantastic Fitness"
+}
+```
 
 Sequence diagram:
 
@@ -53,17 +69,6 @@ sequenceDiagram
     Partner/Merchant->>+API: GET:/merchants/{orgno}
     API->>+Partner/Merchant: Some details for the merchant
 ```
-
-The response (see
-[`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
-for details):
-
-This is an endpoint for getting information about the _merchant_, not all the
-merchant's MSNs.
-Since the response only contains a list of MSNs, an additional API request is
-required to get more details about the sales unit.
-See:
-[Get information about a sales unit](#get-information-about-a-sales-unit).
 
 ### Future improvements
 
@@ -77,28 +82,15 @@ Some candidates:
 * A list of people with admin rights on portal.vipps.no (depends on GDPR, etc)
 * Changelog: What was changed when by who?
 
-#### In the meantime
-
-All merchants can see and manage their information on
-[portal.vipps.no](https://portal.vipps.no).
-Merchants can also see which partner (or PSP) a sales unit is connected to, if any.
-
-Merchants can create a user for their partner on
-[portal.vipps.no](https://portal.vipps.no),
-so the partner can do this directly as described here:
-[Partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys)
-and
-[How to add a user on portal.vipps.no](https://developer.vippsmobilepay.com/docs/vipps-partner/add-portal-user).
-
 ## Get a merchant's contract(s)
 
 Just an idea. May return a (link to a) PDF.
 
 [`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts)
 
-## Get all sales units for the merchant or partner
+## Get all sales units
 
-For partners:
+For partners using partner keys:
 Get a (long) list of all sales units registered with the partner making the API call.
 
 [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
@@ -172,18 +164,20 @@ Some candidates:
 * Transaction cost (price package)
 * Status: Active or deactivated
 
-#### In the meantime
-
-Until more functionality is available in this API, there are some workarounds:
-
-* [How can I check if I have "reserve capture" or "direct capture"?](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/reserve-and-capture-faq#how-can-i-check-if-i-have-reserve-capture-or-direct-capture)
-* [How can I check if I have skipLandingPage activated?](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/vipps-landing-page-faq#how-can-i-check-if-i-have-skiplandingpage-activated)
-
 ## Update sales unit
 
 May be used to update a sales unit, for instance the name or the status.
 
 [`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/patchMSN)
+
+Example `PATCH` request body:
+
+```
+{
+  "name": "ACME Fantastic Fitness DeLuxe",
+  "status": "ACTIVE"
+}
+```
 
 ## Pre-fill a product order
 
