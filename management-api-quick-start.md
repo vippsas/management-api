@@ -33,7 +33,7 @@ Review
 
 Save the following files to your computer:
 
-* [Management API Postman collection](tools/vipps-partner-api-postman-collection.json)
+* [Management API Postman collection](/tools/vipps-partner-api-postman-collection.json)
 * [Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Postman files
