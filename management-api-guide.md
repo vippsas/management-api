@@ -22,37 +22,19 @@ The Vipps MobilePay Management API lets partners and merchants manage their sale
 
 API version: 1.0.0.
 
-## Information for Vipps partners
+## Integrating with this API
 
-* [How to become a Vipps partner](https://vipps.no/developer/bli-partner/) (in Norwegian).
-* [Vipps Partners](https://developer.vippsmobilepay.com/docs/vipps-partner): Technical information for Vipps partners.
-
-### Integrating with this API
-
-Integration should be straight-forward:
-* Merchants use their normal API keys
-* Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
+Authentication:
+* Merchants use their normal
+  [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/).
+* Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys)
+  if they have them, and the merchant's API keys if not.
 
 See the Postman collection and environment, and the
 [Quick start guide](management-api-quick-start.md).
 
 The Postman collection can also be used to manually make API calls,
 even without an integration in place.
-
-**Important:** For partners: Vipps has limited capacity to handle partners' requests to
-"just check something", even though it may be trivial. We therefore recommend
-the following priority:
-
-1. Integrate with the Management API, so the functionality is made available
-   in the partner's own admin interface.
-2. Use the Management API manually with the Postman collection provided by Vipps.
-3. Ask the merchant to create a user for the partner on portal.vipps.no,
-   so the partner can check on behalf of the merchant:
-   [How to add a user on portal.vipps.no](https://developer.vippsmobilepay.com/docs/vipps-partner/add-portal-user).
-4. See the Vipps FAQ for how to check if a sales unit
-   [has skipLandingPage](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/reserve-and-capture-faq#how-can-i-check-if-i-have-reserve-capture-or-direct-capture)
-   or
-   [which capture type it has](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/reserve-and-capture-faq#how-do-i-turn-direct-capture-on-or-off).
 
 ## Get information about a merchant
 
@@ -64,8 +46,8 @@ Sequence diagram:
 
 ```mermaid
 sequenceDiagram
-    Partner->>+API: GET:/merchants/{orgno}
-    API->>+Partner: A list of the merchant's MSNs connected to the partner
+    Merchant/Partner->>+API: GET:/merchants/{orgno}
+    API->>+Merchant/Partner: A list of the orgno's MSNs (partners only get the MSNs connected to the partner)
 ```
 
 The response (see
@@ -209,14 +191,14 @@ PO: Product order. MA: Merchant agreement.
 
 ```mermaid
 sequenceDiagram
-    participant Partner
+    participant Merchant/Partner
     participant Merchant
     participant Portal
     participant API
     participant Vipps
-    Partner->>API: POST:/products-orders
-    API->>Partner: URL to pre-filled signup form
-    Partner->>Merchant: Here is your pre-filled form on Portal
+    Merchant/Partner->>API: POST:/products-orders
+    API->>Merchant/Partner: URL to pre-filled signup form
+    Merchant/Partner->>Merchant: Here is your pre-filled form on Portal
     Merchant->>Portal: Logs in with BankID and accesses form
     Portal->>API: Requests pre-filled data
     Portal->>Portal: Validate MA and pre-fill request?
@@ -239,10 +221,11 @@ sequenceDiagram
         Merchant->>Vipps: Sometimes: Provide additional information
     end
     Vipps->>Merchant: Email with MSN and other details
-    Vipps->>Partner: Email with MSN and other details
+    Vipps->>Merchant/Partner: Email with MSN and other details
 ```
 
-Here is a sample request:
+Here is a sample request to
+[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct):
 
 ```json
 {
@@ -265,9 +248,7 @@ Here is a sample request:
 }
 ```
 
-The response (see
-[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
-for details):
+The response:
 
 ```json
 {
@@ -276,13 +257,11 @@ for details):
 }
 ```
 
-**Please note:** The merchant can not change the information provided by the partner, so if
-something needs to be corrected, the merchant must contact the partner to have
-the partner submit a new product order with the correct details.
+**Please note:** The merchant can not change the information provided in the request, so if
+something needs to be corrected, a new request with the correct details must be made.
 
-When the submitted order has been processed, Vipps sends an email to both the
-merchant and the partner (as described on
-[Vipps Partners](https://developer.vippsmobilepay.com/docs/vipps-partner))
+When the submitted order has been processed, an email is sent to both the
+merchant/partner making the request and the merchant that submitted the pre-filled product order
 with information about:
 
 * The merchant's organization number
@@ -305,7 +284,7 @@ The user will then automatically be presented with the pre-filled PO.
 
 #### Scenario 1: The merchant does not have a Merchant Agreement
 
-1. The partner pre-fills the PO using
+1. The merchant/partner pre-fills the PO using
    [`POST:/products-orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
    and gets a link to the pre-filled PO on
    [portal.vipps.no](https://portal.vipps.no).
@@ -318,8 +297,8 @@ The user will then automatically be presented with the pre-filled PO.
    [portal.vipps.no](https://portal.vipps.no)
    and is presented with the pre-filled PO,
    checks the details in the PO and submits it.
-5. Vipps processes the PO and sends both the merchant and partner an
-   email when done. The partner can also check with the API:
+5. Vipps processes the PO and sends both the merchant and merchant/partner who made the pre-fill request an
+   email when done. The merchant/partner who made the pre-fill request can also check with the API:
    [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 When using the pre-fill link without a valid MA:
@@ -337,7 +316,7 @@ person that has signatory rights for the merchant. The form looks like this:
 
 The merchant has a MA, and probably also a Vipps product.
 
-1. The partner pre-fills the PO using
+1. The merchant/partner pre-fills the PO using
    [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
    and gets a link to the pre-filled PO on
    [portal.vipps.no](https://portal.vipps.no).
@@ -345,9 +324,10 @@ The merchant has a MA, and probably also a Vipps product.
    [portal.vipps.no](https://portal.vipps.no).
 3. The merchant is presented with the pre-filled PO,
    checks the details in the PO and submits it.
-4. Vipps processes the PO and sends both the merchant and partner an
-   email when done. The partner can also check with the API:
-  [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+4. Vipps processes the PO and sends both the merchant and merchant/partner an
+   email when done. 
+   The merchant/partner who made the pre-fill request can also check with the API:
+   [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 ### Future improvements
 
@@ -361,16 +341,18 @@ The merchant has a MA, and probably also a Vipps product.
 For both merchants and partners. The best way to check the status of a oroduct order is on
 [portal.vipps.no](https://portal.vipps.no). 
 
-**Please note:** There are strict rules for what information Vipps MobilePay
-is allowed to share with a partner, as this requires active consent from the merchant,
-and the merchant must also be able to withdraw the consent.
+We are considering an endpoint like this:
 
 [`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/productOrderDetails)
+
+**Please note:** There are strict rules for what information we are
+allowed to share with a partner, as this requires active consent from the merchant,
+and the merchant must also be able to withdraw the consent.
 
 ## Delete a product order
 
 An "undo" endpoint to delete a PO.
-May be used if an incorrect PO has been pre-filled with
+This may be used if an incorrect PO has been pre-filled with
 [`POST:/product-orders](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct).
 
 [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProductDelete)
