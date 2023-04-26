@@ -46,6 +46,7 @@ paths:
         - Partners
       summary: |-
         Get partner by partner Id.
+      description: |-
         Possibly a "Who am I"-type endpoint where a partner can fetch
         the information that Vipps MobilePay has stored about them.
       operationId: getPartner
