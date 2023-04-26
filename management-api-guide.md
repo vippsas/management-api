@@ -27,16 +27,17 @@ API version: 1.0.0.
 
 ### Integrating with this API
 
-Integration should be straight-forward.
-Use the
-[partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
+Integration should be straight-forward:
+* Merchants use their normal API keys
+* Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
+
 See the Postman collection and environment, and the
 [Quick start guide](management-api-quick-start.md).
 
 The Postman collection can also be used to manually make API calls,
 even without an integration in place.
 
-**Please note:** Vipps has limited capacity to handle partners' requests to
+**Important:** For partners: Vipps has limited capacity to handle partners' requests to
 "just check something", even though it may be trivial. We therefore recommend
 the following priority:
 
@@ -51,32 +52,11 @@ the following priority:
    or
    [which capture type it has](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/reserve-and-capture-faq#how-do-i-turn-direct-capture-on-or-off).
 
-**Important:** Endpoints with `/v0/` (version 0) in the URI _are_ working, and
-will continue to do so, but will be superseded by similar `/v1/` endpoints with
-improved functionality as soon as possible. For example:
-[`GET:/saleunits/{msn}`](https://developer.vippsmobilepay.com/api/partner#tag/Sales-units/operation/getMSN)
-provides limited information about a sales unit today, but will provide more
-details once the internal Vipps systems are able to provide them.
-The response may then change more than we allow for in the
-[API Lifecycle](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-lifecycle),
-and we will therefore keep `/v0/` until `/v1/` is ready.
-
-### Partner keys
-
-All partners can use their
-[partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
-to use the Management API. If you have partner keys, you have access to the
-Management API.
-
-**Please note:** Some partners may need an internal Vipps update of their API
-product package to get access. Contact your partner manager if you get errors
-indicating this. Please double check your partner keys first, though.
-
 ## Get information about a merchant based on organization number
 
-This endpoint is for retrieving information about the merchant:
+This endpoint is for retrieving basic information about the merchant:
 
-[`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant)
+[`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
 
 Sequence diagram:
 
@@ -85,9 +65,6 @@ sequenceDiagram
     Partner->>+API: GET:/merchants/{orgno}
     API->>+Partner: A list of the merchant's MSNs connected to the partner
 ```
-
-The current version of the Management API only returns a list of MSNs
-connected to the partner making the API request, but we _may_ extend this later.
 
 The response (see
 [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant)
@@ -134,6 +111,12 @@ so the partner can do this directly as described here:
 and
 [How to add a user on portal.vipps.no](https://developer.vippsmobilepay.com/docs/vipps-partner/add-portal-user).
 
+## Get a merchant's contract(s)
+
+May return a (link to a) PDF.
+
+[`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts)
+
 ## Get information about a sales unit based on MSN
 
 This endpoint is for retrieving details about one sales unit (MSN):
@@ -149,20 +132,20 @@ sequenceDiagram
 ```
 
 The response (see
-[`GET:/saleunits/{msn}`](https://developer.vippsmobilepay.com/api/partner#tag/Sales-units/operation/getMSN)
+[`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMSN)
 for details):
 
 ```json
 {
-  "msn": "123456",
-  "name": "ACME Fantastic Fitness",
-  "orgno": "987654321",
-  "additionalDetails": {
-    "skipLandingPage": false,
-    "isPureLogin": false,
-    "captureType": "ReserveCapture",
-    "recurring": false
-  }
+   "msn":"123456",
+   "name":"ACME Fantastic Fitness",
+   "orgno":987654321,
+   "additionalDetails":{
+      "skipLandingPage":false,
+      "isPureLogin":false,
+      "captureType":"ReserveCapture",
+      "recurring":false
+   }
 }
 ```
 
@@ -186,7 +169,22 @@ Until more functionality is available in this API, there are some workarounds:
 * [How can I check if I have "reserve capture" or "direct capture"?](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/reserve-and-capture-faq#how-can-i-check-if-i-have-reserve-capture-or-direct-capture)
 * [How can I check if I have skipLandingPage activated?](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/vipps-landing-page-faq#how-can-i-check-if-i-have-skiplandingpage-activated)
 
-## Product order (PO) and Merchant agreement (MA)
+## Update sales unit
+
+May be used to update a sales unit, for instance the name or the status.
+
+[`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/patchMSN)
+
+## Pre-fill a product order on behalf of a merchant
+
+This endpoint lets a partner "pre-fill" the product order form on
+[portal.vipps.no](https://portal.vipps.no)
+on behalf of a merchant, so the merchant can log in, check the data, and submit
+the product order:
+
+[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
+
+### About "Product Order" (PO) and "Merchant Agreement" (MA)
 
 Merchants must have both a valid Merchant Agreement (MA) and an approved
 Product Order (PO) to be able to use Vipps products.
@@ -204,15 +202,6 @@ without an existing Merchant Agreement ("merchant agreement", "MA").
 
 Both MA and PO are described in detail in
 [Scenarios](#scenarios).
-
-## Submit a product order for a merchant
-
-This endpoint lets a partner "pre-fill" the product order form on
-[portal.vipps.no](https://portal.vipps.no)
-on behalf of a merchant, so the merchant can log in, check the data, and submit
-the product order:
-
-[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
 
 ### Sequence diagram for pre-fill
 
@@ -367,6 +356,25 @@ The merchant has a MA, and probably also a Vipps product.
   partner must be notified and also get the updated data - then merge and sync that
   with the "old" data that was sent in the first place.
 
+## Get information about a product order
+
+For both merchants and partners. The best way to check the status of a oroduct order is on
+[portal.vipps.no](https://portal.vipps.no). 
+
+**Please note:** There are strict rules for what information Vipps MobilePay
+is allowed to share with a partner, as this requires active consent from the merchant,
+and the merchant must also be able to withdraw the consent.
+
+[`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/productOrderDetails)
+
+## Delete a product order
+
+An "undo" endpoint to delete a PO.
+May be used if an incorrect PO has been pre-filled with
+[`POST:/product-orders](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct).
+
+[`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProductDelete)
+
 ## Future plans for this API
 
 Changes to a sales unit currently requires BankID login to
@@ -376,10 +384,6 @@ the partner.
 
 Some candidates:
 
-- Status: Deactivate and activate MSNs
-- Name: Update
-- Capture type: Change from "reserve capture" or "direct capture"
-- Skip landing page: Activate or deactivate
 - Price: Update
 - Logo: Update
 
