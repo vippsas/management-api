@@ -54,7 +54,7 @@ the following priority:
    or
    [which capture type it has](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/reserve-and-capture-faq#how-do-i-turn-direct-capture-on-or-off).
 
-## Get information about a merchant based on organization number
+## Get information about a merchant
 
 This endpoint is for retrieving basic information about the merchant:
 
@@ -86,7 +86,7 @@ merchant's MSNs.
 Since the response only contains a list of MSNs, an additional API request is
 required to get more details about the sales unit.
 See:
-[Get information about a sales unit based on MSN](#get-information-about-a-sales-unit-based-on-msn).
+[Get information about a sales unit](#get-information-about-a-sales-unit).
 
 ### Future improvements
 
@@ -119,7 +119,7 @@ May return a (link to a) PDF.
 
 [`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts)
 
-## Get information about a sales unit based on MSN
+## Get information about a sales unit
 
 This endpoint is for retrieving details about one sales unit (MSN):
 
@@ -175,7 +175,7 @@ May be used to update a sales unit, for instance the name or the status.
 
 [`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/patchMSN)
 
-## Pre-fill a product order on behalf of a merchant
+## Pre-fill a product order
 
 This endpoint lets a partner "pre-fill" the product order form on
 [portal.vipps.no](https://portal.vipps.no)
