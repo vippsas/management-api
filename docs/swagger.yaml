@@ -27,15 +27,15 @@ servers:
     description: Test environment (uses the test API keys, the test app and test data)
 tags:
   - name: Merchants
-    description: Manage merchants
+    description: Functionality for managing merchants
   - name: Sales units
-    description: Manage sales units
+    description: Functionality for managing sales units
   - name: Product orders
-    description: Product orders for, on or behalf of, merchants
+    description: Functionality for managing product orders
   - name: Partners
     description: Functionality for (or about) partners
   - name: API quality
-    description: Information regarding a partner, merchant, or sales units integration
+    description: Information about a partner's or merchant's API usage quality
 
 security:
   - Bearer-Authorization: []
