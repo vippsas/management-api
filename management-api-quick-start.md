@@ -9,7 +9,7 @@ pagination_prev: null
 
 # Quick start
 
-💥 
+💥
 **DRAFT!** The Management API is in development, but not yet available.
 This documentation is a working document, and used in discussions with
 merchants and partners to make sure we are prioritizing right,
@@ -41,7 +41,7 @@ Save the following files to your computer:
 
 **Important:** Partner keys must be kept secret. They can be used to act on behalf
 of all the partner's merchants. It is the partner's responsibility to manage
-the partner keys in a secure way. See
+the partner keys securely. See
 [Partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys).
 
 1. Click the down arrow, next to the "eye" icon in the top-right corner, and select the environment you have imported.

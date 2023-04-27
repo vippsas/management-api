@@ -8,7 +8,7 @@ pagination_prev: null
 
 # API guide
 
-💥 
+💥
 **DRAFT!** The Management API is in development, but not yet available.
 This documentation is a working document, and used in discussions with
 merchants and partners to make sure we are prioritizing right,
@@ -23,6 +23,7 @@ Both partners and merchants can use the Management API, and we use "partner/merc
 indicate that this is the actor making the API request.
 
 Authentication:
+
 * Merchants use their normal
   [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/).
 * Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys)
@@ -66,7 +67,7 @@ sequenceDiagram
     API->>+Partner/Merchant: List of merchants
 ```
 
-## Get one merchant by orgno
+## Get one merchant by organization number
 
 This endpoint is for retrieving basic information about the merchant:
 
@@ -96,10 +97,10 @@ and we will work with our partners to find out what is useful and possible.
 Some candidates:
 
 * Company address
-* Contact information for the main person (depends on GDPR, etc)
-* Contact information for the technical person (depends on GDPR, etc)
-* A list of people with admin rights on portal.vipps.no (depends on GDPR, etc)
-* Changelog: What was changed when by who?
+* Contact information for the main person (depends on GDPR, etc.)
+* Contact information for the technical person (depends on GDPR, etc.)
+* A list of people with admin rights on portal.vipps.no (depends on GDPR, etc.)
+* Changelog: What was changed when by whom?
 
 ## Get a merchant's contract(s)
 
@@ -173,16 +174,18 @@ Response:
 }
 ```
 
-The `orgno` is included in the response to make it possible to find out which merchant a MSN
+The `orgno` is included to make it possible to find out which merchant a MSN
 belongs to, which is useful if only the MSN is known.
 
 Sequence diagram:
 
-```mermaid
-sequenceDiagram
-    Partner->>+API: GET:/sales-units/{msn}
-    API->>+Partner: The details for the MSN (partners only get the details if the MSN is connected to the partner)
-```
+Future versions of the API will _probably_ return more information,
+and we will work with our partners to find out what is useful and possible.
+Some candidates:
+
+* Vipps products: Which Vipps products and APIs are available for this MSN ("eCom API", "Recurring API", "Login API", etc).
+* Transaction cost (price package)
+* Status: Active or deactivated
 
 ## Update sales unit
 
@@ -321,9 +324,57 @@ sequenceDiagram
     Vipps->>Partner/Merchant: Email with MSN and other details
 ```
 
+Here is a sample request to
+[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct):
+
+```json
+{
+  "orgno": "987654321",
+  "salesUnitName": "ACME Fantastic Fitness",
+  "salesUnitLogo": "VGhlIGltYWdlIGdvZXMgaGVyZQ==",
+  "settlementAccountNumber": "86011117947",
+  "pricePackageId": "8a11afb7-c223-48ed-8ca6-4722b97261aa",
+  "productType": "VIPPS_PA_NETT",
+  "mcc": "5200",
+  "annualTurnover": "100000",
+  "intendedPurpose": "Gym membership",
+  "website": {
+    "url": "https://example.com",
+    "termsUrl": "https://example.com/terms-and-conditions",
+    "testWebSiteUrl": "https://example.com/test ",
+    "testWebsiteUsername": "test-user",
+    "testWebsitePassword": "test-password"
+  }
+}
+```
+
+The response:
+
+```json
+{
+  "prefilledOrderId": "81b83246-5c19-7b94-875b-ea6d1114f099",
+  "prefillUrl": "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
+}
+```
+
+**Please note:** The merchant can not change the information provided in the request, so if
+something needs to be corrected, a new request with the correct details must be made.
+
+When the submitted order has been processed, an email is sent to both the
+partner/merchant making the request and the merchant that submitted the pre-filled product order
+with information about:
+
+* The merchant's organization number
+* The merchant's name
+* The sales unit's MSN
+* The sales unit's name
+
+This may be useful:
+[Typical reasons for delays](https://developer.vippsmobilepay.com/docs/vipps-partner#typical-reasons-for-delays).
+
 ### Scenarios
 
-**Please note:** The only method to verify that a user has the right
+**Please note:** The only method Vipps has to verify that a user has the right
 to sign a MA for a merchant is by using data from
 [Brønnøysundregistrene](https://brreg.no).
 It is therefore a requirement that the user logging in on
@@ -361,9 +412,9 @@ person that has signatory rights for the merchant. The form looks like this:
 
 ![Screenshot from the MA form](images/merchant-agreement-form.png)
 
-#### Scenario 2: The merchant has a active or processing Merchant Agreement
+#### Scenario 2: The merchant has an active or processing Merchant Agreement
 
-The merchant has a MA, and probably also a Vipps product.
+The merchant has an MA, and probably also a Vipps product.
 
 1. The partner/merchant pre-fills the PO using
    [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
@@ -374,21 +425,21 @@ The merchant has a MA, and probably also a Vipps product.
 3. The merchant is presented with the pre-filled PO,
    checks the details in the PO and submits it.
 4. Vipps processes the PO and sends both the merchant and partner/merchant an
-   email when done. 
+   email when done.
    The partner/merchant who made the pre-fill request can also check with the API:
    [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 ### Future improvements
 
-* We may allow the merchant to change some of the data pre-filled by the
+* We may allow the merchant to change some data pre-filled by the
   partner, but this is not trivial. If the merchant changes any data, the
   partner must be notified and also get the updated data - then merge and sync that
   with the "old" data that was sent in the first place.
 
 ## Get information about a product order
 
-For both merchants and partners. The best way to check the status of a oroduct order is on
-[portal.vipps.no](https://portal.vipps.no). 
+For both merchants and partners. The best way to check the status of a product order is on
+[portal.vipps.no](https://portal.vipps.no).
 
 We are considering an endpoint like this:
 
