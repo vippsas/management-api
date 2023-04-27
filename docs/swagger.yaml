@@ -13,10 +13,8 @@ info:
     [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
     💥
 
-    The Vipps MobilePay Management API lets partners and merchants manage
-    their sales units, etc.
-    See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api)
-    for more information.
+    The Management API lets partners and merchants manage their sales units, etc.
+    See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api).
   contact:
     name: Vipps MobilePay AS
     url: "https://developer.vippsmobilepay.com/"
@@ -62,10 +60,10 @@ paths:
       tags:
         - Partners
       summary: |-
-        Get details for the partner making the request
+        For partners using partner keys.
+        Get details for the partner that is making the request
       description: |-
-        A "Who am I"-type endpoint where a partner can fetch
-        the information stored about them.
+        An endpoint where a partner can fetch the information stored about them.
       operationId: getPartnerWhoami
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
@@ -73,42 +71,6 @@ paths:
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: "#/components/schemas/GetPartnerResponse"
-        default:
-          $ref: "#/components/schemas/Error"
-
-  /management/v1/partners/{partner-id}:
-    get:
-      tags:
-        - Partners
-      summary: |-
-        Get partner by partner id
-      description: |-
-        Possibly a "Who am I"-type endpoint where a partner can fetch
-        the information stored about them.
-      operationId: getPartner
-      parameters:
-        - $ref: "#/components/parameters/Merchant-Serial-Number"
-        - $ref: "#/components/parameters/Vipps-System-Name"
-        - $ref: "#/components/parameters/Vipps-System-Version"
-        - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
-        - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: partner-id
-          in: path
-          description: The partner's partner id
-          required: true
-          schema:
-            minLength: 3
-            maxLength: 10
-            pattern: ^\d{3,10}$
-            type: string
-            example: 12345
       responses:
         "200":
           description: OK
@@ -917,7 +879,7 @@ components:
           example: "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
     
     ProductOrderDetailsResponse:
-      title: Product Order details response
+      title: Product order details response
       description: |-
         **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
         a partner, as this requires active consent from the merchant, and the merchant must also
@@ -927,9 +889,9 @@ components:
         prefilledOrderId:
           type: string
           format: uuid
-          description: A UUID reference that identifies the product order request submitted by the partner.
+          description: A UUID reference that identifies the product order request submitted.
           example: 81b83246-5c19-7b94-875b-ea6d1114f099
-        status:
+        prefillStatus:
           type: string
           description: The status of the PO
           enum:
@@ -947,7 +909,7 @@ components:
       properties:
         ApiQualityItems:
           type: array
-          description: List of API endpoint quality items
+          description: List of API endpoint quality items.
           items:
             $ref: '#/components/schemas/ApiQualityEndpointData'
 
@@ -1004,6 +966,8 @@ components:
         - msn
         - name
         - orgno
+        - status
+        - settlementAccount
       type: object
       properties:
         msn:
@@ -1026,6 +990,24 @@ components:
           maxLength: 9
           pattern: '^\d{9}$'
           example: 987654321
+        status:
+          type: string
+          description: Status of the sales unit
+          enum:
+            - ACTIVE
+            - DEACTIVATED
+          default: ACTIVE
+          example: ACTIVE  
+        settlementAccountNumber:
+          nullable: true
+          type: string
+          pattern: "^[0-9]{11,11}$"
+          minLength: 11
+          maxLength: 11
+          example: "86011117947"
+          description: |-
+            The bank account number used for settlements. 
+
         additionalDetails:
           type: object
           description: "Additional details that might or might not be available. In the case that any of these are not provided, it doesn't mean that those details don't apply."
@@ -1286,7 +1268,7 @@ components:
       in: header
       description: |-
         The name of the solution. One word in lowercase letters is good.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
       schema:
         type: string
       example: woocommerce
@@ -1296,7 +1278,7 @@ components:
       in: header
       description: |-
         The version number of the solution.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
       schema:
         type: string
       example: "5.4"
@@ -1306,7 +1288,7 @@ components:
       in: header
       description: |-
         The name of the plugin (if applicable). One word in lowercase letters is good.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
       schema:
         type: string
       example: "vipps-woocommerce"
@@ -1316,7 +1298,7 @@ components:
       in: header
       description: |-
         The version number of the plugin (if applicable).
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
       schema:
         type: string
       example: "1.2.1"
