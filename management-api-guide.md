@@ -41,6 +41,22 @@ Get a (long) list of all orgnos that have one or more sale units registered with
 
 [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants)
 
+Response:
+```
+{
+   "MerchantList":[
+      {
+         "orgno": 987654321,
+         "name": "ACME Fantastic Fitness"
+      }
+      {
+         "orgno": 987654322,
+         "name": "ACME Fantastic Fitness 2"
+      }
+   ]
+}
+```
+
 Sequence diagram:
 
 ```mermaid
