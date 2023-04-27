@@ -178,7 +178,7 @@ paths:
       tags:
         - Product orders
       summary: Delete a product order
-      operationId: orderProductDelete
+      operationId: deleteProductOrder
       description: Undo
       responses:
         "200":
@@ -408,7 +408,7 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/GetMSNResponse"
+                $ref: "#/components/schemas/getMsnResponse"
         default:
           $ref: "#/components/schemas/Error"
 
@@ -430,7 +430,7 @@ paths:
           content:
             application/json;charset=UTF-8:
               schema:
-                $ref: "#/components/schemas/GetMSNResponse"
+                $ref: "#/components/schemas/getMsnResponse"
         default:
           $ref: "#/components/schemas/Error"
 
@@ -439,7 +439,7 @@ paths:
       tags:
         - Sales units
       summary: Get sales unit details based on MSN
-      operationId: getMSN
+      operationId: getMsn
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
@@ -469,7 +469,7 @@ paths:
       tags:
         - Sales units
       summary: "Update sales unit: Name or status"
-      operationId: patchMSN
+      operationId: updateMsn
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
@@ -491,7 +491,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchMSN'
+              $ref: '#/components/schemas/updateMsn'
       responses:
         "200":
           description: OK
@@ -1144,7 +1144,7 @@ components:
           items:
             $ref: '#/components/schemas/Merchant'
 
-    GetMSNResponse:
+    getMsnResponse:
       description: Response of a successful get sales units operation
       required:
         - msn
@@ -1174,8 +1174,8 @@ components:
             description: URL for downloading PDF contract
             example: "https://example.com/contracts/contract-12345.pdf"
 
-    PatchMSN:
-      title: PatchMSN
+    updateMsn:
+      title: updateMsn
       type: object
       properties:
         name:

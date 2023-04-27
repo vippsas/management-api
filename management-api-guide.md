@@ -143,7 +143,7 @@ Response:
 
 This endpoint is for retrieving details about one sales unit (MSN):
 
-[`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMSN)
+[`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
 
 Sequence diagram:
 
@@ -186,7 +186,7 @@ Some candidates:
 
 May be used to update a sales unit, for instance the name or the status.
 
-[`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/patchMSN)
+[`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/updateMsn)
 
 Example `PATCH` request body:
 
@@ -395,7 +395,7 @@ An "undo" endpoint to delete a PO.
 This may be used if an incorrect PO has been pre-filled with
 [`POST:/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct).
 
-[`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProductDelete)
+[`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/deleteProductOrder)
 
 ## Get information about a partner
 
