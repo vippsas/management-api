@@ -324,54 +324,6 @@ sequenceDiagram
     Vipps->>Partner/Merchant: Email with MSN and other details
 ```
 
-Here is a sample request to
-[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct):
-
-```json
-{
-  "orgno": "987654321",
-  "salesUnitName": "ACME Fantastic Fitness",
-  "salesUnitLogo": "VGhlIGltYWdlIGdvZXMgaGVyZQ==",
-  "settlementAccountNumber": "86011117947",
-  "pricePackageId": "8a11afb7-c223-48ed-8ca6-4722b97261aa",
-  "productType": "VIPPS_PA_NETT",
-  "mcc": "5200",
-  "annualTurnover": "100000",
-  "intendedPurpose": "Gym membership",
-  "website": {
-    "url": "https://example.com",
-    "termsUrl": "https://example.com/terms-and-conditions",
-    "testWebSiteUrl": "https://example.com/test ",
-    "testWebsiteUsername": "test-user",
-    "testWebsitePassword": "test-password"
-  }
-}
-```
-
-The response:
-
-```json
-{
-  "prefilledOrderId": "81b83246-5c19-7b94-875b-ea6d1114f099",
-  "prefillUrl": "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
-}
-```
-
-**Please note:** The merchant can not change the information provided in the request, so if
-something needs to be corrected, a new request with the correct details must be made.
-
-When the submitted order has been processed, an email is sent to both the
-partner/merchant making the request and the merchant that submitted the pre-filled product order
-with information about:
-
-* The merchant's organization number
-* The merchant's name
-* The sales unit's MSN
-* The sales unit's name
-
-This may be useful:
-[Typical reasons for delays](https://developer.vippsmobilepay.com/docs/vipps-partner#typical-reasons-for-delays).
-
 ### Scenarios
 
 **Please note:** The only method Vipps has to verify that a user has the right
