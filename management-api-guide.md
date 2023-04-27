@@ -62,14 +62,6 @@ Response:
 If this endpoint is used with normal API keys (not partner keys), it will return just one merchant:
 The one making the API request.
 
-Sequence diagram:
-
-```mermaid
-sequenceDiagram
-    Partner/Merchant->>+API: GET:/merchants
-    API->>+Partner/Merchant: List of merchants
-```
-
 ## Get one merchant by organization number
 
 This endpoint is for retrieving basic information about the merchant:
@@ -83,14 +75,6 @@ Response:
   "orgno": 987654321,
   "name": "ACME Fantastic Fitness"
 }
-```
-
-Sequence diagram:
-
-```mermaid
-sequenceDiagram
-    Partner/Merchant->>+API: GET:/merchants/{orgno}
-    API->>+Partner/Merchant: Some details for the merchant
 ```
 
 ### Future improvements
@@ -184,8 +168,6 @@ Response:
 The `orgno` is included to make it possible to find out which merchant a MSN
 belongs to, which is useful if only the MSN is known.
 
-Sequence diagram:
-
 Future versions of the API will _probably_ return more information,
 and we will work with our partners to find out what is useful and possible.
 Some candidates:
@@ -209,17 +191,9 @@ Example `PATCH` request body:
 }
 ```
 
-Sequence diagram:
-
-```mermaid
-sequenceDiagram
-    Partner->>+API: PATCH:/sales-units/{msn}
-    API->>+Partner: HTTP 200 OK
-```
-
 ## Pre-fill a product order
 
-This endpoint lets a partner, or a merchant (typically a large company with subsidiaries),
+This endpoint lets a partner, or a merchant (typically a large company with subsiiaries),
 "pre-fill" the product order form on
 [portal.vipps.no](https://portal.vipps.no)
 on behalf of a merchant.
