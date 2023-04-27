@@ -42,7 +42,8 @@ Get a (long) list of all orgnos that have one or more sale units registered with
 [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants)
 
 Response:
-```
+
+```json
 {
    "MerchantList":[
       {
@@ -72,7 +73,8 @@ This endpoint is for retrieving basic information about the merchant:
 [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
 
 Response:
-```
+
+```json
 {
   "orgno": 987654321,
   "name": "ACME Fantastic Fitness"
@@ -104,6 +106,16 @@ Some candidates:
 Just an idea. May return a (link to a) PDF.
 
 [`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts)
+
+Response:
+
+```json
+{
+  "urls": [
+    "https://example.com/contracts/contract-12345.pdf"
+  ]
+}
+```
 
 ## Get all sales units
 
@@ -145,15 +157,7 @@ This endpoint is for retrieving details about one sales unit (MSN):
 
 [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
 
-Sequence diagram:
-
-```mermaid
-sequenceDiagram
-    Partner->>+API: GET:/sales-units/{msn}
-    API->>+Partner: The details for the MSN (partners only get the details if the MSN is connected to the partner)
-```
-
-The response (work in progress, we would like input on what is needed here):
+Response:
 
 ```json
 {
@@ -169,18 +173,16 @@ The response (work in progress, we would like input on what is needed here):
 }
 ```
 
-The `orgno` is included to make it possible to find out which merchant a MSN
+The `orgno` is included in the response to make it possible to find out which merchant a MSN
 belongs to, which is useful if only the MSN is known.
 
-### Future improvements
+Sequence diagram:
 
-Future versions of the API will _probably_ return more information,
-and we will work with our partners to find out what is useful and possible.
-Some candidates:
-
-* Vipps products: Which Vipps products and APIs are available for this MSN ("eCom API", "Recurring API", "Login API", etc).
-* Transaction cost (price package)
-* Status: Active or deactivated
+```mermaid
+sequenceDiagram
+    Partner->>+API: GET:/sales-units/{msn}
+    API->>+Partner: The details for the MSN (partners only get the details if the MSN is connected to the partner)
+```
 
 ## Update sales unit
 
@@ -190,21 +192,76 @@ May be used to update a sales unit, for instance the name or the status.
 
 Example `PATCH` request body:
 
-```
+```json
 {
   "name": "ACME Fantastic Fitness DeLuxe",
   "status": "ACTIVE"
 }
 ```
 
+Sequence diagram:
+
+```mermaid
+sequenceDiagram
+    Partner->>+API: PATCH:/sales-units/{msn}
+    API->>+Partner: HTTP 200 OK
+```
+
 ## Pre-fill a product order
 
-This endpoint lets a partner "pre-fill" the product order form on
+This endpoint lets a partner, or a merchant (typically a large company with subsisiaries),
+"pre-fill" the product order form on
 [portal.vipps.no](https://portal.vipps.no)
-on behalf of a merchant, so the merchant can log in, check the data, and submit
-the product order:
+on behalf of a merchant.
+This makes it possible to ensure that all the data in the form is correct,
+including parameters that are normally selectable.
 
-[`POST:/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct)
+The merchant can log in, check the data, and submit the pre-filled product order.
+
+Here is a sample request to
+[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct):
+
+```json
+{
+  "orgno": "987654321",
+  "salesUnitName": "ACME Fantastic Fitness",
+  "salesUnitLogo": "VGhlIGltYWdlIGdvZXMgaGVyZQ==",
+  "settlementAccountNumber": "86011117947",
+  "pricePackageId": "8a11afb7-c223-48ed-8ca6-4722b97261aa",
+  "productType": "VIPPS_PA_NETT",
+  "mcc": "5200",
+  "annualTurnover": "100000",
+  "intendedPurpose": "Gym membership",
+  "website": {
+    "url": "https://example.com",
+    "termsUrl": "https://example.com/terms-and-conditions",
+    "testWebSiteUrl": "https://example.com/test ",
+    "testWebsiteUsername": "test-user",
+    "testWebsitePassword": "test-password"
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "prefilledOrderId": "81b83246-5c19-7b94-875b-ea6d1114f099",
+  "prefillUrl": "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
+}
+```
+
+**Please note:** The merchant can not change the information provided in the request, so if
+something needs to be corrected, a new request with the correct details must be made.
+
+When the submitted product order has been processed, an email is sent to both the
+partner/merchant making the request and the merchant that submitted the pre-filled product order
+with information about:
+
+* The merchant's organization number
+* The merchant's name
+* The sales unit's MSN
+* The sales unit's name
 
 ### About "Product Order" (PO) and "Merchant Agreement" (MA)
 
@@ -264,57 +321,9 @@ sequenceDiagram
     Vipps->>Partner/Merchant: Email with MSN and other details
 ```
 
-Here is a sample request to
-[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct):
-
-```json
-{
-  "orgno": "987654321",
-  "salesUnitName": "ACME Fantastic Fitness",
-  "salesUnitLogo": "VGhlIGltYWdlIGdvZXMgaGVyZQ==",
-  "settlementAccountNumber": "86011117947",
-  "pricePackageId": "8a11afb7-c223-48ed-8ca6-4722b97261aa",
-  "productType": "VIPPS_PA_NETT",
-  "mcc": "5200",
-  "annualTurnover": "100000",
-  "intendedPurpose": "Gym membership",
-  "website": {
-    "url": "https://example.com",
-    "termsUrl": "https://example.com/terms-and-conditions",
-    "testWebSiteUrl": "https://example.com/test ",
-    "testWebsiteUsername": "test-user",
-    "testWebsitePassword": "test-password"
-  }
-}
-```
-
-The response:
-
-```json
-{
-  "prefilledOrderId": "81b83246-5c19-7b94-875b-ea6d1114f099",
-  "prefillUrl": "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
-}
-```
-
-**Please note:** The merchant can not change the information provided in the request, so if
-something needs to be corrected, a new request with the correct details must be made.
-
-When the submitted order has been processed, an email is sent to both the
-partner/merchant making the request and the merchant that submitted the pre-filled product order
-with information about:
-
-* The merchant's organization number
-* The merchant's name
-* The sales unit's MSN
-* The sales unit's name
-
-This may be useful:
-[Typical reasons for delays](https://developer.vippsmobilepay.com/docs/vipps-partner#typical-reasons-for-delays).
-
 ### Scenarios
 
-**Please note:** The only method Vipps has to verify that a user has the right
+**Please note:** The only method to verify that a user has the right
 to sign a MA for a merchant is by using data from
 [Brønnøysundregistrene](https://brreg.no).
 It is therefore a requirement that the user logging in on
@@ -385,6 +394,15 @@ We are considering an endpoint like this:
 
 [`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/productOrderDetails)
 
+Response:
+
+```json
+{
+  "prefilledOrderId": "81b83246-5c19-7b94-875b-ea6d1114f099",
+  "prefillStatus": "PROCESSING"
+}
+```
+
 **Please note:** There are strict rules for what information we are
 allowed to share with a partner, as this requires active consent from the merchant,
 and the merchant must also be able to withdraw the consent.
@@ -407,7 +425,7 @@ Get details for the partner making the request.
 
 Response:
 
-```
+```json
 {
    "partnerId": "123456",
    "name": "ACME Partner Inc",
