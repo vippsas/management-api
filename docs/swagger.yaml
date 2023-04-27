@@ -27,15 +27,29 @@ servers:
     description: Test environment (uses the test API keys, the test app and test data)
 tags:
   - name: Merchants
-    description: Functionality for managing merchants
+    description: |-
+      Functionality for managing merchants.
+      Merchants can to this on
+      [portal.vipps.no](https://portal.vipps.no).
   - name: Sales units
-    description: Functionality for managing sales units
+    description: |-
+      Functionality for managing sales units.
+      Merchants can to this on
+      [portal.vipps.no](https://portal.vipps.no).
   - name: Product orders
-    description: Functionality for managing product orders
+    description: |-
+      Functionality for managing product orders.
+      Merchants can to this on
+      [portal.vipps.no](https://portal.vipps.no).
   - name: Partners
-    description: Functionality for (or about) partners
+    description: |-
+      Functionality for (or about) partners. See:
+      [Vipps Partners](https://developer.vippsmobilepay.com/docs/vipps-partner/).
   - name: API quality
-    description: Information about a partner's or merchant's API usage quality
+    description: |-
+      Information about a partner's or merchant's API usage quality.
+      The data is the same as on the API Dashboard:
+      https://developer.vippsmobilepay.com/docs/vipps-developers/developer-resources/api-dashboard/
 
 security:
   - Bearer-Authorization: []
