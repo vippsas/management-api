@@ -59,6 +59,9 @@ Response:
 }
 ```
 
+If this endpoint is used with normal API keys (not partner keys), it will return just one merchant:
+The one making the API request.
+
 Sequence diagram:
 
 ```mermaid
@@ -442,3 +445,5 @@ Response:
    "status": "ACTIVE"
 }
 ```
+
+If this endpoint is used with normal API keys (not partner keys), it will return an error.
