@@ -8,7 +8,7 @@ pagination_prev: null
 
 # API guide
 
-💥 
+💥
 **DRAFT!** The Management API is in development, but not yet available.
 This documentation is a working document, and used in discussions with
 merchants and partners to make sure we are prioritizing right,
@@ -23,6 +23,7 @@ Both partners and merchants can use the Management API, and we use "partner/merc
 indicate that this is the actor making the API request.
 
 Authentication:
+
 * Merchants use their normal
   [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/).
 * Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys)
@@ -42,7 +43,8 @@ Get a (long) list of all orgnos that have one or more sale units registered with
 [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants)
 
 Response:
-```
+
+```json
 {
    "MerchantList":[
       {
@@ -65,14 +67,15 @@ sequenceDiagram
     API->>+Partner/Merchant: List of merchants
 ```
 
-## Get one merchant by orgno
+## Get one merchant by organization number
 
 This endpoint is for retrieving basic information about the merchant:
 
 [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
 
 Response:
-```
+
+```json
 {
   "orgno": 987654321,
   "name": "ACME Fantastic Fitness"
@@ -94,10 +97,10 @@ and we will work with our partners to find out what is useful and possible.
 Some candidates:
 
 * Company address
-* Contact information for the main person (depends on GDPR, etc)
-* Contact information for the technical person (depends on GDPR, etc)
-* A list of people with admin rights on portal.vipps.no (depends on GDPR, etc)
-* Changelog: What was changed when by who?
+* Contact information for the main person (depends on GDPR, etc.)
+* Contact information for the technical person (depends on GDPR, etc.)
+* A list of people with admin rights on portal.vipps.no (depends on GDPR, etc.)
+* Changelog: What was changed when by whom?
 
 ## Get a merchant's contract(s)
 
@@ -169,7 +172,7 @@ The response (work in progress, we would like input on what is needed here):
 }
 ```
 
-The `orgno` is included to make it possible to find out which merchant a MSN
+The `orgno` is included to make it possible to find out which merchant an MSN
 belongs to, which is useful if only the MSN is known.
 
 ### Future improvements
@@ -178,7 +181,7 @@ Future versions of the API will _probably_ return more information,
 and we will work with our partners to find out what is useful and possible.
 Some candidates:
 
-* Vipps products: Which Vipps products and APIs are available for this MSN ("eCom API", "Recurring API", "Login API", etc).
+* Vipps products: Which Vipps products and APIs are available for this MSN ("eCom API", "Recurring API", "Login API", etc.).
 * Transaction cost (price package)
 * Status: Active or deactivated
 
@@ -190,7 +193,7 @@ May be used to update a sales unit, for instance the name or the status.
 
 Example `PATCH` request body:
 
-```
+```json
 {
   "name": "ACME Fantastic Fitness DeLuxe",
   "status": "ACTIVE"
@@ -297,7 +300,7 @@ The response:
 }
 ```
 
-**Please note:** The merchant can not change the information provided in the request, so if
+**Please note:** The merchant cannot change the information provided in the request, so if
 something needs to be corrected, a new request with the correct details must be made.
 
 When the submitted order has been processed, an email is sent to both the
@@ -315,7 +318,7 @@ This may be useful:
 ### Scenarios
 
 **Please note:** The only method Vipps has to verify that a user has the right
-to sign a MA for a merchant is by using data from
+to sign an MA for a merchant is by using data from
 [Brønnøysundregistrene](https://brreg.no).
 It is therefore a requirement that the user logging in on
 [portal.vipps.no](https://portal.vipps.no)
@@ -352,9 +355,9 @@ person that has signatory rights for the merchant. The form looks like this:
 
 ![Screenshot from the MA form](images/merchant-agreement-form.png)
 
-#### Scenario 2: The merchant has a active or processing Merchant Agreement
+#### Scenario 2: The merchant has an active or processing Merchant Agreement
 
-The merchant has a MA, and probably also a Vipps product.
+The merchant has an MA, and probably also a Vipps product.
 
 1. The partner/merchant pre-fills the PO using
    [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
@@ -365,21 +368,21 @@ The merchant has a MA, and probably also a Vipps product.
 3. The merchant is presented with the pre-filled PO,
    checks the details in the PO and submits it.
 4. Vipps processes the PO and sends both the merchant and partner/merchant an
-   email when done. 
+   email when done.
    The partner/merchant who made the pre-fill request can also check with the API:
    [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 ### Future improvements
 
-* We may allow the merchant to change some of the data pre-filled by the
+* We may allow the merchant to change some data pre-filled by the
   partner, but this is not trivial. If the merchant changes any data, the
   partner must be notified and also get the updated data - then merge and sync that
   with the "old" data that was sent in the first place.
 
 ## Get information about a product order
 
-For both merchants and partners. The best way to check the status of a oroduct order is on
-[portal.vipps.no](https://portal.vipps.no). 
+For both merchants and partners. The best way to check the status of a product order is on
+[portal.vipps.no](https://portal.vipps.no).
 
 We are considering an endpoint like this:
 
@@ -407,7 +410,7 @@ Get details for the partner making the request.
 
 Response:
 
-```
+```json
 {
    "partnerId": "123456",
    "name": "ACME Partner Inc",

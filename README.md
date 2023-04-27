@@ -10,7 +10,7 @@ pagination_prev: null
 
 # Management API
 
-💥 
+💥
 **DRAFT!** The Management API is in development, but not yet available.
 This documentation is a working document, and used in discussions with
 merchants and partners to make sure we are prioritizing right,
