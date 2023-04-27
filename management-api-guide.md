@@ -219,7 +219,7 @@ sequenceDiagram
 
 ## Pre-fill a product order
 
-This endpoint lets a partner, or a merchant (typically a large company with subsisiaries),
+This endpoint lets a partner, or a merchant (typically a large company with subsidiaries),
 "pre-fill" the product order form on
 [portal.vipps.no](https://portal.vipps.no)
 on behalf of a merchant.
