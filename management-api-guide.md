@@ -193,9 +193,9 @@ Example `PATCH` request body:
 
 ## Pre-fill a product order
 
-This endpoint lets a partner, or a merchant (typically a large company with subsiiaries),
-"pre-fill" the product order form on
-[portal.vipps.no](https://portal.vipps.no)
+This endpoint allows a partner or a merchant (typically, a large company with subsidiaries)
+to "pre-fill" the product order form on
+[portal.vipps.no](https://portal.vipps.no),
 on behalf of a merchant.
 This makes it possible to ensure that all the data in the form is correct,
 including parameters that are normally selectable.
@@ -235,12 +235,12 @@ Response:
 }
 ```
 
-**Please note:** The merchant can not change the information provided in the request, so if
+**Please note:** The merchant cannot change the information provided in the request, so if
 something needs to be corrected, a new request with the correct details must be made.
 
 When the submitted product order has been processed, an email is sent to both the
-partner/merchant making the request and the merchant that submitted the pre-filled product order
-with information about:
+partner/merchant making the request and the merchant that submitted the pre-filled product order.
+This will include information about:
 
 * The merchant's organization number
 * The merchant's name
