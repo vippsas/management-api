@@ -61,7 +61,7 @@ paths:
         - Partners
       summary: |-
         For partners using partner keys.
-        Get details for the partner that is making the request
+        Get details for the partner that is making the request.
       description: |-
         An endpoint where a partner can fetch the information stored about them.
       operationId: getPartnerWhoami
@@ -101,7 +101,12 @@ paths:
             example: 12345
       tags:
         - Partners
-      summary: Get price packages for a partner
+      summary: Get price packages for a partner.
+      description: |-
+        The price packages can have different names and percentages.
+        Each price packages has a unique id: `pricePackageId`.
+        This endpoint lets partners get an overview of their proce packages.
+        The `pricePackageId` is also used for the pre-fill endpoint: 
       operationId: getPartnerPricePackages
       responses:
         "200":
@@ -393,6 +398,10 @@ paths:
       tags:
         - Sales units
       summary: Get all sales units that a merchant or partner has access to
+      description: |-
+        For partners using
+        [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
+        Get a (long) list of all sales units registered with the partner making the API call.
       operationId: getAllSalesUnits
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
@@ -415,6 +424,9 @@ paths:
       tags:
         - Sales units
       summary: Get sales unit details based on MSN
+      description: |-
+        Eliminates the needf to contact the merchant or Vipps MobilePay
+        to get information about the sales units.
       operationId: getMsn
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
@@ -444,7 +456,9 @@ paths:
     patch:
       tags:
         - Sales units
-      summary: "Update sales unit: Name or status"
+      summary: Update sales unit
+      description: |-
+        Change the sales unit's name, logo, possibly more.
       operationId: updateMsn
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
@@ -479,6 +493,13 @@ paths:
       tags:
         - API quality
       summary: "Get API quality info: Errors, etc"
+      description: |-
+        We want all API integrations to be without errors.
+        All merchants can check the
+        [API Dashboard](https://developer.vippsmobilepay.com/docs/vipps-developers/developer-resources/api-dashboard/).
+        Partners are contractually required to monitor for errors (and correct problems quickly),
+        and this endpoint makes that work much easier.
+        The underlying data is the same as usewd by the API Dashboard.        
       operationId: getApiQuality
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
@@ -1212,6 +1233,13 @@ components:
           description: The price package' name
           maxLength: 30
           example: "POS standard"
+        percentage:
+          type: string
+          description: |-
+            The price package's percentages, with decimals.
+            The decimal separator is '.' (period).
+          maxLength: 6
+          example: "2.99"
 
     Error:
       oneOf:
