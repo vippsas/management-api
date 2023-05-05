@@ -105,7 +105,7 @@ paths:
       description: |-
         The price packages can have different names and percentages.
         Each price packages has a unique id: `pricePackageId`.
-        This endpoint lets partners get an overview of their proce packages.
+        This endpoint lets partners get an overview of their price packages.
         The `pricePackageId` is also used for the pre-fill endpoint: 
       operationId: getPartnerPricePackages
       responses:
@@ -425,7 +425,7 @@ paths:
         - Sales units
       summary: Get sales unit details based on MSN
       description: |-
-        Eliminates the needf to contact the merchant or Vipps MobilePay
+        Eliminates the need to contact the merchant or Vipps MobilePay
         to get information about the sales units.
       operationId: getMsn
       parameters:
@@ -499,7 +499,7 @@ paths:
         [API Dashboard](https://developer.vippsmobilepay.com/docs/vipps-developers/developer-resources/api-dashboard/).
         Partners are contractually required to monitor for errors (and correct problems quickly),
         and this endpoint makes that work much easier.
-        The underlying data is the same as usewd by the API Dashboard.        
+        The underlying data is the same as used by the API Dashboard.        
       operationId: getApiQuality
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
