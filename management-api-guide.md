@@ -156,6 +156,8 @@ Response:
    "msn":"123456",
    "name":"ACME Fantastic Fitness",
    "orgno":987654321,
+   "bankAccountIban":"NO93 8601 1117 947",
+   "bankAccountBban":"86011117947"
    "configuration":{
       "paymentAllowed":true,
       "captureType":"ReserveCapture",
@@ -173,12 +175,17 @@ Response:
       {
          "timestamp": "2023-01-01T00:00:00Z",
          "change": "skipLandingPage set to true",
-         "changedBy": "Merchant using Management API"
+         "changedBy": "Merchant, using Management API"
       },
       {
-         "timestamp": "2023-12-31T00:00:00Z",
+         "timestamp": "2023-11-15T00:00:00Z",
          "change": "NIN allowed",
          "changedBy": "Vipps MobilePay"
+      },
+      {
+         "timestamp": "2023-06-01T00:00:00Z",
+         "change": "Updated MSN name",
+         "changedBy": "Merchant, using the portal"
       },
    ]   
 }
