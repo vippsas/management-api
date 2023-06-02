@@ -156,14 +156,14 @@ Response:
    "msn":"123456",
    "name":"ACME Fantastic Fitness",
    "orgno":987654321,
-   "configuration":[
+   "configuration":{
       "paymentAllowed":true,
       "captureType":"ReserveCapture",
       "skipLandingPageAllowed":true,
       "recurringAllowed":false,
       "customerMustBePresent":true,
       "userinfoNinAllowed":true,
-   ]
+   }
    "changelog": [
       {
          "timestamp": "2022-12-31T00:00:00Z",
