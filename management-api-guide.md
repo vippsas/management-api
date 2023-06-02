@@ -157,14 +157,14 @@ Response (this is a work in progress):
    "name":"ACME Fantastic Fitness",
    "orgno":"987654321",
    "bankDetails": {
+      "bankAccountBban":"86011117947",
       "bankAccountIban":"NO93 8601 1117 947",
-      "bankAccountBban":"86011117947"
    },
    "configuration": {
       "paymentAllowed":true,
       "captureType":"ReserveCapture",
-      "skipLandingPageAllowed":true,
       "recurringAllowed":false,
+      "skipLandingPageAllowed":true,
       "customerMustBePresent":true,
       "userinfoNinAllowed":true,
    },
