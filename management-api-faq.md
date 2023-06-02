@@ -43,21 +43,32 @@ See also:
 
 <!-- END_COMMENT -->
 
+## Whewn will the Managemernt API be available?
+
+We're aiming for August.
+
+## What will be included in the initial version?
+
+See the API guide and API specification for the status of each endpoint.
+
+## How can I make ferature requests and give input?
+
+Contact your partner manager or key account manager.
+
 ## Where do I get the pricePackageId?
 
-The `pricePackageId` is a UUID, and you get it when you are activated as partner.
-If you have lost it, please search in your email.
-If you can not find it, please see
-[Questions](https://developer.vippsmobilepay.com/docs/vipps-partner#questions)
-at the bottom of
-[Partners](https://developer.vippsmobilepay.com/docs/vipps-partner).
-
+The `pricePackageId` is a UUID, and you get it by email when you are activated as partner.
 A UUID has a format like this: 81b83246-5c19-7b94-875b-ea6d1114f099.
+
+Use
+[`GET:/partners/{partner-id}/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages)
+to retrieve your price packages.
 
 ## Can I use the Management API in the test environment?
 
 Nope. We do not have all the required backend systems available in the test
-environment.
+environment. See
+[Limitations of the test environment](https://developer.vippsmobilepay.com/docs/vipps-developers/test-environment/#limitations-of-the-test-environment).
 
 ## Why is the URL for a pre-filled product order not working?
 
@@ -65,13 +76,11 @@ If you send an invalid request to
 [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management#tag/Vipps-Product-Orders/operation/orderProduct),
 the pre-fill will fail, and the URL will lead to the standard, empty
 product order form. Although we do _some_ input validation, it is not possible
-to validate all data.
+to validate all data. 
 
 ## Why do I get `HTTP 404 Not Found`?
 
-You will get this error for requests to
-[`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management#tag/Merchants/operation/getMerchant)
-if the merchant does not yet have an active sales unit with you as partner.
+Partners will get this error if the merchant does not yet have an active sales unit connected with the partner.
 
 See:
 [How to check if a merchant is signed up with the partner as partner](https://developer.vippsmobilepay.com/docs/vipps-partner#how-to-check-if-a-merchant-is-signed-up-with-the-partner-as-partner).
