@@ -60,11 +60,12 @@ paths:
       tags:
         - Partners
       summary: |-
-        Status: Idea. May be both impossible and irrelevant.
-        
-        For partners using partner keys.
+        For partners using
+        [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
         Get details for the partner that is making the request.
       description: |-
+        Status: Idea. May be both impossible and irrelevant.
+
         An endpoint where a partner can fetch the information stored about them.
       operationId: getPartnerWhoami
       parameters:
