@@ -149,7 +149,23 @@ This endpoint is for retrieving details about one sales unit (MSN):
 
 [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
 
-Response (this is a work in progress):
+Response (in the MVP):
+
+```json
+{
+   "msn":"123456",
+   "name":"ACME Fantastic Fitness",
+   "orgno":987654321,
+   "additionalDetails":{
+      "skipLandingPage":false,
+      "isPureLogin":false,
+      "captureType":"ReserveCapture",
+      "recurring":false
+   }
+}
+```
+
+Response (this does not yet exist, and provided for discussions of what we should investigate further):
 
 ```json
 {
