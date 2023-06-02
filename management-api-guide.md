@@ -8,6 +8,8 @@ pagination_prev: null
 
 # API guide
 
+## Important information
+
 💥
 **DRAFT!** The Management API is in development, but not yet available.
 This documentation is a working document, and used in discussions with
@@ -16,6 +18,23 @@ and that we are implementing the right functionality.
 The Management API will replace the
 [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
 💥
+
+We can, very roughly, describe the development if the Management API in phases:
+
+1. MVP (Minimum Viable Product): The same, or very similar, functionality as
+   in the existing Partner API. Some endpoint URIs, requests and responses
+   may change, but changes will be small.
+   We aim to have this available in August 2023.
+   Integrators can start integrating, using the
+   [API spec](https://developer.vippsmobilepay.com/api/management/)
+   today, as there will only be small (if any) changes before the API is available.
+2. Exploration: Use the MVP to find out how the Management API can be improved,
+   using the suggestions and draft functionality documented here.
+   **Important:** Pay attention to whether the functionality described here
+   is something that exists and is implemented, or if it is a draft/idea that
+   can only be used in discussions.   
+3. Improvement: Extend and impreove the API based on input from existing and
+   potential users.
 
 ## Integrating with this API
 
@@ -35,6 +54,8 @@ The Postman collection can also be used to manually make API calls,
 even without an integration in place.
 
 ## Get all merchants
+
+Status: Idea. May be both impossible and irrelevant.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
@@ -64,6 +85,8 @@ The one making the API request.
 
 ## Get one merchant by organization number
 
+Status: Included in MVP.
+
 This endpoint is for retrieving basic information about the merchant:
 
 [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
@@ -91,7 +114,9 @@ Some candidates:
 
 ## Get a merchant's contract(s)
 
-Just an idea. May return a (link to a) PDF.
+Status: Idea. May be both impossible and irrelevant.
+
+Return a (link to a) PDF.
 
 [`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts)
 
@@ -106,6 +131,8 @@ Response:
 ```
 
 ## Get all sales units
+
+Status: Idea. May be both impossible and irrelevant.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
@@ -130,6 +157,8 @@ to get each MSN's details, including the orgno of the merchant it belongs to.
 
 ## Get the sales units for a merchant by orgno
 
+Status: Included in MVP.
+
 [`GET:/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
 
 Response:
@@ -144,6 +173,8 @@ Response:
 ```
 
 ## Get information about a sales unit
+
+Status: Included in MVP.
 
 This endpoint is for retrieving details about one sales unit (MSN):
 
@@ -165,7 +196,8 @@ Response (in the MVP):
 }
 ```
 
-Response (this does not yet exist, and provided for discussions of what we should investigate further):
+Response (this does not yet exist, may be _very_ difficult to implement,
+and provided for discussions of what we should investigate further):
 
 ```json
 {
@@ -222,6 +254,8 @@ Some candidates:
 
 ## Update sales unit
 
+Status: Idea. May be both impossible and irrelevant.
+
 May be used to update a sales unit, for instance the name or the status.
 
 [`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/updateMsn)
@@ -236,6 +270,8 @@ Example `PATCH` request body:
 ```
 
 ## Pre-fill a product order
+
+Status: Included in MVP.
 
 This endpoint allows a partner or a merchant (typically, a large company with subsidiaries)
 to "pre-fill" the product order form on
@@ -415,6 +451,8 @@ The merchant has an MA, and probably also a Vipps product.
 
 ## Get information about a product order
 
+Status: Idea. May be both impossible and irrelevant.
+
 For both merchants and partners. The best way to check the status of a product order is on
 [portal.vipps.no](https://portal.vipps.no).
 
@@ -437,6 +475,8 @@ and the merchant must also be able to withdraw the consent.
 
 ## Delete a product order
 
+Status: Idea. May be both impossible and irrelevant.
+
 An "undo" endpoint to delete a PO.
 This may be used if an incorrect PO has been pre-filled with
 [`POST:/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct).
@@ -444,6 +484,8 @@ This may be used if an incorrect PO has been pre-filled with
 [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/deleteProductOrder)
 
 ## Get information about a partner
+
+Status: Idea. May be both impossible and irrelevant.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
