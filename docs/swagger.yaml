@@ -169,7 +169,7 @@ paths:
       description: |-
         Status: Idea. May be both impossible and irrelevant.
       
-        Undo
+        Undo: To be used if a PO is sent by mistake, etc.
       responses:
         "200":
           description: OK
