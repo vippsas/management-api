@@ -162,11 +162,11 @@ Response (this is a work in progress):
    },
    "configuration": {
       "paymentAllowed":true,
-      "captureType":"ReserveCapture",
       "recurringAllowed":false,
       "skipLandingPageAllowed":true,
       "customerMustBePresent":true,
       "userinfoNinAllowed":true,
+      "captureType":"ReserveCapture",
    },
    "changelog": [
       {
