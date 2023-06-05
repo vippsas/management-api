@@ -1303,14 +1303,11 @@ components:
           description: A short human-readable summary of the price.
           maxLength: 6
           example: "2.99%"
-        signupVisibility:
-          type: string
+        visibleInSignupForm:
+          type: boolean
           description: |-
-            An enum indicating if the price package is available for merchants to order on their own in our signup forms.
-          enum:
-            - Visible
-            - Hidden
-          example: Visible
+            An boolean indicating if the price package is visible for merchants to order on their own in our signup forms.
+          example: True
         productType:
           type: string
           enum:
