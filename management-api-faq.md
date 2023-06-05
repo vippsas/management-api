@@ -43,7 +43,7 @@ See also:
 
 <!-- END_COMMENT -->
 
-## Whewn will the Managemernt API be available?
+## When will the Management API be available?
 
 We're aiming for August.
 

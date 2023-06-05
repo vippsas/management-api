@@ -35,7 +35,7 @@ We can describe the development of the Management API in phases:
    **Important:** Pay attention to whether the functionality described here
    is something that exists and is implemented, or if it is a draft/idea that
    can only be used in discussions.   
-3. Improvement: Extend and impreove the API based on input from existing and
+3. Improvement: Extend and improve the API based on input from existing and
    potential users.
 
 ## Getting started
