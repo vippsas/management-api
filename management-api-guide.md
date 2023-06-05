@@ -19,7 +19,7 @@ The Management API will replace the
 [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
 💥
 
-We can, very roughly, describe the development if the Management API in phases:
+We can describe the development of the Management API in phases:
 
 1. MVP (Minimum Viable Product): The same, or very similar, functionality as
    in the existing Partner API. Some endpoint URIs, requests and responses
