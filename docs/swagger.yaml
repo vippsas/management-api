@@ -404,7 +404,7 @@ paths:
         - Merchants
       summary: Get sales units for a merchant by by organization number
       description: |-
-        Status: Inclued in MVP.
+        Status: Included in MVP.
 
         Get a list of sales units (MSNs) for the merchant.
         When used by a partner: Only returns sales units connected to the partner.

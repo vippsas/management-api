@@ -33,14 +33,6 @@ See also:
 ℹ️ Please use the website:
 [Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/).
 
-## Table of contents
-
-* [Where do I get the pricePackageId?](#where-do-i-get-the-pricepackageid)
-* [Can I use the Management API in the test environment?](#can-i-use-the-management-api-in-the-test-environment)
-* [Why is the URL for a pre-filled product order not working?](#why-is-the-url-for-a-pre-filled-product-order-not-working)
-* [Why do I get `HTTP 404 Not Found`?](#why-do-i-get-http-404-not-found)
-* [When will it be possible to change an existing sales unit?](#when-will-it-be-possible-to-change-an-existing-sales-unit)
-
 <!-- END_COMMENT -->
 
 ## When will the Management API be available?
@@ -51,7 +43,7 @@ We're aiming for August.
 
 See the API guide and API specification for the status of each endpoint.
 
-## How can I make ferature requests and give input?
+## How can I make featyre requests and give input?
 
 Contact your partner manager or key account manager.
 
@@ -76,7 +68,7 @@ If you send an invalid request to
 [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management#tag/Vipps-Product-Orders/operation/orderProduct),
 the pre-fill will fail, and the URL will lead to the standard, empty
 product order form. Although we do _some_ input validation, it is not possible
-to validate all data. 
+to validate all data.
 
 ## Why do I get `HTTP 404 Not Found`?
 
