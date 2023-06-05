@@ -82,9 +82,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/GetPartnerResponse"
         default:
-          $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
-  /management/v1/partners/{partner-id}/price-packages:
+  /management/v1/partners/price-packages:
     get:
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
@@ -92,16 +96,6 @@ paths:
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: partner-id
-          in: path
-          description: The partner's id
-          required: true
-          schema:
-            minLength: 3
-            maxLength: 10
-            pattern: ^\d{3,10}$
-            type: string
-            example: 12345
       tags:
         - Partners
       summary: Get price packages for a partner.
@@ -121,7 +115,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/GetPartnerPricePackagesResponse"
         default:
-          $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
   /management/v1/product-orders/{product-order-id}:
     parameters:
@@ -161,7 +159,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/ProductOrderDetailsResponse"
         default:
-            $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
     delete:
       tags:
         - Product orders
@@ -175,7 +177,11 @@ paths:
         "200":
           description: OK
         default:
-          $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
   /management/v1/product-orders:
     parameters: []
@@ -272,7 +278,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/ProductOrderResponse"
         default:
-          $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
   /management/v1/merchants:
     get:
@@ -299,7 +309,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/GetAllMerchantsResponse"
         default:
-          $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
   /management/v1/merchants/{orgno}:
     get:
@@ -338,7 +352,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/GetMerchantResponse"
         default:
-          $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
   /management/v1/merchants/{orgno}/contracts:
     get:
@@ -374,7 +392,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/GetMerchantContractsResponse"
         default:
-          $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
   /management/v1/merchants/{orgno}/sales-units:
     get:
@@ -411,7 +433,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/getMsnResponse"
         default:
-          $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
   /management/v1/sales-units:
     get:
@@ -439,7 +465,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/getMsnResponse"
         default:
-          $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
   /management/v1/sales-units/{msn}:
     get:
@@ -475,7 +505,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/SalesUnit"
         default:
-          $ref: "#/components/schemas/Error"
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
     patch:
       tags:
@@ -512,7 +546,11 @@ paths:
         "200":
           description: OK
         default:
-          $ref: "#/components/schemas/Error"        
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
   /management/v1/api-quality/sales-units/{msn}:
     get:
@@ -552,7 +590,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/ApiQualityResponse"
         default:
-          $ref: "#/components/schemas/Error"  
+          description: Default problem response
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
 
 components:
 
@@ -690,7 +732,6 @@ components:
             - App
             - Unknown
           example: WebsiteWithTest
-          nullable: true
           description: |-
             Where will sales take place?
             A website?
@@ -795,7 +836,6 @@ components:
                   enum:
                     - CurrentCalendarYear
                     - OneYearFromPayment
-                  nullable: true
                   example: CurrentCalendarYear
                   description: Is the membership valid from the current calendar year or 1 year from payment?
                 periodDistribution:
@@ -954,7 +994,7 @@ components:
       title: API quality response
       type: object
       required:
-        - ApiQualityEndpointData
+        - ApiQualityItems
       properties:
         ApiQualityItems:
           type: array
@@ -1016,7 +1056,7 @@ components:
         - name
         - orgno
         - status
-        - settlementAccount
+        - settlementAccountNumber
       type: object
       properties:
         msn:
@@ -1142,15 +1182,9 @@ components:
 
     GetPartnerPricePackagesResponse:
       description: List of the partner's price packages
-      type: object
-      required:
-        - pricesPackages  
-      properties:
-        pricesPackages:
-          type: array
-          description: List of price packages
-          items:
-            $ref: '#/components/schemas/PricePackage'
+      type: array
+      items:
+        $ref: '#/components/schemas/PricePackage'
     
     Merchant:
       description: A merchant
@@ -1183,7 +1217,10 @@ components:
 
     GetMerchantResponse:
       description: Response of a successful get merchant(s) operation
-      $ref: '#/components/schemas/Merchant'
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Merchant'
     
     GetAllMerchantsResponse:
       description: List of the merchants a partner has access to
@@ -1261,18 +1298,24 @@ components:
           description: The price package' name
           maxLength: 30
           example: "POS standard"
-        percentage:
+        description:
+          type: string
+          description: A short human-readable summary of the price.
+          maxLength: 6
+          example: "2.99%"
+        signupVisibility:
           type: string
           description: |-
-            The price package's percentages, with decimals.
-            The decimal separator is '.' (period).
-          maxLength: 6
-          example: "2.99"
-
-    Error:
-      oneOf:
-        - $ref: "#/components/schemas/Problem"
-        - $ref: "#/components/schemas/MiddlewareError"
+            An enum indicating if the price package is available for merchants to order on their own in our signup forms.
+          enum:
+            - Visible
+            - Hidden
+          example: Visible
+        productType:
+          type: string
+          enum:
+            - ePayment
+            - ePaymentCustomerPresent
 
     Problem:
       title: Problem
@@ -1307,24 +1350,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ExtraDetails"
-
-    MiddlewareError:
-      type: object
-      description: |-
-        Problem details for errors from other components than the API itself.
-      properties:
-        code:
-          type: integer
-          description: |
-            "The status code generated by the origin server for this occurrence of the problem"
-          example: 400
-          x-order: 1
-        message:
-          type: string
-          description: |
-            "A human-readable explanation specific to this occurrence of the problem."
-          example: MSN must be at least five digits
-          x-order: 2
   
   parameters:
     Vipps-System-Name:
