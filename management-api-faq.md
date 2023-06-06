@@ -43,7 +43,7 @@ We're aiming for August.
 
 See the API guide and API specification for the status of each endpoint.
 
-## How can I make featyre requests and give input?
+## How can I make feature requests and give input?
 
 Contact your partner manager or key account manager.
 
