@@ -10,8 +10,6 @@ pagination_prev: null
 
 # Management API
 
-## Important information
-
 💥
 **DRAFT!** The Management API is in development, planned available in Q3.
 This documentation is a working document, and used in discussions with
