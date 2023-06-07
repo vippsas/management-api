@@ -64,7 +64,7 @@ paths:
         [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
         Get details for the partner that is making the request.
       description: |-
-        Status: Idea. May be both impossible and irrelevant.
+        Status: Idea/proposal.
 
         An endpoint where a partner can fetch the information stored about them.
       operationId: getPartnerWhoami
@@ -144,7 +144,7 @@ paths:
       summary: Get information about a product order
       operationId: productOrderDetails
       description: |-
-        Status: Idea. May be both impossible and irrelevant.
+        Status: Idea/proposal.
 
         For both merchants and partners.
         The best way to check the status of a product order is on portal.vipps.no.
@@ -170,7 +170,7 @@ paths:
       summary: Delete a product order
       operationId: deleteProductOrder
       description: |-
-        Status: Idea. May be both impossible and irrelevant.
+        Status: Idea/proposal.
       
         Undo: To be used if a PO is sent by mistake, etc.
       responses:
@@ -290,7 +290,7 @@ paths:
         - Merchants
       summary: Get all merchants
       description: |-
-        Status: Idea. May be both impossible and irrelevant.
+        Status: Idea/proposal.
 
         For partners.
         Get a (long) list of all orgnos that have one or more sale units registered with the partner making the API call.
@@ -364,7 +364,7 @@ paths:
         - Merchants
       summary: Get a merchant's contract(s)
       description: |-
-        Status: Idea. May be both impossible and irrelevant.
+        Status: Idea/proposal.
 
         May return a (link to a) PDF.
       operationId: getMerchantContracts
@@ -445,7 +445,7 @@ paths:
         - Sales units
       summary: Get all sales units that a merchant or partner has access to
       description: |-
-        Status: Idea. May be both impossible and irrelevant.
+        Status: Idea/proposal.
 
         For partners using
         [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
@@ -516,7 +516,7 @@ paths:
         - Sales units
       summary: Update sales unit
       description: |-
-        Status: Idea. May be both impossible and irrelevant.
+        Status: Idea/proposal.
 
         Change the sales unit's name, logo, possibly more.
       operationId: updateMsn
@@ -558,7 +558,7 @@ paths:
         - API quality
       summary: "Get API quality info: Errors, etc"
       description: |-
-        Status: Idea. May be both impossible and irrelevant.
+        Status: Idea/proposal.
 
         We want all API integrations to be without errors.
         All merchants can check the

@@ -55,7 +55,7 @@ even without an integration in place.
 
 ## Get all merchants
 
-Status: Idea. May be both impossible and irrelevant.
+Status: Idea/proposal.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
@@ -114,7 +114,7 @@ Some candidates:
 
 ## Get a merchant's contract(s)
 
-Status: Idea. May be both impossible and irrelevant.
+Status: Idea/proposal.
 
 Return a (link to a) PDF.
 
@@ -132,7 +132,7 @@ Response:
 
 ## Get all sales units
 
-Status: Idea. May be both impossible and irrelevant.
+Status: Idea/proposal.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
@@ -254,7 +254,7 @@ Some candidates:
 
 ## Update sales unit
 
-Status: Idea. May be both impossible and irrelevant.
+Status: Idea/proposal.
 
 May be used to update a sales unit, for instance the name or the status.
 
@@ -451,7 +451,7 @@ The merchant has an MA, and probably also a Vipps product.
 
 ## Get information about a product order
 
-Status: Idea. May be both impossible and irrelevant.
+Status: Idea/proposal.
 
 For both merchants and partners. The best way to check the status of a product order is on
 [portal.vipps.no](https://portal.vipps.no).
@@ -475,7 +475,7 @@ and the merchant must also be able to withdraw the consent.
 
 ## Delete a product order
 
-Status: Idea. May be both impossible and irrelevant.
+Status: Idea/proposal.
 
 An "undo" endpoint to delete a PO.
 This may be used if an incorrect PO has been pre-filled with
@@ -485,7 +485,7 @@ This may be used if an incorrect PO has been pre-filled with
 
 ## Get information about a partner
 
-Status: Idea. May be both impossible and irrelevant.
+Status: Idea/proposal.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
