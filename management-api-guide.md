@@ -282,6 +282,8 @@ including parameters that are normally selectable.
 
 The merchant can log in, check the data, and submit the pre-filled product order.
 
+### Request
+
 Here is a sample request to
 [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct):
 
@@ -306,6 +308,19 @@ Here is a sample request to
 }
 ```
 
+**Important:** Please provide all the required fields, so it will not be necessary for
+merchants to request more details. This is the most
+[typical reason for delays](https://developer.vippsmobilepay.com/docs/vipps-partner/#typical-reasons-for-delays).
+
+We have made as many of the fields as possible optional, but please
+try to send as much as you can, to make it easy for the merchant.
+
+**Please note:** The merchant can not change the information provided by the partner, so if
+something needs to be corrected, the merchant must contact the partner to have
+the partner submit a new pre-fill product order with the correct details.
+
+### Response
+
 Response:
 
 ```json
@@ -315,8 +330,7 @@ Response:
 }
 ```
 
-**Please note:** The merchant cannot change the information provided in the request, so if
-something needs to be corrected, a new request with the correct details must be made.
+### Processing of the pre-filled product order
 
 When the submitted product order has been processed, an email is sent to both the
 partner/merchant making the request and the merchant that submitted the pre-filled product order.
