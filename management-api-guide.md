@@ -525,7 +525,12 @@ If this endpoint is used with normal API keys (not partner keys), it will return
 
 Status: Included in the MVP.
 
-[`GET:/partners/price-packages](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages)
+Partners can use this endpoint to get a list of all their price packages, with the
+`pricePackageId` to use for
+[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct),
+as well as other details.
+
+[`GET:/partners/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages)
 
 Response:
 
