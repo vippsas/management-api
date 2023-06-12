@@ -520,3 +520,23 @@ Response:
 ```
 
 If this endpoint is used with normal API keys (not partner keys), it will return an error.
+
+## Get the price packages for a partner
+
+Status: Included in the MVP.
+
+[`GET:/partners/price-packages](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages)
+
+Response:
+
+```json
+[
+  {
+    "pricePackageId": "8a11afb7-c223-48ed-8ca6-4722b97261aa",
+    "name": "POS standard",
+    "description": "2.99%",
+    "visibleInSignupForm": true,
+    "productType": "ePayment"
+  }
+]
+```
