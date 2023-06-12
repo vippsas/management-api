@@ -196,8 +196,7 @@ Response (in the MVP):
 }
 ```
 
-Response (this does not yet exist, may be _very_ difficult to implement,
-and provided for discussions of what we should investigate further):
+Response (this improvement is provided for discussions of what we should investigate further):
 
 ```json
 {
