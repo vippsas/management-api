@@ -545,3 +545,44 @@ Response:
   }
 ]
 ```
+
+## API quality
+
+Status: Idea/proposal.
+
+We want to offer an API endpoint that lets merchants and partners retrieve the same
+information that is available on the
+[API Dashbpoard](https://developer.vippsmobilepay.com/docs/vipps-developers/developer-resources/api-dashboard/).
+
+This will make monitoring the usage of Vipps MobilePay's API easier.
+
+[`GET:/api-quality/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/API-quality)
+
+Response: 
+
+```json
+{
+   "ApiQualityItems":[
+      {
+         "endpoint":"POST:/epayment/v1/payments",
+         "total Requests":1000,
+         "successRate":95,
+         "status200":950,
+         "status400":10,
+         "status401":10,
+         "status403":10,
+         "status404":10,
+         "status429":10,
+         "status500":0
+      }
+   ]
+}
+```
+
+**Please note:** Monitoring API errors, and fixing them quickly is already a requirement in
+the checklists for all APIs, such as:
+* [ePayment API checklist](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/checklist/)
+* [Recurring API checklist](https://developer.vippsmobilepay.com/docs/APIs/recurring-api/vipps-recurring-api-checklist/)
+
+See also: 
+[Errors](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors/).
