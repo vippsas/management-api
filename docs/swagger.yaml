@@ -1291,7 +1291,7 @@ components:
           type: string
           description: |-
             Status of the sales unit.
-            This may be used to deactivate a sales unit, and to serrt it active again.
+            This may be used to activate and deactivate a sales unit.
           enum:
             - ACTIVE
             - DEACTIVATED
