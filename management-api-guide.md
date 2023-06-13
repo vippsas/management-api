@@ -552,7 +552,7 @@ Status: Idea/proposal.
 
 We want to offer an API endpoint that lets merchants and partners retrieve the same
 information that is available on the
-[API Dashbpoard](https://developer.vippsmobilepay.com/docs/vipps-developers/developer-resources/api-dashboard/).
+[API Dashboard](https://developer.vippsmobilepay.com/docs/vipps-developers/developer-resources/api-dashboard/).
 
 This will make monitoring the usage of Vipps MobilePay's API easier.
 
