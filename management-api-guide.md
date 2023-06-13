@@ -32,7 +32,7 @@ We can describe the development of the Management API in phases:
    using the suggestions and draft functionality documented here.
    **Important:** Pay attention to whether the functionality described here
    is something that exists and is implemented, or if it is a draft/idea that
-   can only be used in discussions.   
+   can only be used in discussions.
 3. Improvement: Extend and improve the API based on input from existing and
    potential users.
 
@@ -59,7 +59,7 @@ Status: Idea/proposal.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
-Get a (long) list of all orgnos that have one or more sale units registered with the partner making the API call.
+Get a (long) list of all `orgno`s that have one or more sales units registered with the partner making the API call.
 
 [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants)
 
@@ -109,7 +109,7 @@ Some candidates:
 * Company address
 * Contact information for the main person (depends on GDPR, etc.)
 * Contact information for the technical person (depends on GDPR, etc.)
-* A list of people with admin rights on portal.vipps.no (depends on GDPR, etc.)
+* A list of people with admin rights on [portal.vipps.no](https://portal.vipps.no) (depend on GDPR, etc.)
 * Changelog: What was changed when by whom?
 
 ## Get a merchant's contract(s)
@@ -240,14 +240,14 @@ Response (this improvement is provided for discussions of what we should investi
 }
 ```
 
-The `orgno` is included to make it possible to find out which merchant a MSN
-belongs to, which is useful if only the MSN is known.
+The `orgno` is included to make it possible to find out the merchant that is associated with an MSN.
+This is useful when only the MSN is known.
 
 Future versions of the API will _probably_ return more information,
 and we will work with our partners to find out what is useful and possible.
 Some candidates:
 
-* Vipps products: Which Vipps products and APIs are available for this MSN ("eCom API", "Recurring API", "Login API", etc).
+* Vipps products: Which Vipps products and APIs are available for this MSN ("eCom API", "Recurring API", "Login API", etc.).
 * Transaction cost (price package)
 * Status: Active or deactivated
 
@@ -401,7 +401,7 @@ sequenceDiagram
 ### Scenarios
 
 **Please note:** The only method Vipps has to verify that a user has the right
-to sign a MA for a merchant is by using data from
+to sign a merchant agreement for a merchant is by using data from
 [Brønnøysundregistrene](https://brreg.no).
 It is therefore a requirement that the user logging in on
 [portal.vipps.no](https://portal.vipps.no)
