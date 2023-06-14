@@ -558,7 +558,7 @@ This will make monitoring the usage of Vipps MobilePay's API easier.
 
 [`GET:/api-quality/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/API-quality)
 
-Response: 
+Response:
 
 ```json
 {
@@ -581,8 +581,9 @@ Response:
 
 **Please note:** Monitoring API errors, and fixing them quickly is already a requirement in
 the checklists for all APIs, such as:
+
 * [ePayment API checklist](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/checklist/)
 * [Recurring API checklist](https://developer.vippsmobilepay.com/docs/APIs/recurring-api/vipps-recurring-api-checklist/)
 
-See also: 
+See also:
 [Errors](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors/).
