@@ -694,12 +694,7 @@ components:
           example: posstandard
           description: |-
             Deprecated.
-            One of the price packages that are registered for the
-            partner in the Vipps system. Please note, it is not the PriceId
-            (3 digit), but the name, such as "standard", "price1", etc, that
-            is applicable to the partner. If the field is not provided, the
-            merchant must select it manually from the product order section
-            of the merchant portal before submitting.
+            Use `pricePackageId`.
         pricePackageId:
           type: string
           format: uuid
@@ -743,17 +738,18 @@ components:
         annualTurnover:
           type: integer
           minimum: 0
-          maximum: 9223372036854775807
+          maximum: 999999999
           format: int64
           description: Annual turnover for the merchant in NOK (without øre).
           example: 100000
         intendedPurpose:
           type: string
           description: |-
-            Description of the product or products that will be sold.
-            Please include all information relevant to processing the product
-            order, such as including "POS integration" to indicate that the
-            sales unit needs `skipLandingPage`.
+            Description (explanation) of the product or products that will be sold.
+            Include all information relevant to processing the product order, so the 
+            processing of the application can be as efficient as possible. 
+            This can include hints such as specifying "POS integration in physical store"
+            to indicate that the sales unit needs `skipLandingPage` activated.
           example: |-
             Gym membership for accessing the gym's facilities.
             Guest will be not physically present when buying the subscription,
