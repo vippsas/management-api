@@ -223,54 +223,6 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/ProductOrderRequest"
-            examples:
-              example-1:
-                value:
-                  orgno: "987654321"
-                  salesUnitName: ACME Fantastic Fitness
-                  salesUnitLogo: VGhlIGltYWdlIGdvZXMgaGVyZQ==
-                  settlementAccountNumber: "86011117947"
-                  pricePackageId: 8a11afb7-c223-48ed-8ca6-4722b97261aa
-                  productType: VIPPS_PA_NETT
-                  annualTurnover: 100000
-                  intendedPurpose: |-
-                    Gym membership for accessing the gym's facilities.
-                    Guest will be not physically present when buying the subscription,
-                    as that is done on the gym's website.
-                  website:
-                    url: "https://example.com"
-                    termsUrl: "https://example.com/terms-and-conditions"
-                    testWebsiteUrl: "https://example.com/test "
-                    testWebsiteUsername: test-user
-                    testWebsitePassword: test-password
-                  complianceData:
-                    giftCard:
-                      isSalesPercentageLessThanTen: false
-                      validityDuration: 3 years
-                    membership:
-                      turnoverShare: about 25%
-                      periodDistribution: 50% yearly 20% monthly
-                    subscription:
-                      turnoverShare: about 25%
-                      periodDistribution: 50% yearly 20% monthly
-                    course:
-                      turnoverShare: about 25%
-                      timeBeforeOrder: 10 days
-                      period: once every 6 week
-                      isOnlineCourseOffered: true
-                      onlineAccessibleTime: for 3 months
-                    ticket:
-                      turnoverShare: about 25%
-                      prepurchaseTime: 10 weeks
-                    rent:
-                      turnoverShare: about 25%
-                      prepurchaseTime: 15 days
-                      averageRentalDuration: 3 weeks
-                    prepaidServices:
-                      turnoverShare: about 25%
-                      prepurchaseTime: 10 weeks
-                    donation:
-                      acceptDonations: true
       responses:
         "201":
           description: Created
@@ -636,18 +588,24 @@ components:
     ProductOrderRequest:
       title: Product Order Request for a merchant
       required:
-        - orgno
+        - businessIdentifier
         - productType
       properties:
-        orgno:
-          type: string
-          pattern: ^[0-9]{9,9}$
-          maxLength: 9
-          minLength: 9
-          example: "987654321"
+        businessIdentifier:
+          type: object
           description: |-
-            Organisation number of the merchant for whom the partner is submitting the product order.
-            Only Norwegian organization numbers are allowed (for now).
+            Business registration number of the merchant for whom the partner is submitting the product order.
+            Only Norwegian(business:NO:ORG) business registration numbers are allowed (for now).
+          required:
+            - scheme
+            - id
+          properties:
+            scheme:
+              type: string
+              example: "business:NO:ORG"
+            id:
+              type: string
+              example: "9876543221"
         salesUnitName:
           nullable: true
           type: string
@@ -684,22 +642,11 @@ components:
             The bank account number belonging to the organisation that will be
             used for settlement. The bank account must be owned by the
             merchant. BBAN (not IBAN) format.
-        pricePackageKey:
-          nullable: true
-          type: string
-          pattern: "^[a-zA-Z0-9-]{1,15}$"
-          minLength: 1
-          maxLength: 255
-          deprecated: true
-          example: posstandard
-          description: |-
-            Deprecated.
-            Use `pricePackageId`.
         pricePackageId:
           type: string
           format: uuid
-          nullable: true
           example: "8a11afb7-c223-48ed-8ca6-4722b97261aa"
+          nullable: true
           description: |-
             Only for `productType`: `VIPPS_PA_NETT` and `VIPPS_I_KASSA`.
             The id for one of the price packages that are registered for the
@@ -734,7 +681,6 @@ components:
             A website that is not yet launched, so a test website must be used?
             A native app?
             Something else?
-          default: Website
         annualTurnover:
           type: integer
           minimum: 0
@@ -806,7 +752,6 @@ components:
                   default: false
                   description: The percentage the giftcard sales consists of. Either 'Less than 10%' or '10% and more'
                   example: false
-                  nullable: true
                 validityDuration:
                   type: string
                   description: "If 'isSalesPercentageLessThanTen' is true: For how long is the gift card valid after purchase?"
@@ -947,7 +892,6 @@ components:
                   description: true if merchant will receive donation through Vipps
                   default: false
                   example: false
-                  nullable: true
     
     ProductOrderResponse:
       title: Product Order response
@@ -1232,21 +1176,15 @@ components:
             $ref: '#/components/schemas/Merchant'
 
     getMsnResponse:
-      description: Response of a successful get sales units operation
-      required:
-        - msn
-      type: object
-      properties:
-        msn:
-          type: array
-          description: List of Vipps MSNs (merchant serial numbers)
-          items:
-            minLength: 5
-            maxLength: 6
-            pattern: '^\d{5,6}$'
-            type: string
-            description: Vipps MSN (merchant serial number)
-            example: "123456"
+      description: List of Vipps MSNs (merchant serial numbers)
+      type: array
+      items:
+        minLength: 5
+        maxLength: 6
+        pattern: '^\d{5,6}$'
+        type: string
+        description: Vipps MSN (merchant serial number)
+        example: "123456"
 
     GetMerchantContractsResponse:
       description: "Response of a successful get contracts operation"
@@ -1363,6 +1301,7 @@ components:
   parameters:
     Vipps-System-Name:
       name: Vipps-System-Name
+      required: true
       in: header
       description: |-
         The name of the solution. One word in lowercase letters is good.
@@ -1373,6 +1312,7 @@ components:
     
     Vipps-System-Version:
       name: Vipps-System-Version
+      required: true
       in: header
       description: |-
         The version number of the solution.
@@ -1383,9 +1323,10 @@ components:
     
     Vipps-System-Plugin-Name:
       name: Vipps-System-Plugin-Name
+      required: true
       in: header
       description: |-
-        The name of the plugin (if applicable). One word in lowercase letters is good.
+        The name of the plugin. One word in lowercase letters is good.
         See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
       schema:
         type: string
@@ -1394,8 +1335,9 @@ components:
     Vipps-System-Plugin-Version:
       name: Vipps-System-Plugin-Version
       in: header
+      required: true
       description: |-
-        The version number of the plugin (if applicable).
+        The version number of the plugin.
         See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
       schema:
         type: string
@@ -1406,12 +1348,11 @@ components:
       name: Idempotency-Key
       description: |-
         An Idempotency key must be provided to ensure idempotent requests.
-        Key size can be between 1 to 40 characters.
       required: true
       schema:
         type: string
-        maxLength: 40
-        pattern: ^[a-zA-Z0-9]*$
+        maxLength: 50
+        pattern: ^[a-zA-Z0-9-]{1,50}$
         example: kRk3uEeiogxLu1yGSZRlNgsIv3TuNS
 
     Merchant-Serial-Number:
