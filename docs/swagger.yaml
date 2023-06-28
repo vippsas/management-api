@@ -1194,7 +1194,7 @@ components:
       type: object
       description: |-
         Business registration number of the merchant for whom the partner is submitting the product order.
-        Only Norwegian(business:NO:ORG) business registration numbers are allowed (for now).
+        Only Norwegian (business:NO:ORG) business registration numbers are allowed for now, but this format supports all countries.
       required:
         - scheme
         - id
