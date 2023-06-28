@@ -1008,7 +1008,8 @@ components:
             skipLandingPageAllowed:
               type: boolean
               description: |-
-                If the merchant has access to sending `skipLandingPage` for eCom API requests
+                This is `true` if the merchant has access to sending `skipLandingPage` for eCom API requests.
+                See the [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/).
               example: false
             paymentAllowed:
               type: boolean
