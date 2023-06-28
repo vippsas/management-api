@@ -1031,7 +1031,7 @@ components:
             recurringAllowed:
               type: boolean
               description: |-
-                Should the sales unit have access to the Vipps Recurring API?
+                This is `true` is the sales unit has access to the Vipps Recurring API.
                 Vipps is required to perform some extra
                 compliance checks before activating the Vipps Recurring API.
                 See: https://developer.vippsmobilepay.com/docs/APIs/recurring-api
