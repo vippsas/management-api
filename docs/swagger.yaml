@@ -1014,7 +1014,7 @@ components:
             paymentAllowed:
               type: boolean
               description: |-
-                If the sales unit is allowed to make payments. The most common cause for this being false is the that sales unit only being approved for login.
+                This is `true` if the sales unit is allowed to make payments. The most common cause for this being false is the that sales unit only being approved for the Login API.
               example: false
             captureType:
               type: string
