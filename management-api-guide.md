@@ -186,13 +186,13 @@ Response (in the MVP):
 {
    "msn":"123456",
    "name":"ACME Fantastic Fitness",
-   "orgno":987654321,
-   "additionalDetails":{
-      "skipLandingPage":false,
-      "isPureLogin":false,
+   "businessIdentifier":987654321,
+   "configuration": {
+      "paymentAllowed":true,
       "captureType":"ReserveCapture",
-      "recurring":false
-   }
+      "recurringAllowed":false,
+      "skipLandingPageAllowed":true,
+   },
 }
 ```
 
@@ -209,11 +209,11 @@ Response (this improvement is provided for discussions of what we should investi
    },
    "configuration": {
       "paymentAllowed":true,
+      "captureType":"ReserveCapture",
       "recurringAllowed":false,
       "skipLandingPageAllowed":true,
-      "customerMustBePresent":true,
+      "remoteSalesAllowed":true,
       "userinfoNinAllowed":true,
-      "captureType":"ReserveCapture",
    },
    "changelog": [
       {
