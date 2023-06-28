@@ -186,7 +186,10 @@ Response (in the MVP):
 {
    "msn":"123456",
    "name":"ACME Fantastic Fitness",
-   "businessIdentifier":987654321,
+   "businessIdentifier": {
+      "scheme": "business:NO:ORG",
+      "id": "9876543221"
+   },
    "configuration": {
       "paymentAllowed":true,
       "captureType":"ReserveCapture",
@@ -202,7 +205,10 @@ Response (this improvement is provided for discussions of what we should investi
 {
    "msn":"123456",
    "name":"ACME Fantastic Fitness",
-   "orgno":"987654321",
+   "businessIdentifier": {
+      "scheme": "business:NO:ORG",
+      "id": "9876543221"
+   },
    "bankDetails": {
       "bankAccountBban":"86011117947",
       "bankAccountIban":"NO93 8601 1117 947",
