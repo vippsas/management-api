@@ -592,20 +592,7 @@ components:
         - productType
       properties:
         businessIdentifier:
-          type: object
-          description: |-
-            Business registration number of the merchant for whom the partner is submitting the product order.
-            Only Norwegian(business:NO:ORG) business registration numbers are allowed (for now).
-          required:
-            - scheme
-            - id
-          properties:
-            scheme:
-              type: string
-              example: "business:NO:ORG"
-            id:
-              type: string
-              example: "9876543221"
+          $ref: "#/components/schemas/businessIdentifier"
         salesUnitName:
           nullable: true
           type: string
@@ -991,13 +978,11 @@ components:
 
 
     SalesUnit:
-      description: Details of a sales unit
+      description: Details of a sales unit. More properties may be added at a later date.
       required:
         - msn
         - name
-        - orgno
-        - status
-        - settlementAccountNumber
+        - businessIdentifier
       type: object
       properties:
         msn:
@@ -1013,46 +998,22 @@ components:
           description: "The sales unit's name"
           example: "ACME Fantastic Fitness"
           x-order: 5
-        orgno:
-          type: string
-          description: The organization number for the merchant
-          minLength: 9
-          maxLength: 9
-          pattern: '^\d{9}$'
-          example: 987654321
-        status:
-          type: string
-          description: Status of the sales unit
-          enum:
-            - ACTIVE
-            - DEACTIVATED
-          default: ACTIVE
-          example: ACTIVE  
-        settlementAccountNumber:
-          nullable: true
-          type: string
-          pattern: "^[0-9]{11,11}$"
-          minLength: 11
-          maxLength: 11
-          example: "86011117947"
-          description: |-
-            The bank account number used for settlements. 
-
-        additionalDetails:
+        businessIdentifier:
+          $ref: "#/components/schemas/businessIdentifier"
+        configuration:
           type: object
-          description: "Additional details that might or might not be available. In the case that any of these are not provided, it doesn't mean that those details don't apply."
+          description: |-
+            Additional details that might or might not be available. In the case that any of these are not provided, it doesn't mean that those details don't apply.
           properties:
-            skipLandingPage:
-              type: boolean
-              description: "If the merchant has access to sending `skipLandingPage` for eCom API requests"
-              default: false
-              example: false
-            isPureLogin:
+            skipLandingPageAllowed:
               type: boolean
               description: |-
-                If the sales unit is only approved for the Vipps Login API (no payments).
-                See: https://developer.vippsmobilepay.com/docs/APIs/login-api
-              default: false
+                If the merchant has access to sending `skipLandingPage` for eCom API requests
+              example: false
+            paymentAllowed:
+              type: boolean
+              description: |-
+                If the sales unit is allowed to make payments. The most common cause for this being false is the that sales unit only being approved for login.
               example: false
             captureType:
               type: string
@@ -1066,14 +1027,13 @@ components:
                 - "NotApplicable"
               default: "ReserveCapture"
               example: "ReserveCapture"
-            recurring:
+            recurringAllowed:
               type: boolean
               description: |-
                 Should the sales unit have access to the Vipps Recurring API?
                 Vipps is required to perform some extra
                 compliance checks before activating the Vipps Recurring API.
                 See: https://developer.vippsmobilepay.com/docs/APIs/recurring-api
-              default: true
               example: false
     
     GetPartnerResponse:
@@ -1176,12 +1136,10 @@ components:
             $ref: '#/components/schemas/Merchant'
 
     getMsnResponse:
-      description: List of Vipps MSNs (merchant serial numbers)
+      description: List of Vipps MSNs (merchant serial numbers), that the calling partner has access to.
       type: array
       items:
-        minLength: 5
-        maxLength: 6
-        pattern: '^\d{5,6}$'
+        pattern: ^\d{3,}$
         type: string
         description: Vipps MSN (merchant serial number)
         example: "123456"
@@ -1231,6 +1189,22 @@ components:
             - DEACTIVATED
           default: ACTIVE
           example: ACTIVE
+    
+    businessIdentifier:
+      type: object
+      description: |-
+        Business registration number of the merchant for whom the partner is submitting the product order.
+        Only Norwegian(business:NO:ORG) business registration numbers are allowed (for now).
+      required:
+        - scheme
+        - id
+      properties:
+        scheme:
+          type: string
+          example: "business:NO:ORG"
+        id:
+          type: string
+          example: "9876543221"
 
     PricePackage:
       required:
