@@ -191,7 +191,7 @@ Response (in the MVP):
       "paymentAllowed":true,
       "captureType":"ReserveCapture",
       "recurringAllowed":false,
-      "skipLandingPageAllowed":true,
+      "skipLandingPageAllowed":false,
    },
 }
 ```
@@ -211,9 +211,9 @@ Response (this improvement is provided for discussions of what we should investi
       "paymentAllowed":true,
       "captureType":"ReserveCapture",
       "recurringAllowed":false,
-      "skipLandingPageAllowed":true,
-      "remoteSalesAllowed":true,
-      "userinfoNinAllowed":true,
+      "skipLandingPageAllowed":false,
+      "remoteSalesAllowed":false,
+      "userinfoNinAllowed":false,
    },
    "changelog": [
       {
