@@ -1137,7 +1137,7 @@ components:
             $ref: '#/components/schemas/Merchant'
 
     getMsnResponse:
-      description: List of Vipps MSNs (merchant serial numbers), that the calling partner has access to.
+      description: List of MSNs (merchant serial numbers), that the calling partner has access to.
       type: array
       items:
         pattern: ^\d{3,}$
