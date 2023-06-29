@@ -3,18 +3,11 @@ info:
   title: Vipps MobilePay Management API
   version: "1.0.0"
   description: |-
-
-    💥 
-    **DRAFT!** The Management API is in development, but not yet available.
-    This documentation is a working document, and used in discussions with
-    merchants and partners to make sure we are prioritizing right,
-    and that we are implementing the right functionality.
-    The Management API will replace the
-    [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
-    💥
-
     The Management API lets partners and merchants manage their sales units, etc.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api).
+
+    **Please note:** The Management API documentation contains both available functionality,
+    and functionality on the idea stage. See each endpoint and the API guide for details.
   contact:
     name: Vipps MobilePay AS
     url: "https://developer.vippsmobilepay.com/"

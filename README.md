@@ -10,21 +10,23 @@ pagination_prev: null
 
 # Management API
 
-💥
-**DRAFT!** The Management API is in development, planned available in Q3.
-This documentation is a working document, and used in discussions with
-merchants and partners to make sure we are prioritizing right,
-and that we are implementing the right functionality.
-The Management API will replace the
+**Please note:** 
+The Management API is in development, with some functionality available now,
+and more planned for Q3.
+The API documentation contains both available functionality,
+and functionality on the idea stage. See each endpoint and the
+[API specification](https://developer.vippsmobilepay.com/api/management/)
+for details.
+
+**Important:** The Management API will replace the
 [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
-💥
 
 We can describe the development of the Management API in phases:
 
 1. MVP (Minimum Viable Product): The same, or very similar, functionality as
    in the existing Partner API. Some endpoint URIs, requests and responses
    may change, but changes will be small.
-   We aim to have this available in August 2023.
+   We aim to have this available in July-August 2023.
    Integrators can start integrating, using the
    [API spec](https://developer.vippsmobilepay.com/api/management/)
    _today_, as there will only be small (if any) changes before the API is available.
