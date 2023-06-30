@@ -20,15 +20,15 @@ for details.
 
 ## Integrating with this API
 
-Both partners and merchants can use the Management API, and we use "partner/merchant" to
+Both partners and _soon_ merchants can use the Management API, and we use "partner/merchant" to
 indicate that this is the actor making the API request.
 
 Authentication:
 
-* Merchants use their normal
-  [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/).
 * Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys)
   if they have them, and the merchant's API keys if not.
+* Soon: Merchants use their normal
+  [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/).
 
 See the Postman collection and environment, and the
 [Quick start guide](management-api-quick-start.md).
