@@ -183,7 +183,7 @@ This endpoint is for retrieving details about one sales unit (MSN):
 
 [`GET:/management/v1/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
 
-Response (in the MVP):
+Response (now):
 
 ```json
 {
