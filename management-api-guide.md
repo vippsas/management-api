@@ -11,32 +11,12 @@ pagination_prev: null
 ## Important information
 
 **Please note:** 
-The Management API is in development, with some functionality available now,
-and more planned for Q3.
-The API documentation contains both available functionality,
-and functionality on the idea stage. See each endpoint and the
+The Management API replaced the
+[Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/):
+All the functionality in the Partner API is available in the Management API now,
+and more functionality will be added. See each endpoint and the
 [API specification](https://developer.vippsmobilepay.com/api/management/)
 for details.
-
-**Important:** The Management API will replace the
-[Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
-
-We can describe the development of the Management API in phases:
-
-1. MVP (Minimum Viable Product): The same, or very similar, functionality as
-   in the existing Partner API. Some endpoint URIs, requests and responses
-   may change, but changes will be small.
-   We aim to have this available in July-August 2023.
-   Integrators can start integrating, using the
-   [API spec](https://developer.vippsmobilepay.com/api/management/)
-   _today_, as there will only be small (if any) changes before the API is available.
-2. Exploration: Use the MVP to find out how the Management API can be improved,
-   using the suggestions and draft functionality documented here.
-   **Important:** Pay attention to whether the functionality described here
-   is something that exists and is implemented, or if it is a draft/idea that
-   can only be used in discussions.   
-3. Improvement: Extend and improve the API based on input from existing and
-   potential users.
 
 ## Integrating with this API
 
@@ -87,7 +67,7 @@ The one making the API request.
 
 ## Get one merchant by organization number
 
-Status: Included in MVP.
+Status: Available.
 
 This endpoint is for retrieving basic information about the merchant:
 
@@ -159,7 +139,7 @@ to get each MSN's details, including the orgno of the merchant it belongs to.
 
 ## Get the sales units for a merchant by orgno
 
-Status: Included in MVP.
+Status: Available.
 
 [`GET:/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
 
@@ -176,7 +156,7 @@ Response:
 
 ## Get information about a sales unit
 
-Status: Included in MVP.
+Status: Available.
 
 This endpoint is for retrieving details about one sales unit (MSN):
 
@@ -272,7 +252,7 @@ Example `PATCH` request body:
 
 ## Pre-fill a product order
 
-Status: Included in MVP.
+Status: Available.
 
 This endpoint allows a partner or a merchant (typically, a large company with subsidiaries)
 to "pre-fill" the product order form on
@@ -567,7 +547,7 @@ If this endpoint is used with normal API keys (not partner keys), it will return
 
 ## Get the price packages for a partner
 
-Status: Included in the MVP.
+Status: Available.
 
 Partners can use this endpoint to get a list of all their price packages, with the
 `pricePackageId` to use for

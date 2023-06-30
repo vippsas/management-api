@@ -93,7 +93,7 @@ paths:
         - Partners
       summary: Get price packages for a partner.
       description: |-
-        Status: Included in MVP.
+        Status: Available.
 
         The price packages can have different names and percentages.
         Each price packages has a unique id: `pricePackageId`.
@@ -183,7 +183,7 @@ paths:
       summary: Pre-fill a product order on behalf of a merchant
       operationId: orderProduct
       description: |
-        Status: Included in MVP.
+        Status: Available.
 
         Submit data that pre-fills the order form on portal.vipps.no,
         so the merchant can review the information and submit the product order.
@@ -267,7 +267,7 @@ paths:
         - Merchants
       summary: Get a merchant by by organization number
       description: |-
-        Status: Included in MVP.
+        Status: Available.
         
         Get basic information about a merchant.
         **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
@@ -350,7 +350,7 @@ paths:
         - Merchants
       summary: Get sales units for a merchant by by organization number
       description: |-
-        Status: Included in MVP.
+        Status: Available.
 
         Get a list of sales units (MSNs) for the merchant.
         When used by a partner: Only returns sales units connected to the partner.
@@ -423,7 +423,7 @@ paths:
         - Sales units
       summary: Get sales unit details based on MSN
       description: |-
-        Status: Included in MVP.
+        Status: Available.
 
         Eliminates the need to contact the merchant or Vipps MobilePay
         to get information about the sales units.
