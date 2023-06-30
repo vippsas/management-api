@@ -67,7 +67,7 @@ The one making the API request.
 
 ## Get one merchant by organization number
 
-Status: Available in August.
+Status: Available in Q3.
 
 This endpoint is for retrieving basic information about the merchant:
 
