@@ -130,6 +130,21 @@ Response:
 }
 ```
 
+## Get the sales units for a merchant by orgno
+
+Status: Available.
+
+[`GET:/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
+
+Response:
+
+```json
+[
+  "123456",
+  "123457"
+]
+```
+
 ## Get all sales units
 
 Status: Idea/proposal.
@@ -154,21 +169,6 @@ Response:
 It is then possible to use
 [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
 to get each MSN's details, including the orgno of the merchant it belongs to.
-
-## Get the sales units for a merchant by orgno
-
-Status: Available.
-
-[`GET:/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
-
-Response:
-
-```json
-[
-  "123456",
-  "123457"
-]
-```
 
 ## Get information about a sales unit
 
