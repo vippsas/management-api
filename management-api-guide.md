@@ -35,6 +35,24 @@ See the Postman collection and environment, and the
 The Postman collection can also be used to manually make API calls,
 even without an integration in place.
 
+## Endpoints and availability
+
+| Endpoint                               | Description                                           | Status            | 
+| -------------------------------------- | ----------------------------------------------------- | ----------------- |
+| [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants) | Get all merchants. | Idea/proposal |
+| [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant) | Get one merchant by organization number. | Available in Q3 |
+| [`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts) | Get a merchant's contract(s). | Idea/proposal |
+| [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits) | Get all sales units. | Idea/proposal |
+| [`GET:/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | Get the sales units for a merchant by orgno. | Available |
+| [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | Get information about a sales unit. | Available |
+| [`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/updateMsn) | Update sales unit. | Idea/proposal |
+| [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | Pre-fill a product order. | Available |
+| [`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/productOrderDetails) | Get information about a product order | Idea/proposal |
+| [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/deleteProductOrder) | Delete a product order. | Idea/proposal |
+| [`GET:/partners/whoami`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerWhoami) | Get information about a partner.  | Idea/proposal |
+| [`GET:/partners/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages) | Get the price packages for a partner. | Available |
+| [`GET:/api-quality/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/API-quality) | API quality. | Idea/proposal |
+
 ## Get all merchants
 
 Status: Idea/proposal.
