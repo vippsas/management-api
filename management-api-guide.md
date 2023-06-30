@@ -146,12 +146,10 @@ Status: Available.
 Response:
 
 ```json
-{
-  "msn": [
-     "123456",
-     "123457"
-   ]
-}
+[
+  "123456",
+  "123457"
+]
 ```
 
 ## Get information about a sales unit
