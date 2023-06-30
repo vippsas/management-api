@@ -11,7 +11,7 @@ pagination_prev: null
 # Management API
 
 **Please note:** 
-The Management API replaced the
+The Management API replaces the
 [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/):
 All the functionality in the Partner API is available in the Management API now,
 and more functionality will be added. See each endpoint and the

@@ -267,7 +267,7 @@ paths:
         - Merchants
       summary: Get a merchant by by organization number
       description: |-
-        Status: Available.
+        Status: Available in August.
         
         Get basic information about a merchant.
         **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
