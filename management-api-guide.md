@@ -39,6 +39,7 @@ even without an integration in place.
 
 | Endpoint                               | Description                                           | Status            | 
 | -------------------------------------- | ----------------------------------------------------- | ----------------- |
+| Merchants | | |
 | [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants) | Get all merchants. | Idea/proposal |
 | [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant) | Get one merchant by organization number. | Available in Q3 |
 | [`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts) | Get a merchant's contract(s). | Idea/proposal |
