@@ -998,12 +998,6 @@ components:
           description: |-
             Additional details that might or might not be available. In the case that any of these are not provided, it doesn't mean that those details don't apply.
           properties:
-            skipLandingPageAllowed:
-              type: boolean
-              description: |-
-                This is `true` if the merchant has access to sending `skipLandingPage` for eCom API requests.
-                See the [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/).
-              example: false
             paymentAllowed:
               type: boolean
               description: |-
@@ -1020,7 +1014,13 @@ components:
                 - "DirectCapture"
                 - "NotApplicable"
               default: "ReserveCapture"
-              example: "ReserveCapture"
+              example: "ReserveCapture"  
+            skipLandingPageAllowed:
+              type: boolean
+              description: |-
+                This is `true` if the merchant has access to sending `skipLandingPage` for eCom API requests.
+                See the [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/).
+              example: false
             recurringAllowed:
               type: boolean
               description: |-

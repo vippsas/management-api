@@ -168,12 +168,15 @@ Response (in the MVP):
 {
    "msn":"123456",
    "name":"ACME Fantastic Fitness",
-   "orgno":987654321,
-   "additionalDetails":{
-      "skipLandingPage":false,
-      "isPureLogin":false,
+   "businessIdentifier":{
+      "scheme":"business:NO:ORG",
+      "id":"9876543221"
+   },
+   "configuration":{
+      "paymentAllowed":true,
       "captureType":"ReserveCapture",
-      "recurring":false
+      "skipLandingPageAllowed":false,
+      "recurringAllowed":false
    }
 }
 ```
@@ -184,18 +187,21 @@ Response (this improvement is provided for discussions of what we should investi
 {
    "msn":"123456",
    "name":"ACME Fantastic Fitness",
-   "orgno":"987654321",
+   "businessIdentifier":{
+      "scheme":"business:NO:ORG",
+      "id":"9876543221"
+   },
+   "configuration":{
+      "paymentAllowed":true,
+      "captureType":"ReserveCapture",
+      "skipLandingPageAllowed":false,
+      "recurringAllowed":false,
+      "customerMustBePresent":false,
+      "userinfoNinAllowed":false,
+   }
    "bankDetails": {
       "bankAccountBban":"86011117947",
       "bankAccountIban":"NO93 8601 1117 947",
-   },
-   "configuration": {
-      "paymentAllowed":true,
-      "recurringAllowed":false,
-      "skipLandingPageAllowed":true,
-      "customerMustBePresent":true,
-      "userinfoNinAllowed":true,
-      "captureType":"ReserveCapture",
    },
    "changelog": [
       {
