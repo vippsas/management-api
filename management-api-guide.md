@@ -35,6 +35,29 @@ See the Postman collection and environment, and the
 The Postman collection can also be used to manually make API calls,
 even without an integration in place.
 
+## Endpoints and availability
+
+| Endpoint                               | Description                                           | Status            | 
+| -------------------------------------- | ----------------------------------------------------- | ----------------- |
+| Merchants: | | |
+| [`GET:/management/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants) | [Get all merchants](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-merchants). | ❌ Idea/proposal |
+| [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant) | [Get one merchant by organization number](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-one-merchant-by-organization-number). | 🟡  Available in Q3 |
+| [`GET:/management/v1/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts) | [Get a merchant's contract(s)](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-a-merchants-contracts). | ❌ Idea/proposal |
+| [`GET:/management/v1/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by orgno](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-orgno). | ✅ Available |
+| Sales units: | | |
+| [`GET:/management/v1/sales-units/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits) | [Get all sales units](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-sales-units). | ❌ Idea/proposal |
+| [`GET:/management/v1/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-sales-unit). | ✅ Available |
+| [`PATCH:/management/v1/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/updateMsn) | [Update sales unit](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#update-sales-unit). | ❌ Idea/proposal |
+| Product orders: | | |
+| [`POST:/management/v1/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | [Pre-fill a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#pre-fill-a-product-order). | ✅ Available |
+| [`GET:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/productOrderDetails) | [Get information about a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-product-order). | ❌ Idea/proposal |
+| [`DELETE:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/deleteProductOrder) | [Delete a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#delete-a-product-order). | ❌ Idea/proposal |
+| Partners: | | |
+| [`GET:/management/v1/partners/v1/merchants/whoami`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerWhoami) | [Get information about a partner](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-partner).  |❌ Idea/proposal |
+| [`GET:/management/v1/partners/v1/merchants/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages) | [Get the price packages for a partner](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-price-packages-for-a-partner). | ✅ Available |
+| API quality: | | |
+| [`GET:/management/v1/api-quality/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/API-quality) | [API quality](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#api-quality). | ❌ Idea/proposal |
+
 ## Get all merchants
 
 Status: Idea/proposal.
@@ -43,7 +66,7 @@ For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
 Get a (long) list of all `orgno`s that have one or more sales units registered with the partner making the API call.
 
-[`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants)
+[`GET:/management/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants)
 
 Response:
 
@@ -71,7 +94,7 @@ Status: Available in Q3.
 
 This endpoint is for retrieving basic information about the merchant:
 
-[`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
+[`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
 
 Response:
 
@@ -100,7 +123,7 @@ Status: Idea/proposal.
 
 Return a (link to a) PDF.
 
-[`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts)
+[`GET:/management/v1/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts)
 
 Response:
 
@@ -112,6 +135,21 @@ Response:
 }
 ```
 
+## Get the sales units for a merchant by orgno
+
+Status: Available.
+
+[`GET:/management/v1/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
+
+Response:
+
+```json
+[
+  "123456",
+  "123457"
+]
+```
+
 ## Get all sales units
 
 Status: Idea/proposal.
@@ -120,7 +158,7 @@ For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
 Get a (long) list of all sales units registered with the partner making the API call.
 
-[`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
+[`GET:/management/v1/sales-units/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
 
 Response:
 
@@ -134,23 +172,8 @@ Response:
 ```
 
 It is then possible to use
-[`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
+[`GET:/management/v1/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
 to get each MSN's details, including the orgno of the merchant it belongs to.
-
-## Get the sales units for a merchant by orgno
-
-Status: Available.
-
-[`GET:/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
-
-Response:
-
-```json
-[
-  "123456",
-  "123457"
-]
-```
 
 ## Get information about a sales unit
 
@@ -158,7 +181,7 @@ Status: Available.
 
 This endpoint is for retrieving details about one sales unit (MSN):
 
-[`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
+[`GET:/management/v1/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
 
 Response (in the MVP):
 
@@ -243,7 +266,7 @@ Status: Idea/proposal.
 
 May be used to update a sales unit, for instance the name or the status.
 
-[`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/updateMsn)
+[`PATCH:/management/v1/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/updateMsn)
 
 Example `PATCH` request body:
 
@@ -270,7 +293,7 @@ The merchant can log in, check the data, and submit the pre-filled product order
 ### Request
 
 Here is a sample request to
-[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct):
+[`POST:/management/v1/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct):
 
 ```json
 {
@@ -439,7 +462,7 @@ The user will then automatically be presented with the pre-filled PO.
 #### Scenario 1: The merchant does not have a Merchant Agreement
 
 1. The partner/merchant pre-fills the PO using
-   [`POST:/products-orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
+   [`POST:/management/v1/products-orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
    and gets a link to the pre-filled PO on
    [portal.vipps.no](https://portal.vipps.no).
 2. The merchant uses the link and logs in with BankID on
@@ -453,7 +476,7 @@ The user will then automatically be presented with the pre-filled PO.
    checks the details in the PO and submits it.
 5. Vipps processes the PO and sends both the merchant and partner/merchant who made the pre-fill request an
    email when done. The partner/merchant who made the pre-fill request can also check with the API:
-   [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+   [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 When using the pre-fill link without a valid MA:
 ![Screenshot from using link without MA](images/screenshot_without_ma.png)
@@ -471,7 +494,7 @@ person that has signatory rights for the merchant. The form looks like this:
 The merchant has an MA, and probably also a Vipps product.
 
 1. The partner/merchant pre-fills the PO using
-   [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
+   [`POST:/management/v1/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
    and gets a link to the pre-filled PO on
    [portal.vipps.no](https://portal.vipps.no).
 2. The merchant uses the link and logs in with BankID on
@@ -481,7 +504,7 @@ The merchant has an MA, and probably also a Vipps product.
 4. Vipps processes the PO and sends both the merchant and partner/merchant an
    email when done.
    The partner/merchant who made the pre-fill request can also check with the API:
-   [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+   [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 ### Future improvements
 
@@ -499,7 +522,7 @@ For both merchants and partners. The best way to check the status of a product o
 
 We are considering an endpoint like this:
 
-[`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/productOrderDetails)
+[`GET:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/productOrderDetails)
 
 Response:
 
@@ -520,9 +543,9 @@ Status: Idea/proposal.
 
 An "undo" endpoint to delete a PO.
 This may be used if an incorrect PO has been pre-filled with
-[`POST:/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct).
+[`POST:/management/v1/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct).
 
-[`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/deleteProductOrder)
+[`DELETE:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/deleteProductOrder)
 
 ## Get information about a partner
 
@@ -532,7 +555,7 @@ For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
 Get details for the partner making the request.
 
-[`GET:/partners/whoami`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerWhoami)
+[`GET:/management/v1/partners/v1/merchants/whoami`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerWhoami)
 
 Response:
 
@@ -555,10 +578,10 @@ Status: Available.
 
 Partners can use this endpoint to get a list of all their price packages, with the
 `pricePackageId` to use for
-[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct),
+[`POST:/management/v1/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct),
 as well as other details.
 
-[`GET:/partners/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages)
+[`GET:/management/v1/partners/v1/merchants/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages)
 
 Response:
 
@@ -584,7 +607,7 @@ information that is available on the
 
 This will make monitoring the usage of Vipps MobilePay's API easier.
 
-[`GET:/api-quality/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/API-quality)
+[`GET:/management/v1/api-quality/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/API-quality)
 
 Response:
 
@@ -592,7 +615,7 @@ Response:
 {
    "ApiQualityItems":[
       {
-         "endpoint":"POST:/epayment/v1/payments",
+         "endpoint":"POST://epayment/v1/payments",
          "total Requests":1000,
          "successRate":95,
          "status200":950,
