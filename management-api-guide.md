@@ -288,6 +288,9 @@ on behalf of a merchant.
 This makes it possible to ensure that all the data in the form is correct,
 including parameters that are normally selectable.
 
+For example, a partner can send a link which allows a merchant to sign up with pre-filled information.
+This can also include pre-filled information about sales units which will be created and be ready to use.
+
 The merchant can log in, check the data, and submit the pre-filled product order.
 
 ### Request
