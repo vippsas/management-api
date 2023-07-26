@@ -1019,7 +1019,7 @@ components:
               type: boolean
               description: |-
                 This is `true` if the merchant has access to sending `skipLandingPage` for eCom API requests.
-                See the [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/).
+                See the [landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/).
               example: false
             recurringAllowed:
               type: boolean
