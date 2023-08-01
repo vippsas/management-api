@@ -75,7 +75,7 @@ to validate all data.
 Partners will get this error if the merchant does not yet have an active sales unit connected with the partner.
 
 See:
-[How to check if a merchant is signed up with the partner as partner](https://developer.vippsmobilepay.com/docs/vipps-partner#how-to-check-if-a-merchant-is-signed-up-with-the-partner-as-partner).
+[How to check if a merchant is signed up with the partner as partner](https://developer.vippsmobilepay.com/docs/partner#how-to-check-if-a-merchant-is-signed-up-with-the-partner-as-partner).
 
 ## When will it be possible to change an existing sales unit?
 
