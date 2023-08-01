@@ -40,7 +40,7 @@ tags:
     description: |-
       Information about a partner's or merchant's API usage quality.
       The data is the same as on the API Dashboard:
-      https://developer.vippsmobilepay.com/docs/vipps-developers/developer-resources/api-dashboard/
+      https://developer.vippsmobilepay.com/docs/developer-resources/api-dashboard/
 
 security:
   - Bearer-Authorization: []
@@ -508,7 +508,7 @@ paths:
 
         We want all API integrations to be without errors.
         All merchants can check the
-        [API Dashboard](https://developer.vippsmobilepay.com/docs/vipps-developers/developer-resources/api-dashboard/).
+        [API Dashboard](https://developer.vippsmobilepay.com/docs/developer-resources/api-dashboard/).
         Partners are contractually required to monitor for errors (and correct problems quickly),
         and this endpoint makes that work much easier.
         The underlying data is the same as used by the API Dashboard.        
@@ -1008,7 +1008,7 @@ components:
               description: |-
                 The capture type of the sales unit.
                 We strongly recommend `ReserveCapture`, see the API
-                documentation: https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/reserve-and-capture-faq
+                documentation: https://developer.vippsmobilepay.com/docs/faqs/reserve-and-capture-faq
               enum:
                 - "ReserveCapture"
                 - "DirectCapture"
@@ -1019,7 +1019,7 @@ components:
               type: boolean
               description: |-
                 This is `true` if the merchant has access to sending `skipLandingPage` for eCom API requests.
-                See the [landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/).
+                See the [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/).
               example: false
             recurringAllowed:
               type: boolean
@@ -1273,7 +1273,7 @@ components:
       in: header
       description: |-
         The name of the solution. One word in lowercase letters is good.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
       example: woocommerce
@@ -1284,7 +1284,7 @@ components:
       in: header
       description: |-
         The version number of the solution.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
       example: "5.4"
@@ -1295,7 +1295,7 @@ components:
       in: header
       description: |-
         The name of the plugin. One word in lowercase letters is good.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
       example: "vipps-woocommerce"
@@ -1306,7 +1306,7 @@ components:
       required: true
       description: |-
         The version number of the plugin.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+        See [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
       example: "1.2.1"

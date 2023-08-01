@@ -28,7 +28,7 @@ Authentication:
 * Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys)
   if they have them, and the merchant's API keys if not.
 * Soon: Merchants use their normal
-  [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/).
+  [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/).
 
 See the Postman collection and environment, and the
 [Quick start guide](management-api-quick-start.md).
@@ -606,7 +606,7 @@ Status: Idea/proposal.
 
 We want to offer an API endpoint that lets merchants and partners retrieve the same
 information that is available on the
-[API Dashboard](https://developer.vippsmobilepay.com/docs/vipps-developers/developer-resources/api-dashboard/).
+[API Dashboard](https://developer.vippsmobilepay.com/docs/developer-resources/api-dashboard/).
 
 This will make monitoring the usage of Vipps MobilePay's API easier.
 
@@ -640,4 +640,4 @@ the checklists for all APIs, such as:
 * [Recurring API checklist](https://developer.vippsmobilepay.com/docs/APIs/recurring-api/vipps-recurring-api-checklist/)
 
 See also:
-[Errors](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors/).
+[Errors](https://developer.vippsmobilepay.com/docs/common-topics/errors/).
