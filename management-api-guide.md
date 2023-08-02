@@ -25,10 +25,10 @@ indicate that this is the actor making the API request.
 
 Authentication:
 
-* Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys)
+* Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys)
   if they have them, and the merchant's API keys if not.
 * Soon: Merchants use their normal
-  [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/).
+  [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/).
 
 See the Postman collection and environment, and the
 [Quick start guide](management-api-quick-start.md).
@@ -63,7 +63,7 @@ even without an integration in place.
 Status: Idea/proposal.
 
 For partners using
-[partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
+[partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
 Get a (long) list of all `orgno`s that have one or more sales units registered with the partner making the API call.
 
 [`GET:/management/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants)
@@ -155,7 +155,7 @@ Response:
 Status: Idea/proposal.
 
 For partners using
-[partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
+[partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
 Get a (long) list of all sales units registered with the partner making the API call.
 
 [`GET:/management/v1/sales-units/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
@@ -363,7 +363,7 @@ Here is a sample request to
 
 **Important:** Please provide all the required fields, so it will not be necessary for
 merchants to request more details. This is the most
-[typical reason for delays](https://developer.vippsmobilepay.com/docs/vipps-partner/#typical-reasons-for-delays).
+[typical reason for delays](https://developer.vippsmobilepay.com/docs/partner/#typical-reasons-for-delays).
 
 We have made as many of the fields as possible optional, but please
 try to send as much as possible, to make it easy for the merchant
@@ -555,7 +555,7 @@ This may be used if an incorrect PO has been pre-filled with
 Status: Idea/proposal.
 
 For partners using
-[partner keys](https://developer.vippsmobilepay.com/docs/vipps-partner/partner-keys):
+[partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
 Get details for the partner making the request.
 
 [`GET:/management/v1/partners/whoami`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerWhoami)
@@ -606,7 +606,7 @@ Status: Idea/proposal.
 
 We want to offer an API endpoint that lets merchants and partners retrieve the same
 information that is available on the
-[API Dashboard](https://developer.vippsmobilepay.com/docs/vipps-developers/developer-resources/api-dashboard/).
+[API Dashboard](https://developer.vippsmobilepay.com/docs/developer-resources/api-dashboard/).
 
 This will make monitoring the usage of Vipps MobilePay's API easier.
 
@@ -640,4 +640,4 @@ the checklists for all APIs, such as:
 * [Recurring API checklist](https://developer.vippsmobilepay.com/docs/APIs/recurring-api/vipps-recurring-api-checklist/)
 
 See also:
-[Errors](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors/).
+[Errors](https://developer.vippsmobilepay.com/docs/common-topics/errors/).
