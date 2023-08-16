@@ -11,13 +11,13 @@ pagination_prev: null
 
 See the
 [Management API Guide](management-api-guide.md)
-for all the technical details.
+for all the technical details, and
+[Partners](https://developer.vippsmobilepay.com/docs/partner/)
+for all partner information.
 
 See also:
-[Common API FAQ](https://developer.vippsmobilepay.com/docs/faqs).
-
-See also:
-[Vipps MobilePay Getting Started guide](https://developer.vippsmobilepay.com/docs/getting-started).
+* [Common API FAQ](https://developer.vippsmobilepay.com/docs/faqs).
+* [Vipps MobilePay Getting Started guide](https://developer.vippsmobilepay.com/docs/getting-started).
 
 <!-- START_COMMENT -->
 
