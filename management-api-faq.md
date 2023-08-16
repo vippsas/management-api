@@ -9,15 +9,6 @@ pagination_prev: null
 
 # Frequently asked questions
 
-💥
-**DRAFT!** The Management API is in development, but not yet available.
-This documentation is a working document, and used in discussions with
-merchants and partners to make sure we are prioritizing right,
-and that we are implementing the right functionality.
-The Management API will replace the
-[Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
-💥
-
 See the
 [Management API Guide](management-api-guide.md)
 for all the technical details.
@@ -37,20 +28,60 @@ See also:
 
 ## When will the Management API be available?
 
-We're aiming for August.
+It's available now. We are continuously improving it, and have documented both existing functionality
+and upcoming functionality. 
 
 ## What will be included in the initial version?
 
-See the API guide and API specification for the status of each endpoint.
+See the
+[API guide](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/)
+and
+[API spec](https://developer.vippsmobilepay.com/api/management/)
+for the status of each endpoint.
 
-## How can I make feature requests and give input?
+## What are the benefits of the Management API over the Partner API?
+
+* The Management API contains everything the
+  [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/) does, and more.
+* The Management API is actively developed, the Partner API will be phased out.
+* Both APIs use the same API keys.
+* The endpoints are practically identical, with the Management API endpoints offering better
+  error handling, more detailed responses, etc.
+* The
+  [Pre-fill a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#pre-fill-a-product-order)
+  endpoint in the Management API will give an error if the partner sends incorrect or invalid data.
+  In the Partner API the error will not be discovered until the merchant attempts to use the UR
+  to the incorrectly submitted pre-filled product order.  
+
+## How can I make feature requests and give input for the Management API?
 
 Contact your partner manager or key account manager.
+
+## Will there be a partner portal?
+
+It is not possible for partners to sign in on
+[portal.vipps.no](https://portal.vipps.no)
+_as partners_, but merchants may give access to individual users
+as described here:
+[How to add a user on portal.vipps.no](https://developer.vippsmobilepay.com/docs/partner/add-portal-user/).
+
+Allowing partners to log in on
+[portal.vipps.no](https://portal.vipps.no)
+_as partners_,
+and there is no decision or concrete plan to implement the required functionality.
+
+The Management API is our priority and our aim is to offer as much functionality for partners
+as possible.
+
+## How can I check the status of a merchant's product order?
+
+See:
+[How to check if a merchant is signed up with the partner as partner](https://developer.vippsmobilepay.com/docs/partner/#how-to-check-if-a-merchant-is-signed-up-with-the-partner-as-partner).
 
 ## Where do I get the pricePackageId?
 
 The `pricePackageId` is a UUID, and you get it by email when you are activated as partner.
-A UUID has a format like this: 81b83246-5c19-7b94-875b-ea6d1114f099.
+A UUID has a format like this: `81b83246-5c19-7b94-875b-ea6d1114f099`.
 
 Use
 [`GET:/partners/{partner-id}/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages)
@@ -66,13 +97,16 @@ environment. See
 
 If you send an invalid request to
 [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management#tag/Vipps-Product-Orders/operation/orderProduct),
-the pre-fill will fail, and the URL will lead to the standard, empty
-product order form. Although we do _some_ input validation, it is not possible
-to validate all data.
+the pre-fill will _in most cases_ fail with an error message.
+
+Although we do as much input validation as possible, it is not possible to validate all data, so in some cases the
+pre-fill request will succeed, and the pre-fill URL will lead to an empty product order form.
 
 ## Why do I get `HTTP 404 Not Found`?
 
-Partners will get this error if the merchant does not yet have an active sales unit connected with the partner.
+It depends on which request has been made.
+Partners will get this error if they attempt to retrieve data for a merchant that does not yet have
+an active sales unit connected with the partner.
 
 See:
 [How to check if a merchant is signed up with the partner as partner](https://developer.vippsmobilepay.com/docs/partner#how-to-check-if-a-merchant-is-signed-up-with-the-partner-as-partner).
@@ -81,6 +115,9 @@ See:
 
 We are working on this now, as fast as we can!
 We know this is a very important feature, but can't give you a release date yet.
+
+See
+[Endpoints and availability](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#endpoints-and-availability).
 The documentation will be updated as soon as we have new information.
 
 We recommend subscribing to the
