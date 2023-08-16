@@ -181,7 +181,7 @@ to get each MSN's details, including the orgno of the merchant it belongs to.
 Status: Available.
 
 This endpoint is for retrieving details about one sales unit (MSN), but only
-when the merchant is active and the sales unit is active.
+when both the merchant and sales unit are active.
 If the merchant is not active, or the sales unit is not active, the response
 will be a `HTTP 404 Not Found` error.
 
