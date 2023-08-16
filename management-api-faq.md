@@ -31,6 +31,11 @@ See also:
 It's available now. We are continuously improving it, and have documented both existing functionality
 and upcoming functionality. 
 
+## How can I get access?
+
+You use your
+[Partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys/).
+
 ## What will be included in the initial version?
 
 See the
