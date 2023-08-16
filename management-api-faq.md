@@ -55,7 +55,7 @@ for the status of each endpoint.
 * The
   [Pre-fill a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#pre-fill-a-product-order)
   endpoint in the Management API will give an error if the partner sends incorrect or invalid data.
-  In the Partner API the error will not be discovered until the merchant attempts to use the UR
+  In the Partner API the error will not be discovered until the merchant attempts to use the URL
   to the incorrectly submitted pre-filled product order.  
 
 ## How can I make feature requests and give input for the Management API?
