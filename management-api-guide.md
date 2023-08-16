@@ -40,23 +40,23 @@ even without an integration in place.
 | Endpoint (without `/management/v1/`)                              | Description                                           | Status            | 
 | -------------------------------------- | ----------------------------------------------------- | ----------------- |
 | Merchants: | | |
-| [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants) | [Get all merchants](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-merchants). | ❌ Idea/proposal |
+| [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants) | [Get all merchants](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-merchants). | 💡 Idea/proposal |
 | [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant) | [Get one merchant by organization number](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-one-merchant-by-organization-number). | 🟡  Available in Q3 |
-| [`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts) | [Get a merchant's contract(s)](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-a-merchants-contracts). | ❌ Idea/proposal |
+| [`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts) | [Get a merchant's contract(s)](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-a-merchants-contracts). | 💡 Idea/proposal |
 | [`GET:/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by orgno](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-orgno). | ✅ Available |
 | Sales units: | | |
-| [`GET:/sales-units/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits) | [Get all sales units](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-sales-units). | ❌ Idea/proposal |
-| [`GET:/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-sales-unit). | ✅ Available |
-| [`PATCH:/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/updateMsn) | [Update sales unit](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#update-sales-unit). | ❌ Idea/proposal |
+| [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits) | [Get all sales units](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-sales-units). | 💡 Idea/proposal |
+| [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-sales-unit). | ✅ Available |
+| [`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/updateMsn) | [Update sales unit](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#update-sales-unit). | 💡 Idea/proposal |
 | Product orders: | | |
 | [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | [Pre-fill a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#pre-fill-a-product-order). | ✅ Available |
-| [`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/productOrderDetails) | [Get information about a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-product-order). | ❌ Idea/proposal |
-| [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/deleteProductOrder) | [Delete a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#delete-a-product-order). | ❌ Idea/proposal |
+| [`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/productOrderDetails) | [Get information about a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-product-order). | 💡 Idea/proposal |
+| [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/deleteProductOrder) | [Delete a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#delete-a-product-order). | 💡 Idea/proposal |
 | Partners: | | |
-| [`GET:/partners/whoami`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerWhoami) | [Get information about a partner](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-partner).  |❌ Idea/proposal |
+| [`GET:/partners/whoami`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerWhoami) | [Get information about a partner](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-partner).  |💡 Idea/proposal |
 | [`GET:/partners/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages) | [Get the price packages for a partner](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-price-packages-for-a-partner). | ✅ Available |
 | API quality: | | |
-| [`GET:/api-quality/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/API-quality) | [API quality](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#api-quality). | ❌ Idea/proposal |
+| [`GET:/api-quality/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/API-quality) | [API quality](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#api-quality). | 💡 Idea/proposal |
 
 ## Get all merchants
 
@@ -156,7 +156,8 @@ Status: Idea/proposal.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
-Get a (long) list of all sales units registered with the partner making the API call.
+Get a (long) list of all sales units registered with the partner making the API call,
+containg sales units that are active for a merchant that is active.
 
 [`GET:/management/v1/sales-units/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
 
@@ -179,7 +180,10 @@ to get each MSN's details, including the orgno of the merchant it belongs to.
 
 Status: Available.
 
-This endpoint is for retrieving details about one sales unit (MSN):
+This endpoint is for retrieving details about one sales unit (MSN), but only
+when the merchant is active and the sales unit is active.
+If the merchant is not active, or the sales unit is not active, the response
+will be a `HTTP 404 Not Found` error.
 
 [`GET:/management/v1/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
 
