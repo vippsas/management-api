@@ -157,7 +157,7 @@ Status: Idea/proposal.
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
 Get a (long) list of all sales units registered with the partner making the API call,
-containg sales units that are active for an active merchant.
+containing sales units that are active for an active merchant.
 
 [`GET:/management/v1/sales-units/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
 
