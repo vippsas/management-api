@@ -18,9 +18,12 @@ and more functionality will be added. See each endpoint and the
 [API specification](https://developer.vippsmobilepay.com/api/management/)
 for details.
 
+For general information for Vipps MobilePay partners, see
+[Partners](https://developer.vippsmobilepay.com/docs/partner).
+
 ## Next steps
 
-* [API quick start](management-api-quick-start.md): Run the basic examples in Postman.
+* [API quick start](management-api-quick-start.md): Run the basic examples in curl and Postman.
 * [API guide](management-api-guide.md): Learn about the Management API features.
 * [API FAQ](management-api-faq.md): Look for your question among those people have asked before.
 * [API reference](https://developer.vippsmobilepay.com/api/management): Go straight to the endpoint specifications.
