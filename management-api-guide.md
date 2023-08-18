@@ -291,6 +291,8 @@ This ensures that all the data in the form is correct, including "locking" param
 normally selectable. Product orders that have been pre-filled this way are
 processed faster, since they are correct and contain all the required information.
 
+The response from a pre-fill request contyains a URL to
+[portal.vipps.no](https://portal.vipps.no).
 The merchant simply uses the URL to get to the pre-filled product order, checks the data, and submits.
 
 ### Request
