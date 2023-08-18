@@ -285,17 +285,13 @@ Example `PATCH` request body:
 
 Status: Available.
 
-This endpoint allows a partner or a merchant (typically, a large company with subsidiaries)
-to "pre-fill" the product order form on
-[portal.vipps.no](https://portal.vipps.no),
-on behalf of a merchant.
-This makes it possible to ensure that all the data in the form is correct,
-including parameters that are normally selectable.
+This endpoint allows for "pre-fill" of the product order form on
+[portal.vipps.no](https://portal.vipps.no).
+This ensures that all the data in the form is correct, including "locking" parameters that are
+normally selectable. Product orders that have been pre-filled this way are
+processed faster, since they are correct and contain all the required information.
 
-For example, a partner can send a link which allows a merchant to sign up with pre-filled information.
-This can also include pre-filled information about sales units which will be created and be ready to use.
-
-The merchant can log in, check the data, and submit the pre-filled product order.
+The merchant simply uses the URL to get to the pre-filled product order, checks the data, and submits.
 
 ### Request
 
@@ -370,7 +366,7 @@ merchants to request more details. This is the most
 [typical reason for delays](https://developer.vippsmobilepay.com/docs/partner/#typical-reasons-for-delays).
 
 We have made as many of the fields as possible optional, but please
-try to send as much as possible, to make it easy for the merchant
+try to send as much as possible, to make it easy for the merchant.
 
 **Please note:** The merchant can not change the information provided by the partner, so if
 something needs to be corrected, the merchant must contact the partner to have
