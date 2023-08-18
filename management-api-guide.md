@@ -287,11 +287,11 @@ Status: Available.
 
 This endpoint allows for "pre-fill" of the product order form on
 [portal.vipps.no](https://portal.vipps.no).
-This ensures that all the data in the form is correct, including "locking" parameters that are
+This ensures that all the data in the form is correctly filled in, and can also "lock" parameters that are
 normally selectable. Product orders that have been pre-filled this way are
 processed faster, since they are correct and contain all the required information.
 
-The response from a pre-fill request contyains a URL to
+The response from a pre-fill request contains a URL to
 [portal.vipps.no](https://portal.vipps.no).
 The merchant simply uses the URL to get to the pre-filled product order, checks the data, and submits.
 
