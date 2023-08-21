@@ -37,8 +37,8 @@ even without an integration in place.
 
 ## Endpoints and availability
 
-| Endpoint (without `/management/v1/`)                              | Description                                           | Status            |
-| -------------------------------------- | ----------------------------------------------------- | ----------------- |
+| Endpoint | Description | Status |
+| -------- | ----------- | ------ |
 | Merchants: | | |
 | [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants) | [Get all merchants](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-merchants). | 💡 Idea/proposal |
 | [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant) | [Get one merchant by organization number](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-one-merchant-by-organization-number). | 🟡 Available in Q3 |
@@ -105,17 +105,16 @@ Response:
 }
 ```
 
-### Future improvements
-
 Future versions of the API will _probably_ return more information,
 and we will work with our partners to find out what is useful and possible.
 Some candidates:
 
 * Company address
-* Contact information for the main person (depends on GDPR, etc.)
-* Contact information for the technical person (depends on GDPR, etc.)
-* A list of people with admin rights on [portal.vipps.no](https://portal.vipps.no) (depend on GDPR, etc.)
+* Contact information for the main person (depends on GDPR)
+* Contact information for the technical person (depends on GDPR)
+* A list of people with admin rights on [portal.vipps.no](https://portal.vipps.no) (depend on GDPR)
 * Changelog: What was changed when by whom?
+
 
 ## Get a merchant's contract(s)
 
@@ -262,7 +261,7 @@ Future versions of the API will _probably_ return more information,
 and we will work with our partners to find out what is useful and possible.
 Some candidates:
 
-* Vipps products: Which Vipps products and APIs are available for this MSN ("eCom API", "Recurring API", "Login API", etc.).
+* Products: Which products and APIs are available for this MSN ("ePayment API", "Recurring API", "Login API", etc.).
 * Transaction cost (price package)
 * Status: Active or deactivated
 
@@ -297,7 +296,14 @@ The response from a pre-fill request contains a URL to
 [portal.vipps.no](https://portal.vipps.no).
 The merchant simply uses the URL to get to the pre-filled product order, checks the data, and submits.
 
-### Request
+**Please note:** The merchant cannot change the information provided by the partner, so if
+something needs to be corrected, the merchant must contact the partner to have
+the partner submit a new pre-fill product order with the correct details.
+
+
+<details>
+<summary>Example request</summary>
+<div>
 
 Here is a sample request to
 [`POST:/management/v1/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct):
@@ -372,12 +378,6 @@ merchants to request more details. This is the most
 We have made as many of the fields as possible optional, but please
 try to send as much as possible, to make it easy for the merchant.
 
-**Please note:** The merchant can not change the information provided by the partner, so if
-something needs to be corrected, the merchant must contact the partner to have
-the partner submit a new pre-fill product order with the correct details.
-
-### Response
-
 Response:
 
 ```json
@@ -386,6 +386,10 @@ Response:
   "prefillUrl": "https://portal.vipps.no/register/vippspanett/81b83246-5c19-7b94-875b-ea6d1114f099"
 }
 ```
+
+</div>
+</details>
+
 
 ### Processing of the pre-filled product order
 
@@ -401,17 +405,17 @@ This will include information about:
 ### About "Product Order" (PO) and "Merchant Agreement" (MA)
 
 Merchants must have both a valid Merchant Agreement (MA) and an approved
-Product Order (PO) to be able to use Vipps products.
+Product Order (PO) to be able to use Vipps MobilePay products.
 
-* MA: An agreement between the merchant and Vipps, signed with BankID.
+* MA: An agreement between the merchant and Vipps MobilePay, signed with BankID.
   The MA contains information about all direct and indirect owners, any
   politically exposed persons, etc.
-* PO: This is an order for "Vipps på nett", "Vipps Login", etc. The merchant
+* PO: This is an order for a specific product (e.g., _Vipps på nett_, _Vipps Login_). The merchant
   must provide some information about the use, whether the cardholder is
   present, etc. The PO is not signed with BankID.
-  A merchant may have several Vipps products, each created with a separate PO.
+  A merchant may have several products, each created with a separate PO.
 
-A merchant may order a Vipps product (submit a product order, "PO") with or
+A merchant may order a product (submit a product order, "PO") with or
 without an existing Merchant Agreement ("merchant agreement", "MA").
 
 Both MA and PO are described in detail in
@@ -423,14 +427,14 @@ PO: Product order. MA: Merchant agreement.
 
 ```mermaid
 sequenceDiagram
-    participant Partner/Merchant
+    participant PM as Partner/Merchant
     participant Merchant
     participant Portal
     participant API
-    participant Vipps
-    Partner/Merchant->>API: POST:/products-orders
-    API->>Partner/Merchant: URL to pre-filled signup form
-    Partner/Merchant->>Merchant: Here is your pre-filled form on Portal
+    participant VMP as Vipps MobilePay
+    PM->>API: POST:/products-orders
+    API->>PM: URL to pre-filled signup form
+    PM->>Merchant: Here is your pre-filled form on Portal
     Merchant->>Portal: Logs in with BankID and accesses form
     Portal->>API: Requests pre-filled data
     Portal->>Portal: Validate MA and pre-fill request?
@@ -440,30 +444,30 @@ sequenceDiagram
     opt Merchant does not have a Merchant Agreement (MA)
         Portal-->>Merchant: Show information and navigation to the MA form
         Merchant-->>Portal: Fill out MA
-        Portal-->>Vipps: MA is sent for processing
+        Portal-->>VMP: MA is sent for processing
         Merchant->>Portal: Re-access pre-filled form
     end
     API->>Portal: Provides pre-filled data
     Portal->>Merchant: Show pre-filled form
     Merchant->>Portal: Submit form
-    Portal->>Vipps: PO is sent for processing
-    Vipps->>Vipps: Processing
-    opt Vipps requires additional information
-        Vipps->>Merchant: Sometimes: Ask for additional information
-        Merchant->>Vipps: Sometimes: Provide additional information
+    Portal->>VMP: PO is sent for processing
+    VMP->>VMP: Processing
+    opt Vipps MobilePay requires additional information
+        VMP->>Merchant: Sometimes: Ask for additional information
+        Merchant->>VMP: Sometimes: Provide additional information
     end
-    Vipps->>Merchant: Email with MSN and other details
-    Vipps->>Partner/Merchant: Email with MSN and other details
+    VMP->>Merchant: Email with MSN and other details
+    VMP->>PM: Email with MSN and other details
 ```
 
 ### Scenarios
 
-**Please note:** The only method Vipps has to verify that a user has the right
+**Please note:** The only way we can verify that a user is allowed
 to sign a merchant agreement for a merchant is by using data from
 [Brønnøysundregistrene](https://brreg.no).
 It is therefore a requirement that the user logging in on
 [portal.vipps.no](https://portal.vipps.no)
-is registered as chairman of the board ("styreleder") or CEO ("daglig leder").
+is registered as chairman of the board (_styreleder_) or CEO (_daglig leder_).
 The user will then automatically be presented with the pre-filled PO.
 
 #### Scenario 1: The merchant does not have a Merchant Agreement
@@ -481,7 +485,7 @@ The user will then automatically be presented with the pre-filled PO.
    [portal.vipps.no](https://portal.vipps.no)
    and is presented with the pre-filled PO,
    checks the details in the PO and submits it.
-5. Vipps processes the PO and sends both the merchant and partner/merchant who made the pre-fill request an
+5. We process the PO and send both the merchant and partner/merchant who made the pre-fill request an
    email when done. The partner/merchant who made the pre-fill request can also check with the API:
    [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
@@ -498,7 +502,7 @@ person that has signatory rights for the merchant. The form looks like this:
 
 #### Scenario 2: The merchant has an active or processing Merchant Agreement
 
-The merchant has an MA, and probably also a Vipps product.
+The merchant has an MA and probably also a Vipps MobilePay product.
 
 1. The partner/merchant pre-fills the PO using
    [`POST:/management/v1/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
@@ -508,7 +512,7 @@ The merchant has an MA, and probably also a Vipps product.
    [portal.vipps.no](https://portal.vipps.no).
 3. The merchant is presented with the pre-filled PO,
    checks the details in the PO and submits it.
-4. Vipps processes the PO and sends both the merchant and partner/merchant an
+4. We process the PO and send both the merchant and partner/merchant an
    email when done.
    The partner/merchant who made the pre-fill request can also check with the API:
    [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
@@ -568,7 +572,7 @@ Response:
 {
    "partnerId": "123456",
    "name": "ACME Partner Inc",
-   "level": "Vipps Partner Premium",
+   "level": "Partner Premium",
    "partnerContactName": "firstName lastName",
    "partnerContactEmail": "firstname.lastname@vippsmobilepay.com",
    "status": "ACTIVE"
@@ -610,7 +614,7 @@ We want to offer an API endpoint that lets merchants and partners retrieve the s
 information that is available on the
 [API Dashboard](https://developer.vippsmobilepay.com/docs/developer-resources/api-dashboard/).
 
-This will make monitoring the usage of Vipps MobilePay's API easier.
+This will make it easier to monitor usage the API platform.
 
 [`GET:/management/v1/api-quality/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/API-quality)
 
@@ -635,11 +639,10 @@ Response:
 }
 ```
 
-**Please note:** Monitoring API errors, and fixing them quickly is already a requirement in
-the checklists for all APIs, such as:
+**Please note:** Monitoring API errors and fixing them quickly is a requirement in
+the checklists for all APIs. For example, see:
 
 * [ePayment API checklist](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/checklist/)
 * [Recurring API checklist](https://developer.vippsmobilepay.com/docs/APIs/recurring-api/vipps-recurring-api-checklist/)
 
-See also:
-[Errors](https://developer.vippsmobilepay.com/docs/common-topics/errors/).
+See [Errors](https://developer.vippsmobilepay.com/docs/common-topics/errors/) for examples of common errors.
