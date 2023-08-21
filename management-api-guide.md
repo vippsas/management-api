@@ -154,12 +154,14 @@ Response:
 
 Status: Idea/proposal.
 
+Get all sales units that a merchant or partner has access to.
+
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
 Get a (long) list of all sales units registered with the partner making the API call,
 containing sales units that are active for an active merchant.
 
-[`GET:/management/v1/sales-units/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
+[`GET:/management/v1/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
 
 Response:
 
@@ -173,7 +175,7 @@ Response:
 ```
 
 It is then possible to use
-[`GET:/management/v1/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
+[`GET:/management/v1/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
 to get each MSN's details, including the orgno of the merchant it belongs to.
 
 ## Get information about a sales unit
@@ -185,7 +187,7 @@ when both the merchant and sales unit are active.
 If the merchant is not active, or the sales unit is not active, the response
 will be a `HTTP 404 Not Found` error.
 
-[`GET:/management/v1/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
+[`GET:/management/v1/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
 
 Response (now):
 
@@ -270,7 +272,7 @@ Status: Idea/proposal.
 
 May be used to update a sales unit, for instance the name or the status.
 
-[`PATCH:/management/v1/sales-units/v1/merchants/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/updateMsn)
+[`PATCH:/management/v1/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/updateMsn)
 
 Example `PATCH` request body:
 
