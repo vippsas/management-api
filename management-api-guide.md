@@ -10,7 +10,7 @@ pagination_prev: null
 
 ## Important information
 
-**Please note:** 
+**Please note:**
 The Management API replaces the
 [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/):
 All the functionality in the Partner API is available in the Management API now,
@@ -37,7 +37,7 @@ even without an integration in place.
 
 ## Endpoints and availability
 
-| Endpoint (without `/management/v1/`)                              | Description                                           | Status            | 
+| Endpoint (without `/management/v1/`)                              | Description                                           | Status            |
 | -------------------------------------- | ----------------------------------------------------- | ----------------- |
 | Merchants: | | |
 | [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants) | [Get all merchants](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-merchants). | 💡 Idea/proposal |
@@ -513,12 +513,10 @@ The merchant has an MA, and probably also a Vipps product.
    The partner/merchant who made the pre-fill request can also check with the API:
    [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
-### Future improvements
-
-* We may allow the merchant to change some data pre-filled by the
-  partner, but this is not trivial. If the merchant changes any data, the
-  partner must be notified and also get the updated data - then merge and sync that
-  with the "old" data that was sent in the first place.
+In the future, we may allow the merchant to change some data pre-filled by the
+partner, but this is not trivial. If the merchant changes any data, the
+partner must be notified and also get the updated data - then merge and sync that
+with the "old" data that was sent in the first place.
 
 ## Get information about a product order
 
