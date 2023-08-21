@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "2f194f91-e912-4352-9900-eb61a941c5cd",
     "name": "Management API - Collection",
-    "description": "The Management API enables partners, banks, and large corporations to manage\ntheir merchants (for example, submit product orders on behalf of their\nmerchants) and sales units.\nMore information: https://developer.vippsmobilepay.com/docs/APIs/partner-api/vipps-partner-api\n\n\nContact Support:\n Name: Vipps AS\n Email: developer@vippsmobilepay.com",
+    "description": "The Vipps Management API lets partners, banks and large corporations manage\ntheir merchants (for example, submit product orders on behalf of their\nmerchants) and sales units.\nMore information: https://developer.vippsmobilepay.com/docs/APIs/partner-api/vipps-partner-api\n\n\nContact Support:\n Name: Vipps AS\n Email: developer@vippsmobilepay.com",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -60,7 +60,7 @@
               }
             ],
             "url": {
-              "raw": "{{base_url_production}}/management/v1/merchants/:orgno",
+              "raw": "{{base_url_production}}/management/v1/merchants/:orgno/sales-units",
               "host": [
                 "{{base_url_production}}"
               ],
@@ -68,7 +68,8 @@
                 "management",
                 "v1",
                 "merchants",
-                ":orgno"
+                ":orgno",
+                "sales-units"
               ],
               "variable": [
                 {
@@ -145,7 +146,7 @@
               "variable": [
                 {
                   "key": "msn",
-                  "value": ""
+                  "value": "{{msn}}"
                 }
               ]
             }
