@@ -1,7 +1,7 @@
 ---
 title: Management API guide
 sidebar_label: API guide
-sidebar_position: 1
+sidebar_position: 25
 pagination_next: null
 pagination_prev: null
 ---

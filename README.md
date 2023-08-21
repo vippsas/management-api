@@ -3,7 +3,7 @@ title: Introduction to the Management API
 sidebar_label: Introduction
 sidebar_position: 1
 hide_table_of_contents: true
-description: The Vipps MobilePay Management API lets partners and merchants manage their sales units, etc.
+description: The Vipps MobilePay Management API enables partners and merchants to manage their sales units.
 pagination_next: null
 pagination_prev: null
 ---
