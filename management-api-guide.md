@@ -433,7 +433,7 @@ Product Order (PO) to be able to use Vipps MobilePay products.
 * MA: An agreement between the merchant and Vipps MobilePay, signed with BankID.
   The MA contains information about all direct and indirect owners, any
   politically exposed persons, etc.
-* PO: This is an order for a specific product (e.g., _Vipps på nett_, _Vipps Login_). The merchant
+* PO: This is an order for a specific product. The merchant
   must provide some information about the use, whether the cardholder is
   present, etc. The PO is not signed with BankID.
   A merchant may have several products, each created with a separate PO.
@@ -441,8 +441,62 @@ Product Order (PO) to be able to use Vipps MobilePay products.
 A merchant may order a product (submit a product order, "PO") with or
 without an existing Merchant Agreement ("merchant agreement", "MA").
 
-Both MA and PO are described in detail in
-[Scenarios](#scenarios).
+### Scenarios
+
+**Please note:** The only way we can verify that a user is allowed
+to sign a merchant agreement for a merchant is by using data from
+[Brønnøysundregistrene](https://brreg.no).
+It is therefore a requirement that the user logging in on
+[portal.vipps.no](https://portal.vipps.no)
+is registered as chairman of the board (_styreleder_) or CEO (_daglig leder_).
+The user will then automatically be presented with the pre-filled PO.
+
+#### Scenario 1: The merchant does not have a Merchant Agreement
+
+1. The partner/merchant pre-fills the PO using
+   [`POST:/management/v1/products-orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
+   and gets a link to the pre-filled PO on
+   [portal.vipps.no](https://portal.vipps.no).
+2. The merchant uses the link and logs in with BankID on
+   [portal.vipps.no](https://portal.vipps.no).
+3. The merchant is presented with a page informing them that they need to
+   sign an MA before filling in the PO.
+4. The merchant completes, signs and submits the MA.   
+5. The merchant re-uses the link or finds the link to the pre-filled PO form on the
+   front page on
+   [portal.vipps.no](https://portal.vipps.no)
+   and is presented with the pre-filled PO,
+   checks the details in the PO and submits it.
+6. We process the PO and send both the merchant and partner/merchant who made the pre-fill request an
+   email when done. The partner/merchant who made the pre-fill request can also check with the API:
+   [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+
+The most important part of the MA form is the "reelle rettighetshavere"
+("real rights holders"), meaning the people with direct or direct ownership or
+rights for the company. This is not something the partner can be expected to
+know, and in any case this is information that must be signed with BankID by a
+person that has signatory rights for the merchant. The form looks like this:
+
+#### Scenario 2: The merchant has an active or processing Merchant Agreement
+
+The merchant has an MA and probably also a Vipps MobilePay product.
+
+1. The partner/merchant pre-fills the PO using
+   [`POST:/management/v1/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
+   and gets a link to the pre-filled PO on
+   [portal.vipps.no](https://portal.vipps.no).
+2. The merchant uses the link and logs in with BankID on
+   [portal.vipps.no](https://portal.vipps.no).
+3. The merchant is presented with the pre-filled PO,
+   checks the details and submits it.
+4. We process the PO and send both the merchant and partner/merchant who made the pre-fill request an
+   email when done. The partner/merchant who made the pre-fill request can also check with the API:
+   [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+
+In the future, we may allow the merchant to change some data pre-filled by the
+partner, but this is not trivial. If the merchant changes any data, the
+partner must be notified and also get the updated data - then merge and sync that
+with the "old" data that was sent in the first place.
 
 ### Sequence diagram for pre-fill
 
@@ -482,68 +536,6 @@ sequenceDiagram
     VMP->>Merchant: Email with MSN and other details
     VMP->>PM: Email with MSN and other details
 ```
-
-### Scenarios
-
-**Please note:** The only way we can verify that a user is allowed
-to sign a merchant agreement for a merchant is by using data from
-[Brønnøysundregistrene](https://brreg.no).
-It is therefore a requirement that the user logging in on
-[portal.vipps.no](https://portal.vipps.no)
-is registered as chairman of the board (_styreleder_) or CEO (_daglig leder_).
-The user will then automatically be presented with the pre-filled PO.
-
-#### Scenario 1: The merchant does not have a Merchant Agreement
-
-1. The partner/merchant pre-fills the PO using
-   [`POST:/management/v1/products-orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
-   and gets a link to the pre-filled PO on
-   [portal.vipps.no](https://portal.vipps.no).
-2. The merchant uses the link and logs in with BankID on
-   [portal.vipps.no](https://portal.vipps.no).
-3. The merchant is presented with a page informing them that they need to
-   sign an MA before filling in the PO.
-4. The merchant re-uses the link or finds the link to the pre-filled form on the
-   front page on
-   [portal.vipps.no](https://portal.vipps.no)
-   and is presented with the pre-filled PO,
-   checks the details in the PO and submits it.
-5. We process the PO and send both the merchant and partner/merchant who made the pre-fill request an
-   email when done. The partner/merchant who made the pre-fill request can also check with the API:
-   [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
-
-When using the pre-fill link without a valid MA:
-![Screenshot from using link without MA](images/screenshot_without_ma.png)
-
-The most important part of the MA form is the "reelle rettighetshavere"
-("real rights holders"), meaning the people with direct or direct ownership or
-rights for the company. This is not something the partner can be expected to
-know, and in any case this is information that must be signed with BankID by a
-person that has signatory rights for the merchant. The form looks like this:
-
-![Screenshot from the MA form](images/merchant-agreement-form.png)
-
-#### Scenario 2: The merchant has an active or processing Merchant Agreement
-
-The merchant has an MA and probably also a Vipps MobilePay product.
-
-1. The partner/merchant pre-fills the PO using
-   [`POST:/management/v1/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
-   and gets a link to the pre-filled PO on
-   [portal.vipps.no](https://portal.vipps.no).
-2. The merchant uses the link and logs in with BankID on
-   [portal.vipps.no](https://portal.vipps.no).
-3. The merchant is presented with the pre-filled PO,
-   checks the details in the PO and submits it.
-4. We process the PO and send both the merchant and partner/merchant an
-   email when done.
-   The partner/merchant who made the pre-fill request can also check with the API:
-   [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
-
-In the future, we may allow the merchant to change some data pre-filled by the
-partner, but this is not trivial. If the merchant changes any data, the
-partner must be notified and also get the updated data - then merge and sync that
-with the "old" data that was sent in the first place.
 
 ## Get information about a product order
 
