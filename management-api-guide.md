@@ -8,6 +8,29 @@ pagination_prev: null
 
 # API guide
 
+The Management API lets partners and merchants manage their sales units, and allows for
+self-service for the most common tasks. Our goal is to let partners and merchants do
+as much as possible without needing assistance from us.
+
+We are implementing the most important functionality first, and these endpoints are available now:
+
+1. [Pre-fill a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#pre-fill-a-product-order):
+   This endpoint allows for "pre-fill" of the product order form on portal.vipps.no. 
+   The merchant simply uses a URL to get to the pre-filled product order, checks the data, and submits.
+   This ensures that all the data in the form is correctly filled in, and can also "lock" parameters that are normally selectable. Product orders
+   that have been pre-filled this way are processed faster, since they are correct and contain all the required information.
+2. [Get the sales units for a merchant by orgno](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-orgno):
+   An easy way to get a list of all the sales units that belong to the specified merchant.  
+3. [Get information about a sales unit](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-sales-unit):
+   This endpoint is for retrieving details about one sales unit (MSN), such as
+   the name of the sales unit, the organization number is belongs to and the sales unit's configuration.
+4. [Get the price packages for a partner](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-price-packages-for-a-partner):
+   Lets a partner retrieve its price package details.
+   The price packages are needed for pre-filling the product orders.
+
+More functionality will be available soon, see:
+[Endpoints and availability](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#endpoints-and-availability).
+
 ## Important information
 
 **Please note:** 
@@ -60,7 +83,7 @@ even without an integration in place.
 
 ## Get all merchants
 
-Status: Idea/proposal.
+Status: 💡 Idea/proposal.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
@@ -90,7 +113,7 @@ The one making the API request.
 
 ## Get one merchant by organization number
 
-Status: Available in Q3.
+Status: 🟡 Available in Q3.
 
 This endpoint is for retrieving basic information about the merchant:
 
@@ -119,7 +142,7 @@ Some candidates:
 
 ## Get a merchant's contract(s)
 
-Status: Idea/proposal.
+Status: 💡 Idea/proposal.
 
 Return a (link to a) PDF.
 
@@ -137,7 +160,7 @@ Response:
 
 ## Get the sales units for a merchant by orgno
 
-Status: Available.
+Status: ✅ Available.
 
 [`GET:/management/v1/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
 
@@ -152,7 +175,7 @@ Response:
 
 ## Get all sales units
 
-Status: Idea/proposal.
+Status: 🟡 Available in Q4.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
@@ -178,7 +201,7 @@ to get each MSN's details, including the orgno of the merchant it belongs to.
 
 ## Get information about a sales unit
 
-Status: Available.
+Status: ✅ Available.
 
 This endpoint is for retrieving details about one sales unit (MSN), but only
 when both the merchant and sales unit are active.
@@ -266,7 +289,7 @@ Some candidates:
 
 ## Update sales unit
 
-Status: Idea/proposal.
+Status: 💡 Idea/proposal.
 
 May be used to update a sales unit, for instance the name or the status.
 
@@ -283,7 +306,7 @@ Example `PATCH` request body:
 
 ## Pre-fill a product order
 
-Status: Available.
+Status: ✅ Available.
 
 This endpoint allows for "pre-fill" of the product order form on
 [portal.vipps.no](https://portal.vipps.no).
@@ -520,7 +543,7 @@ The merchant has an MA, and probably also a Vipps product.
 
 ## Get information about a product order
 
-Status: Idea/proposal.
+Status: 💡 Idea/proposal.
 
 For both merchants and partners. The best way to check the status of a product order is on
 [portal.vipps.no](https://portal.vipps.no).
@@ -544,7 +567,7 @@ and the merchant must also be able to withdraw the consent.
 
 ## Delete a product order
 
-Status: Idea/proposal.
+Status: 💡 Idea/proposal.
 
 An "undo" endpoint to delete a PO.
 This may be used if an incorrect PO has been pre-filled with
@@ -554,7 +577,7 @@ This may be used if an incorrect PO has been pre-filled with
 
 ## Get information about a partner
 
-Status: Idea/proposal.
+Status: 💡 Idea/proposal.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
@@ -579,7 +602,7 @@ If this endpoint is used with normal API keys (not partner keys), it will return
 
 ## Get the price packages for a partner
 
-Status: Available.
+Status: ✅ Available.
 
 Partners can use this endpoint to get a list of all their price packages, with the
 `pricePackageId` to use for
@@ -604,7 +627,7 @@ Response:
 
 ## API quality
 
-Status: Idea/proposal.
+Status: 💡 Idea/proposal.
 
 We want to offer an API endpoint that lets merchants and partners retrieve the same
 information that is available on the
