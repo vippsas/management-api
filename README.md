@@ -24,7 +24,7 @@ For general information for Vipps MobilePay partners, see
 ## Next steps
 
 * [API quick start](management-api-quick-start.md): Run the basic examples in curl and Postman.
-* [API guide](management-api-guide.md): Learn about the Management API features.
+* [API features](management-api-guide.md): Learn about the Management API features.
 * [API FAQ](management-api-faq.md): Look for your question among those people have asked before.
 * [API reference](https://developer.vippsmobilepay.com/api/management): Go straight to the endpoint specifications.
 
