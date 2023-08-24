@@ -123,8 +123,24 @@ Response:
 
 ```json
 {
-  "orgno": 987654321,
-  "name": "ACME Fantastic Fitness"
+   "orgno": 987654321,
+   "name": "ACME Fantastic Fitness",
+   "isActive": true,
+   "createdAt": "2022-09-02T06:45:25.921251Z",
+   "updatedAt": "2023-03-27T13:50:21.750612Z",
+    "countryCode": "NO",
+   "businessAddress": {
+      "line1": "Robert Levins gate 5",
+      "locality": "OSLO",
+      "postalCode": "0154",
+      "countryCode": "NO"
+    },
+    "postalAddress": {
+      "line1": "Postboks 9236 Grønland",
+      "locality": "OSLO",
+      "postalCode": "0134",
+      "countryCode": "NO"
+    }
 }
 ```
 
@@ -132,12 +148,10 @@ Future versions of the API will _probably_ return more information,
 and we will work with our partners to find out what is useful and possible.
 Some candidates:
 
-* Company address
 * Contact information for the main person (depends on GDPR)
 * Contact information for the technical person (depends on GDPR)
 * A list of people with admin rights on [portal.vipps.no](https://portal.vipps.no) (depend on GDPR)
 * Changelog: What was changed when by whom?
-
 
 ## Get a merchant's contract(s)
 
