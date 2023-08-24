@@ -1121,9 +1121,9 @@ components:
       description: List of the merchants a partner has access to
       type: object
       required:
-        - MerchantList  
+        - merchants  
       properties:
-        MerchantList:
+        merchants:
           type: array
           description: List of merchants
           items:
