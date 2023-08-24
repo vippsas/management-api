@@ -979,7 +979,7 @@ components:
       type: object
       properties:
         msn:
-          $ref: '#/components/schemas/msn'
+          $ref: '#/components/parameters/msn'
         name:
           type: string
           description: "The sales unit's name"
@@ -1114,7 +1114,7 @@ components:
           format: date-time
           example: "2022-09-02T06:45:25.921251Z"
         countryCode":
-          type: string,
+          type: string
           description: The merchant's country code, ISO 3166-2 (two capital letters).
           pattern: '^[A-Z]{2}$'
           example: "NO"
@@ -1201,7 +1201,7 @@ components:
         - name
       properties:
         msn:
-          $ref: '#/components/schemas/msn'
+          $ref: '#/components/parameters/msn'
         name:
           type: string
           description: The name of the sales unit.
