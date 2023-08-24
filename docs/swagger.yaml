@@ -1133,10 +1133,7 @@ components:
       description: List of MSNs (merchant serial numbers), that the calling partner has access to.
       type: array
       items:
-        pattern: ^\d{3,}$
-        type: string
-        description: Vipps MSN (merchant serial number)
-        example: "123456"
+        $ref: '#/components/schemas/MsnInfo'
 
     GetMerchantContractsResponse:
       description: "Response of a successful get contracts operation"
@@ -1150,6 +1147,26 @@ components:
             type: string
             description: URL for downloading PDF contract
             example: "https://example.com/contracts/contract-12345.pdf"
+
+    MsnInfo:
+      description: High-level details about a MSN
+      type: object
+      required:
+        - msn
+        - name
+      properties:
+        msn:
+          type: string
+          description: MSN (Merchant Serial Number), the id of the sales unit.
+          minLength: 5
+          maxLength: 6
+          pattern: ^\d{5,6}$
+          example: "123456"
+        name:
+          type: string
+          description: The name of the sales unit.
+          maxLength: 50
+          example: ACME Fantastic Fitness
 
     updateMsn:
       title: updateMsn

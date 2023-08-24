@@ -95,14 +95,14 @@ Response:
 
 ```json
 {
-   "MerchantList":[
+   "merchants":[
       {
          "orgno": 987654321,
          "name": "ACME Fantastic Fitness"
       }
       {
          "orgno": 987654322,
-         "name": "ACME Fantastic Fitness 2"
+         "name": "ACME Candy and Ice Cream"
       }
    ]
 }
@@ -166,10 +166,18 @@ Status: ✅ Available.
 Response:
 
 ```json
-[
-  "123456",
-  "123457"
-]
+{
+   "salesUnits":[
+      {
+         "orgno": 123456,
+         "name": "ACME Fantastic Fitness HQ"
+      }
+      {
+         "orgno": 654321,
+         "name": "ACME Fantastic Fitness Satellite 1"
+      }
+   ]
+}
 ```
 
 ## Get all sales units
@@ -189,9 +197,15 @@ Response:
 
 ```json
 {
-  "msn": [
-     "123456",
-     "123457"
+   "salesUnits":[
+      {
+         "orgno": 123456,
+         "name": "ACME Fantastic Fitness HQ"
+      }
+      {
+         "orgno": 654321,
+         "name": "ACME Fantastic Fitness Satellite 1"
+      }
    ]
 }
 ```
