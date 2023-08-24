@@ -979,13 +979,7 @@ components:
       type: object
       properties:
         msn:
-          minLength: 5
-          maxLength: 6
-          pattern: ^\d{5,6}$
-          type: string
-          description: Vipps MSN (merchant serial number)
-          example: "123456"
-          x-order: 4
+          $ref: '#/components/schemas/msn'
         name:
           type: string
           description: "The sales unit's name"
@@ -1109,6 +1103,57 @@ components:
             - DEACTIVATED
           default: ACTIVE
           example: ACTIVE  
+        createdAt:
+          type: string
+          description: The timestamp (ISO-8601) for when the merchant was created.
+          format: date-time
+          example: "2022-09-02T06:45:25.921251Z"
+        updateddAt:
+          type: string
+          description: The timestamp (ISO-8601) for when the merchant was updated (if it has been updated).
+          format: date-time
+          example: "2022-09-02T06:45:25.921251Z"
+        countryCode":
+          type: string,
+          description: The merchant's country code, ISO 3166-2 (two capital letters).
+          pattern: '^[A-Z]{2}$'
+          example: "NO"
+        businessAddress:
+          $ref: '#/components/schemas/Address'
+        businesspostlAddress:
+          $ref: '#/components/schemas/Address'          
+
+    Address:
+      title: Address
+      type: object
+      required:
+        - lines
+        - postCode
+        - city
+        - country
+      properties:
+        city:
+          type: string
+          example: Oslo
+        country:
+          type: string
+          example: 'NO'
+          pattern: '^[A-Z]{2}$'
+          description: Country code according to ISO 3166-2 (two capital letters).
+        id:
+          type: string
+          format: uuid
+          description: 'Unique ID of the address, always provided in response from Vipps MobilePay.'
+        lines:
+          type: array
+          description: 'Array of addressLines, for example street name, number, etc.'
+          items:
+            type: string
+            example: Robert Levins gate 5
+        postCode:
+          type: string
+          description: Postcode of the address in local country format.
+          example: '0154'
 
     GetMerchantResponse:
       description: Response of a successful get merchant(s) operation
@@ -1156,12 +1201,7 @@ components:
         - name
       properties:
         msn:
-          type: string
-          description: MSN (Merchant Serial Number), the id of the sales unit.
-          minLength: 5
-          maxLength: 6
-          pattern: ^\d{5,6}$
-          example: "123456"
+          $ref: '#/components/schemas/msn'
         name:
           type: string
           description: The name of the sales unit.
