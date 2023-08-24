@@ -555,25 +555,28 @@ sequenceDiagram
 
 Status: 💡 Idea/proposal.
 
-For both merchants and partners. The best way to check the status of a product order is on
+For both merchants and partners. 
+
+The best way to check the status of a product order is on
 [portal.vipps.no](https://portal.vipps.no).
 
-We are considering an endpoint like this:
+We are _considering_ an endpoint like this:
 
 [`GET:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/productOrderDetails)
 
-Response:
+Response, if the pre-fill URL has been accessed:
 
 ```json
 {
   "prefilledOrderId": "81b83246-5c19-7b94-875b-ea6d1114f099",
-  "prefillStatus": "PROCESSING"
+  "prefillStatus": "ACCESSED"
 }
 ```
 
 **Please note:** There are strict rules for what information we are
 allowed to share with a partner, as this requires active consent from the merchant,
-and the merchant must also be able to withdraw the consent.
+and the merchant must also be able to withdraw the consent. Implementing a
+consent solution for merchants is complex, and may not be possible to prioritize.
 
 ## Delete a product order
 
