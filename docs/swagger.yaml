@@ -1136,28 +1136,34 @@ components:
         - city
         - country
       properties:
-        city:
-          type: string
-          example: Oslo
-        country:
-          type: string
-          example: 'NO'
-          pattern: '^[A-Z]{2}$'
-          description: Country code according to ISO 3166-2 (two capital letters).
         id:
           type: string
           format: uuid
-          description: 'Unique ID of the address, always provided in response from Vipps MobilePay.'
+          description: 'Unique ID of the address, always provided in response.'
+          example: 81b83246-5c19-7b94-875b-ea6d1114f099
         lines:
           type: array
-          description: 'Array of addressLines, for example street name, number, etc.'
+          description: 'Array of addressLines, for example street name, number, etc. May be empty if there is no street address.'
           items:
             type: string
+            maxLength: 30
             example: Robert Levins gate 5
         postCode:
           type: string
           description: Postcode of the address in local country format.
+          maxLength: 20
           example: '0154'
+        city:
+          type: string
+          description: The city.
+          maxLength: 30
+          example: Oslo
+        country:
+          type: string
+          description: Country code according to ISO 3166-2 (two capital letters).
+          pattern: '^[A-Z]{2}$'
+          maxLength: 2
+          example: 'NO'
 
     GetMerchantResponse:
       description: Response of a successful get merchant(s) operation
