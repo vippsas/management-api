@@ -239,7 +239,7 @@ paths:
         Status: Idea/proposal.
 
         For partners.
-        Get a (long) list of all orgnos that have one or more sale units registered with the partner making the API call.
+        Get a (long) list of all merchants that have one or more sale units registered with the partner making the API call.
       operationId: getAllMerchants
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
@@ -261,7 +261,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Problem"
 
-  /management/v1/merchants/{orgno}:
+  /management/v1/merchants/{business-identifier}:
     get:
       tags:
         - Merchants
@@ -273,23 +273,22 @@ paths:
         **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
         a partner, as this requires active consent from the merchant, and the merchant must also
         be able to withdraw the consent.
-      operationId: getMerchantByOrgno
+      operationId: getMerchantBusinessIdentifier
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: orgno
+        - name: business-identifier
           in: path
           description: The organization number for the merchant
           required: true
           schema:
-            minLength: 9
-            maxLength: 9
-            pattern: ^\d{9}$
+            minLength: 10
+            maxLength: 30
             type: string
-            example: 987654321
+            example: "business:NO:ORG/987654321"
       responses:
         "200":
           description: OK
@@ -304,7 +303,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Problem"
 
-  /management/v1/merchants/{orgno}/contracts:
+  /management/v1/merchants/{business-identifier}/contracts:
     get:
       tags:
         - Merchants
@@ -320,16 +319,15 @@ paths:
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: orgno
+        - name: business-identifier
           in: path
           description: The organization number for the merchant
           required: true
           schema:
-            maxLength: 9
-            minLength: 9
-            pattern: ^\d{9}$
+            minLength: 10
+            maxLength: 30
             type: string
-            example: 987654321
+            example: "business:NO:ORG/987654321"
       responses:
         "200":
           description: OK
@@ -344,7 +342,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Problem"
 
-  /management/v1/merchants/{orgno}/sales-units:
+  /management/v1/merchants/{business-identifier}/sales-units:
     get:
       tags:
         - Merchants
@@ -361,16 +359,15 @@ paths:
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: orgno
+        - name: business-identifier
           in: path
           description: The organization number for the merchant
           required: true
           schema:
-            minLength: 9
-            maxLength: 9
-            pattern: ^\d{9}$
+            minLength: 10
+            maxLength: 30
             type: string
-            example: 987654321
+            example: "business:NO:ORG/987654321"
       responses:
         "200":
           description: OK
@@ -1070,7 +1067,7 @@ components:
     Merchant:
       description: A merchant
       required:
-        - orgno
+        - businessIdentifier
         - name
       type: object
       properties:
