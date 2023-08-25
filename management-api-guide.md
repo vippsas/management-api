@@ -8,6 +8,11 @@ pagination_prev: null
 
 # API guide
 
+💥 IMPORTANT: We are making some changes to the API based on feedback.
+We have notified all users of the API on Slack about the ongoing changes.
+See the PR(s) for the latest news.
+Please contact us on Slack if you have questions. 💥
+
 The Management API lets partners and merchants manage their sales units, and allows for
 self-service for the most common tasks. Our goal is to let partners and merchants do
 as much as possible without needing assistance from us.
