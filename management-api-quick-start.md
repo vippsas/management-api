@@ -110,7 +110,7 @@ curl https://api.vipps.no/accessToken/get \
 
 The property `access_token` should be used for all other API requests in the `Authorization` header as the Bearer token.
 
-### Step 3 - Get merchant sales units by merchant ID
+### Step 3 - Get merchant sales units by business identifier
 
 Send request
 [`GET:v1/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits),
