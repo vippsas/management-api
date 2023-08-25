@@ -110,12 +110,12 @@ curl https://api.vipps.no/accessToken/get \
 
 The property `access_token` should be used for all other API requests in the `Authorization` header as the Bearer token.
 
-### Step 3 - Get merchant sales units by organization number
+### Step 3 - Get merchant sales units by merchant ID
 
 Send request
 [`GET:v1/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits),
-where `orgno` is the organization number of the sales unit.
-Details about the merchant will be provided.
+where `business-identifier` is the ID of the merchant.
+A list of ID numbers will be returned. These are the Merchant Serial Numbers for all the sales units associated with this merchant.
 
 <Tabs
 defaultValue="curl"
@@ -126,15 +126,17 @@ values={[
 ]}>
 <TabItem value="postman">
 
+Update the value for `business-identifier`.
+
 ```bash
-Send request Get merchant by organization number
+Send request Get merchant sales units by merchant ID
 ```
 
 </TabItem>
 <TabItem value="curl">
 
 ```bash
-curl https://api.vipps.no/management/v1/merchants/{ordno}/sales-units \
+curl https://api.vipps.no/management/v1/merchants/{business-identifier}/sales-units \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
 -H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
@@ -148,7 +150,7 @@ curl https://api.vipps.no/management/v1/merchants/{ordno}/sales-units \
 </TabItem>
 </Tabs>
 
-Take note of the merchant serial numbers and use one of these in the next step.
+Take note of the ID numbers and use one of these in the next step.
 
 ### Step 4 - Get sales unit by Merchant Serial Number
 
@@ -170,7 +172,7 @@ values={[
 Send request Get sales unit details based on MSN
 ```
 
-If necessary, update `orgno` in the environment.
+If necessary, update `msn` in the environment.
 
 </TabItem>
 <TabItem value="curl">
