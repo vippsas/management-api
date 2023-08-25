@@ -64,9 +64,9 @@ even without an integration in place.
 | -------- | ----------- | ------ |
 | Merchants: | | |
 | [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants) | [Get all merchants](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-merchants). | 💡 Idea/proposal |
-| [`GET:/merchants/{businessIdentifier}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant) | [Get one merchant by business identifier](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-one-merchant-by-business-identifier). | 🟡 Available in Q3 |
-| [`GET:/merchants/{businessIdentifier}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts) | [Get a merchant's contract(s)](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-a-merchants-contracts). | 💡 Idea/proposal |
-| [`GET:/merchants/{businessIdentifier}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by business identifier](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-business-identifier). | ✅ Available |
+| [`GET:/merchants/{{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant) | [Get one merchant by business identifier](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-one-merchant-by-business-identifier). | 🟡 Available in Q3 |
+| [`GET:/merchants/{scheme}/{id}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts) | [Get a merchant's contract(s)](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-a-merchants-contracts). | 💡 Idea/proposal |
+| [`GET:/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by business identifier](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-business-identifier). | ✅ Available |
 | Sales units: | | |
 | [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits) | [Get all sales units](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-sales-units). | 🟡 Available in Q4 |
 | [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-sales-unit). | ✅ Available |
@@ -123,7 +123,7 @@ Status: 🟡 Available in Q3.
 
 This endpoint is for retrieving basic information about the merchant:
 
-[`GET:/management/v1/merchants/{businessIdentifier}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
+[`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
 
 Response:
 
@@ -176,7 +176,7 @@ Status: 💡 Idea/proposal.
 
 Return a (link to a) PDF.
 
-[`GET:/management/v1/merchants/{businessIdentifier}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts)
+[`GET:/management/v1/merchants/{scheme}/{id}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts)
 
 Response:
 
@@ -192,7 +192,7 @@ Response:
 
 Status: ✅ Available.
 
-[`GET:/management/v1/merchants/{businessIdentifier}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
+[`GET:/management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
 
 Response:
 
@@ -518,7 +518,7 @@ The user will then automatically be presented with the pre-filled PO.
    checks the details in the PO and submits it.
 6. We process the PO and send both the merchant and partner/merchant who made the pre-fill request an
    email when done. The partner/merchant who made the pre-fill request can also check with the API:
-   [`GET:/management/v1/merchants/{businessIdentifier}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+   [`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 The most important part of the MA form is the "reelle rettighetshavere"
 ("real rights holders"), meaning the people with direct or direct ownership or
@@ -540,7 +540,7 @@ The merchant has an MA and probably also a Vipps MobilePay product.
    checks the details and submits it.
 4. We process the PO and send both the merchant and partner/merchant who made the pre-fill request an
    email when done. The partner/merchant who made the pre-fill request can also check with the API:
-   [`GET:/management/v1/merchants/{businessIdentifier}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+   [`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 In the future, we may allow the merchant to change some data pre-filled by the
 partner, but this is not trivial. If the merchant changes any data, the

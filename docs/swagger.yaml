@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Vipps MobilePay Management API
-  version: "1.1.0"
+  version: "1.1.1"
   description: |-
     The Management API lets partners and merchants manage their sales units, etc.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api).
@@ -261,7 +261,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Problem"
 
-  /management/v1/merchants/{business-identifier}:
+  /management/v1/merchants/{scheme}/{id}:
     get:
       tags:
         - Merchants
@@ -280,15 +280,8 @@ paths:
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: business-identifier
-          in: path
-          description: The organization number for the merchant
-          required: true
-          schema:
-            minLength: 10
-            maxLength: 30
-            type: string
-            example: "business:NO:ORG/987654321"
+        - $ref: "#/components/parameters/scheme" 
+        - $ref: "#/components/parameters/id" 
       responses:
         "200":
           description: OK
@@ -303,7 +296,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Problem"
 
-  /management/v1/merchants/{business-identifier}/contracts:
+  /management/v1/merchants/{scheme}/{id}/contracts:
     get:
       tags:
         - Merchants
@@ -319,15 +312,8 @@ paths:
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: business-identifier
-          in: path
-          description: The organization number for the merchant
-          required: true
-          schema:
-            minLength: 10
-            maxLength: 30
-            type: string
-            example: "business:NO:ORG/987654321"
+        - $ref: "#/components/parameters/scheme" 
+        - $ref: "#/components/parameters/id" 
       responses:
         "200":
           description: OK
@@ -342,7 +328,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Problem"
 
-  /management/v1/merchants/{business-identifier}/sales-units:
+  /management/v1/merchants/{scheme}/{id}/sales-units:
     get:
       tags:
         - Merchants
@@ -359,15 +345,8 @@ paths:
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: business-identifier
-          in: path
-          description: The organization number for the merchant
-          required: true
-          schema:
-            minLength: 10
-            maxLength: 30
-            type: string
-            example: "business:NO:ORG/987654321"
+        - $ref: "#/components/parameters/scheme" 
+        - $ref: "#/components/parameters/id" 
       responses:
         "200":
           description: OK
@@ -1444,3 +1423,20 @@ components:
         pattern: ^\d{5,6}$
         type: string
         example: 123456
+
+    scheme:
+      name: scheme
+      in: path
+      description: "The scheme used for identifying a merchant" 
+      required: true
+      schema:
+        type: string
+        example: "business:NO:ORG"  
+    id:
+      name: id
+      in: path
+      description: "The id used for identifying a merchant. For Norwegian companies this is the organization number" 
+      required: true
+      schema:
+        type: string
+        example: "9876543221"        
