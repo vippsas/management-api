@@ -97,11 +97,17 @@ Response:
 {
    "merchants":[
       {
-         "orgno": 987654321,
+          "businessIdentifier":{
+            "scheme":"business:NO:ORG",
+            "id":"987654321"
+         },
          "name": "ACME Fantastic Fitness"
-      }
+      },
       {
-         "orgno": 987654322,
+         "businessIdentifier":{
+            "scheme":"business:NO:ORG",
+            "id":"987654322"
+         },
          "name": "ACME Candy and Ice Cream"
       }
    ]
@@ -123,24 +129,35 @@ Response:
 
 ```json
 {
-   "orgno": 987654321,
-   "name": "ACME Fantastic Fitness",
-   "isActive": true,
-   "createdAt": "2022-09-02T06:45:25.921251Z",
-   "updatedAt": "2023-03-27T13:50:21.750612Z",
-    "countryCode": "NO",
-   "businessAddress": {
-      "line1": "Robert Levins gate 5",
-      "locality": "OSLO",
-      "postalCode": "0154",
-      "countryCode": "NO"
+  "merchant": {
+    "businessidentifier": {
+      "scheme": "business:NO:ORG",
+      "id": "9876543221"
     },
-    "postalAddress": {
-      "line1": "Postboks 9236 Grønland",
-      "locality": "OSLO",
-      "postalCode": "0134",
-      "countryCode": "NO"
+    "name": "ACME Fantastic Fitness",
+    "status": "ACTIVE",
+    "createdAt": "2022-09-02T06:45:25.921251Z",
+    "updateddAt": "2022-09-02T06:45:25.921251Z",
+    "countryCode\"": "NO",
+    "businessAddress": {
+      "city": "Oslo",
+      "country": "NO",
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "lines": [
+        "Robert Levins gate 5"
+      ],
+      "postCode": "0154"
+    },
+    "businesspostlAddress": {
+      "city": "Oslo",
+      "country": "NO",
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "lines": [
+        "Robert Levins gate 5"
+      ],
+      "postCode": "0154"
     }
+  }
 }
 ```
 
@@ -183,12 +200,12 @@ Response:
 {
    "salesUnits":[
       {
-         "orgno": 123456,
-         "name": "ACME Fantastic Fitness HQ"
+         "msn": 123456,
+         "name": "ACME Fantastic Fitness"
       }
       {
-         "orgno": 654321,
-         "name": "ACME Fantastic Fitness Satellite 1"
+         "msn": 654321,
+         "name": "ACME Candy and Ice Cream"
       }
    ]
 }
@@ -213,12 +230,12 @@ Response:
 {
    "salesUnits":[
       {
-         "orgno": 123456,
-         "name": "ACME Fantastic Fitness HQ"
+         "msn": 123456,
+         "name": "ACME Fantastic Fitness"
       }
       {
-         "orgno": 654321,
-         "name": "ACME Fantastic Fitness Satellite 1"
+         "msn": 654321,
+         "name": "ACME Candy and Ice Cream"
       }
    ]
 }
@@ -328,7 +345,8 @@ Example `PATCH` request body:
 
 ```json
 {
-  "name": "ACME Fantastic Fitness DeLuxe",
+  "name": "ACME Fantastic Fitness Deluxe",
+  "salesUnitLogo": "VGhlIGltYWdlIGdvZXMgaGVyZQ==",
   "status": "ACTIVE"
 }
 ```
