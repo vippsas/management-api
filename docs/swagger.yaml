@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Vipps MobilePay Management API
-  version: "1.1.1"
+  version: "1.1.2"
   description: |-
     The Management API lets partners and merchants manage their sales units, etc.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api).
@@ -1276,7 +1276,7 @@ components:
           example: "business:NO:ORG"
         id:
           type: string
-          description: The business identifier.
+          description: The business identifier, typically the organization number.
           pattern: ^\d{9}$
           example: "9876543221"
 
@@ -1288,12 +1288,12 @@ components:
       properties:
         pricePackageId:
           type: string
-          description: The unique id for the price package
+          description: The unique id for the price package in UUID format.
           format: uuid
           example: "8a11afb7-c223-48ed-8ca6-4722b97261aa"
         name:
           type: string
-          description: The price package' name
+          description: The price package's name.
           maxLength: 30
           example: "POS standard"
         description:
@@ -1304,7 +1304,7 @@ components:
         visibleInSignupForm:
           type: boolean
           description: |-
-            An boolean indicating if the price package is visible for merchants to order on their own in our signup forms.
+            An boolean indicating whether the price package is visible for merchants to order on their own in our signup forms.
           example: True
         productType:
           type: string
@@ -1407,13 +1407,10 @@ components:
       name: Merchant-Serial-Number
       in: header
       description: |-
-        The Merchant Serial Number (MSN) is a unique id for the sale unit
-        that this payment is made for.
-        This is a required parameter if you are a partner
-        making payments on behalf of a merchant.
+        The Merchant Serial Number (MSN) is a unique id for the sale unit that this payment is made for.
+        This is a required parameter if you are a partner making payments on behalf of a merchant.
         The partner must use the merchant's MSN (not the partner's MSN).
-        This parameter is optional, and recommended, for regular Vipps
-        merchants making payments for themselves.
+        This parameter is optional, and recommended, for regular Vipps merchants making payments for themselves.
       schema:
         type: string
       example: 123456
@@ -1421,7 +1418,7 @@ components:
     msn:
       name: msn
       in: path
-      description: "MSN ((merchant serial number): The identifier of the sales unit." 
+      description: "MSN (merchant serial number): The identifier of the sales unit." 
       required: true
       schema:
         minLength: 5 
@@ -1433,7 +1430,7 @@ components:
     scheme:
       name: scheme
       in: path
-      description: "The scheme used for identifying a merchant" 
+      description: "The scheme used for identifying a merchant." 
       required: true
       schema:
         type: string
@@ -1441,7 +1438,7 @@ components:
     id:
       name: id
       in: path
-      description: "The id used for identifying a merchant. For Norwegian companies this is the organization number" 
+      description: "The id used for identifying a merchant. For Norwegian companies this is the organization number." 
       required: true
       schema:
         type: string
