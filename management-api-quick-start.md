@@ -134,7 +134,7 @@ Send request Get merchant by organization number
 <TabItem value="curl">
 
 ```bash
-curl https://api.vipps.no/management/v1/merchants/{ordno}/sales-units \
+curl https://api.vipps.no/management/v1/merchants/{orgno}/sales-units \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
 -H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
@@ -170,7 +170,7 @@ values={[
 Send request Get sales unit details based on MSN
 ```
 
-If necessary, update `orgno` in the environment.
+If necessary, update `msn` in the environment.
 
 </TabItem>
 <TabItem value="curl">
