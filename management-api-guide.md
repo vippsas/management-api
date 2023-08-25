@@ -393,7 +393,7 @@ Here is a sample request to
   "productType": "VIPPS_PA_NETT",
   "productUseCase": "WebsiteWithTest",
   "annualTurnover": 100000,
-  "intendedPurpose": "Gym membership for accessing the gym's facilities.\nGuest will be not physically present when buying the subscription,\nas that is done on the gym's website.",
+  "intendedPurpose": "Gym membership for accessing the gym's facilities. Guests will be not physically present when buying the subscription, as that is done on the gym's website.",
   "website": {
     "url": "https://example.com",
     "termsUrl": "https://example.com/terms-and-conditions",
