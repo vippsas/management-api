@@ -385,7 +385,10 @@ Here is a sample request to
   },
   "salesUnitName": "ACME Fantastic Fitness",
   "salesUnitLogo": "VGhlIGltYWdlIGdvZXMgaGVyZQ==",
-  "settlementAccountNumber": "86011117947",
+    "settlementAccountNumber": {
+    "scheme": "BBAN:NO",
+    "id": "86011117947"
+  },
   "pricePackageId": "8a11afb7-c223-48ed-8ca6-4722b97261aa",
   "productType": "VIPPS_PA_NETT",
   "productUseCase": "WebsiteWithTest",
