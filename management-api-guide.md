@@ -23,7 +23,7 @@ We are implementing the most important functionality first, and these endpoints 
    An easy way to get a list of all the sales units that belong to the specified merchant.  
 3. [Get information about a sales unit](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-sales-unit):
    This endpoint is for retrieving details about one sales unit (MSN), such as
-   the name of the sales unit, the organization number is belongs to and the sales unit's configuration.
+   the name of the sales unit, the business identifier it belongs to and the sales unit's configuration.
 4. [Get the price packages for a partner](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-price-packages-for-a-partner):
    Lets a partner retrieve its price package details.
    The price packages are needed for pre-filling the product orders.
@@ -64,7 +64,7 @@ even without an integration in place.
 | -------- | ----------- | ------ |
 | Merchants: | | |
 | [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getAllMerchants) | [Get all merchants](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-all-merchants). | 💡 Idea/proposal |
-| [`GET:/merchants/{businessIdentifier}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant) | [Get one merchant by organization number](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-one-merchant-by-organization-number). | 🟡 Available in Q3 |
+| [`GET:/merchants/{businessIdentifier}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant) | [Get one merchant by business identifier](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-one-merchant-by-business-identifier). | 🟡 Available in Q3 |
 | [`GET:/merchants/{businessIdentifier}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantContracts) | [Get a merchant's contract(s)](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-a-merchants-contracts). | 💡 Idea/proposal |
 | [`GET:/merchants/{businessIdentifier}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by business identifier](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-business-identifier). | ✅ Available |
 | Sales units: | | |
@@ -117,7 +117,7 @@ Response:
 If this endpoint is used with normal API keys (not partner keys), it will return just one merchant:
 The one making the API request.
 
-## Get one merchant by organization number
+## Get one merchant by business identifier
 
 Status: 🟡 Available in Q3.
 
@@ -469,7 +469,7 @@ When the submitted product order has been processed, an email is sent to both th
 partner/merchant making the request and the merchant that submitted the pre-filled product order.
 This will include information about:
 
-* The merchant's organization number
+* The merchant's business identifier
 * The merchant's name
 * The sales unit's MSN
 * The sales unit's name
