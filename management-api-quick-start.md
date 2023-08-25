@@ -136,7 +136,7 @@ Send request Get merchant sales units bybusiness identifier
 <TabItem value="curl">
 
 ```bash
-curl https://api.vipps.no/management/v1/merchants/{business-identifier}/sales-units \
+curl https://api.vipps.no/management/v1/merchants/{scheme}/{id}/sales-units \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
 -H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
