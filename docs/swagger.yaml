@@ -611,10 +611,8 @@ components:
             The minimum size is 100 x 100 pixels.
             Images not matching the above criteria will not be shown to the merchant in the merchant portal.
             The logo can be edited later on portal.vipps.no.
-        settlementAccountNumberBBAN:
+        settlementAccountNumber:
           $ref: '#/components/schemas/bankAccountBBAN'
-        settlementAccountNumberIBAN:
-          $ref: '#/components/schemas/bankAccountIBAN'
         pricePackageId:
           type: string
           format: uuid
@@ -898,11 +896,12 @@ components:
           type: string
           description: The status of the PO
           enum:
+            - ACCESSED
             - RECEIVED
             - PROCESSING
             - WAITING_FOR_MERCHANT
             - COMPLETED
-          example: PROCESSING
+          example: ACCESSED
 
     ApiQualityResponse:
       title: API quality response
@@ -972,7 +971,7 @@ components:
       type: object
       properties:
         msn:
-          $ref: '#/components/parameters/msn'
+          $ref: '#/components/schemas/MSN'
         name:
           type: string
           description: "The sales unit's name"
@@ -1188,7 +1187,7 @@ components:
       description: Response of a successful get merchant(s) operation
       type: object
       properties:
-        data:
+        merchant:
           $ref: '#/components/schemas/Merchant'
     
     GetAllMerchantsResponse:
@@ -1222,6 +1221,14 @@ components:
             description: URL for downloading PDF contract
             example: "https://example.com/contracts/contract-12345.pdf"
 
+    MSN:
+      description: "MSN (merchant serial number): The identifier of the sales unit." 
+      type: string
+      minLength: 5 
+      maxLength: 6
+      pattern: ^\d{5,6}$
+      example: 123456
+
     MsnInfo:
       description: High-level details about a MSN
       type: object
@@ -1230,7 +1237,7 @@ components:
         - name
       properties:
         msn:
-          $ref: '#/components/parameters/msn'
+          $ref: '#/components/schemas/MSN'
         name:
           type: string
           description: The name of the sales unit.
@@ -1244,7 +1251,7 @@ components:
         name:
           type: string
           description: Name of the sales unit.
-          example: ACME Fantastic Fitness DeLuxe
+          example: ACME Fantastic Fitness Deluxe
           maxLength: 50
         salesUnitLogo:
           type: string
@@ -1432,7 +1439,7 @@ components:
     msn:
       name: msn
       in: path
-      description: The Vipps MSN (merchant serial number)
+      description: "MSN ((merchant serial number): The identifier of the sales unit." 
       required: true
       schema:
         minLength: 5 

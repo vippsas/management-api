@@ -334,7 +334,8 @@ Example `PATCH` request body:
 
 ```json
 {
-  "name": "ACME Fantastic Fitness",
+  "name": "ACME Fantastic Fitness Deluxe",
+  "salesUnitLogo": "VGhlIGltYWdlIGdvZXMgaGVyZQ==",
   "status": "ACTIVE"
 }
 ```
