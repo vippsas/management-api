@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Vipps MobilePay Management API
-  version: "1.0.0"
+  version: "1.1.0"
   description: |-
     The Management API lets partners and merchants manage their sales units, etc.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api).
