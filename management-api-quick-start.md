@@ -192,7 +192,6 @@ curl https://api.vipps.no/management/v1/sales-units/{msn} \
 </TabItem>
 </Tabs>
 
-
 ## Next steps
 
 See the [Management API guide](management-api-guide.md) to read about the concepts and details.

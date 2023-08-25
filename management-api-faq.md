@@ -102,7 +102,7 @@ environment. See
 
 If you send an invalid request to
 [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management#tag/Vipps-Product-Orders/operation/orderProduct),
-the pre-fill will _in most cases_ fail with an error message.
+the pre-fill operation will _in most cases_ fail with an error message.
 
 Although we do as much input validation as possible, it is not possible to validate all data, so in some cases the
 pre-fill request will succeed, and the pre-fill URL will lead to an empty product order form.
