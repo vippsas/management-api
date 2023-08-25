@@ -15,7 +15,7 @@ as much as possible without needing assistance from us.
 We are implementing the most important functionality first, and these endpoints are available now:
 
 1. [Pre-fill a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#pre-fill-a-product-order):
-   This endpoint allows for "pre-fill" of the product order form on portal.vipps.no. 
+   This endpoint allows for "pre-fill" of the product order form on portal.vipps.no.
    The merchant simply uses a URL to get to the pre-filled product order, checks the data, and submits.
    This ensures that all the data in the form is correctly filled in, and can also "lock" parameters that are normally selectable. Product orders
    that have been pre-filled this way are processed faster, since they are correct and contain all the required information.
@@ -369,7 +369,6 @@ The merchant simply uses the URL to get to the pre-filled product order, checks 
 something needs to be corrected, the merchant must contact the partner to have
 the partner submit a new pre-fill product order with the correct details.
 
-
 <details>
 <summary>Example request</summary>
 <div>
@@ -462,7 +461,6 @@ Response:
 </div>
 </details>
 
-
 ### Processing of the pre-filled product order
 
 When the submitted product order has been processed, an email is sent to both the
@@ -510,7 +508,7 @@ The user will then automatically be presented with the pre-filled PO.
    [portal.vipps.no](https://portal.vipps.no).
 3. The merchant is presented with a page informing them that they need to
    sign an MA before filling in the PO.
-4. The merchant completes, signs and submits the MA.   
+4. The merchant completes, signs and submits the MA.
 5. The merchant re-uses the link or finds the link to the pre-filled PO form on the
    front page on
    [portal.vipps.no](https://portal.vipps.no)
@@ -590,7 +588,7 @@ sequenceDiagram
 
 Status: 💡 Idea/proposal.
 
-For both merchants and partners. 
+For both merchants and partners.
 
 The best way to check the status of a product order is on
 [portal.vipps.no](https://portal.vipps.no).
