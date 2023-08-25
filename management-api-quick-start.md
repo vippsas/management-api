@@ -129,7 +129,7 @@ values={[
 Update the value for `business-identifier`.
 
 ```bash
-Send request Get merchant sales units by merchant ID
+Send request Get merchant sales units bybusiness identifier
 ```
 
 </TabItem>
