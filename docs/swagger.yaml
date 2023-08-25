@@ -611,17 +611,10 @@ components:
             The minimum size is 100 x 100 pixels.
             Images not matching the above criteria will not be shown to the merchant in the merchant portal.
             The logo can be edited later on portal.vipps.no.
-        settlementAccountNumber:
-          nullable: true
-          type: string
-          pattern: "^[0-9]{11,11}$"
-          minLength: 11
-          maxLength: 11
-          example: "86011117947"
-          description: |-
-            The bank account number belonging to the organisation that will be
-            used for settlement. The bank account must be owned by the
-            merchant. BBAN (not IBAN) format.
+        settlementAccountNumberBBAN:
+          $ref: '#/components/schemas/bankAccountBBAN'
+        settlementAccountNumberIBAN:
+          $ref: '#/components/schemas/bankAccountIBAN'
         pricePackageId:
           type: string
           format: uuid
@@ -1082,13 +1075,8 @@ components:
         - name
       type: object
       properties:
-        orgno:
-          type: string
-          description: The organization number for the merchant
-          minLength: 9
-          maxLength: 9
-          pattern: ^\d{9}$
-          example: 987654321
+        businessidentifier:
+          $ref: '#/components/schemas/businessIdentifier'
         name:
           type: string
           description: The name of the merchant
@@ -1122,6 +1110,47 @@ components:
           $ref: '#/components/schemas/Address'
         businesspostlAddress:
           $ref: '#/components/schemas/Address'          
+
+    bankAccountBBAN:
+      title: Bank account in BBAN format. ISO 13616.
+      type: object
+      required:
+        - scheme
+        - id
+      properties:
+        scheme:
+          type: string
+          description: The type of identifier for the bank.
+          minLength: 5
+          maxLength: 20
+          example: "BBAN:NO"
+        id:
+          type: string
+          description: The account number (or id).
+          minLength: 9
+          maxLength: 20
+          pattern: ^\d{9,}$
+          example: "86011117947"
+
+    bankAccountIBAN:
+      title: Bank account in IBAN format. ISO 13616.
+      type: object
+      required:
+        - scheme
+        - id
+      properties:
+        scheme:
+          type: string
+          description: The type of identifier for the bank.
+          minLength: 5
+          maxLength: 20
+          example: "IBAN:NO"
+        id:
+          type: string
+          description: The account number (or id). No whitespace.
+          minLength: 9
+          maxLength: 20
+          example: "NO9386011117947"      
 
     Address:
       title: Address
@@ -1245,16 +1274,21 @@ components:
       type: object
       description: |-
         Business registration number of the merchant for whom the partner is submitting the product order.
-        Only Norwegian (business:NO:ORG) business registration numbers are allowed for now, but this format supports all countries.
+        Only Norwegian (`business:NO:ORG``) business registration numbers are allowed for now, but this format supports all countries.
       required:
         - scheme
         - id
       properties:
         scheme:
           type: string
+          description: The type of identifier for the business.
+          minLength: 10
+          maxLength: 20
           example: "business:NO:ORG"
         id:
           type: string
+          description: The business identifier.
+          pattern: ^\d{9}$
           example: "9876543221"
 
     PricePackage:
@@ -1395,17 +1429,6 @@ components:
         type: string
       example: 123456
 
-    orgno:
-      name: orgno
-      in: path
-      description: The organization number for the merchant
-      required: true
-      schema:
-        minLength: 9
-        maxLength: 9
-        pattern: ^\d{9}$
-        type: string
-        example: 987654321
     msn:
       name: msn
       in: path

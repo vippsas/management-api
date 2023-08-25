@@ -97,11 +97,17 @@ Response:
 {
    "merchants":[
       {
-         "orgno": 987654321,
+          "businessIdentifier":{
+            "scheme":"business:NO:ORG",
+            "id":"987654321"
+         },
          "name": "ACME Fantastic Fitness"
-      }
+      },
       {
-         "orgno": 987654322,
+         "businessIdentifier":{
+            "scheme":"business:NO:ORG",
+            "id":"987654322"
+         },
          "name": "ACME Candy and Ice Cream"
       }
    ]
@@ -183,12 +189,12 @@ Response:
 {
    "salesUnits":[
       {
-         "orgno": 123456,
-         "name": "ACME Fantastic Fitness HQ"
+         "msn": 123456,
+         "name": "ACME Fantastic Fitness"
       }
       {
-         "orgno": 654321,
-         "name": "ACME Fantastic Fitness Satellite 1"
+         "msn": 654321,
+         "name": "ACME Candy and Ice Cream"
       }
    ]
 }
@@ -213,12 +219,12 @@ Response:
 {
    "salesUnits":[
       {
-         "orgno": 123456,
-         "name": "ACME Fantastic Fitness HQ"
+         "msn": 123456,
+         "name": "ACME Fantastic Fitness"
       }
       {
-         "orgno": 654321,
-         "name": "ACME Fantastic Fitness Satellite 1"
+         "msn": 654321,
+         "name": "ACME Candy and Ice Cream"
       }
    ]
 }
@@ -328,7 +334,7 @@ Example `PATCH` request body:
 
 ```json
 {
-  "name": "ACME Fantastic Fitness DeLuxe",
+  "name": "ACME Fantastic Fitness",
   "status": "ACTIVE"
 }
 ```
