@@ -137,7 +137,7 @@ Response:
     "name": "ACME Fantastic Fitness",
     "status": "ACTIVE",
     "createdAt": "2022-09-02T06:45:25.921251Z",
-    "updateddAt": "2022-09-02T06:45:25.921251Z",
+    "updatedAt": "2022-09-02T06:45:25.921251Z",
     "countryCode\"": "NO",
     "businessAddress": {
       "city": "Oslo",
@@ -148,7 +148,7 @@ Response:
       ],
       "postCode": "0154"
     },
-    "businesspostlAddress": {
+    "businesspostAddress": {
       "city": "Oslo",
       "country": "NO",
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
