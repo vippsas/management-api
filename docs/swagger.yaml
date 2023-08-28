@@ -1095,7 +1095,7 @@ components:
           description: The timestamp (ISO-8601) for when the merchant was created.
           format: date-time
           example: "2022-09-02T06:45:25.921251Z"
-        updateddAt:
+        updatedAt:
           type: string
           description: The timestamp (ISO-8601) for when the merchant was updated (if it has been updated).
           format: date-time
@@ -1107,7 +1107,7 @@ components:
           example: "NO"
         businessAddress:
           $ref: '#/components/schemas/Address'
-        businesspostlAddress:
+        businesspostAddress:
           $ref: '#/components/schemas/Address'          
 
     bankAccountBBAN:
