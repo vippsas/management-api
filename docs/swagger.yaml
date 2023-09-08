@@ -268,8 +268,8 @@ paths:
   /management/v1/merchants/{orgno}:
     get:
       tags:
-        - Merchants
-      summary: Get a merchant by by organization number
+        - Ideas
+      summary: Merchants - Get a merchant by by organization number
       description: |-
         Status: Available in Q3.
         
@@ -395,7 +395,7 @@ paths:
         - Ideas
       summary: Sales units - Get all sales units that a merchant or partner has access to.
       description: |-
-        Status: Idea/proposal.
+        Status: Idea/proposal. Available in Q4.
 
         For partners using
         [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
