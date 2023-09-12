@@ -36,11 +36,14 @@ tags:
     description: |-
       Functionality for (or about) partners. See:
       [Vipps Partners](https://developer.vippsmobilepay.com/docs/partner/).
-  - name: API quality
+  - name: Ideas
     description: |-
-      Information about a partner's or merchant's API usage quality.
-      The data is the same as on the API Dashboard:
-      https://developer.vippsmobilepay.com/docs/developer-resources/api-dashboard/
+      Proposals and ideas for future functionality. Please give us your feedback if you are interested in these.    
+  #- name: API quality
+  #  description: |-
+  #    Information about a partner's or merchant's API usage quality.
+  #    The data is the same as on the API Dashboard:
+  #    https://developer.vippsmobilepay.com/docs/developer-resources/api-dashboard/
 
 security:
   - Bearer-Authorization: []
@@ -51,7 +54,7 @@ paths:
   /management/v1/partners/whoami:
     get:
       tags:
-        - Partners
+        - Ideas
       summary:  Get information about a partner.
       description: |-
         Status: Idea/proposal.
@@ -134,7 +137,7 @@ paths:
           example: 12345
     get:
       tags:
-      - Product orders
+      - Ideas
       summary: Get information about a product order
       operationId: productOrderDetails
       description: |-
@@ -160,7 +163,7 @@ paths:
                 $ref: "#/components/schemas/Problem"
     delete:
       tags:
-        - Product orders
+        - Ideas
       summary: Delete a product order
       operationId: deleteProductOrder
       description: |-
@@ -233,7 +236,7 @@ paths:
   /management/v1/merchants:
     get:
       tags:
-        - Merchants
+        - Ideas
       summary: Get all merchants
       description: |-
         Status: Idea/proposal.
@@ -299,7 +302,7 @@ paths:
   /management/v1/merchants/{scheme}/{id}/contracts:
     get:
       tags:
-        - Merchants
+        - Ideas
       summary: Get a merchant's contract(s)
       description: |-
         Status: Idea/proposal.
@@ -364,7 +367,7 @@ paths:
   /management/v1/sales-units:
     get:
       tags:
-        - Sales units
+        - Ideas
       summary: Get all sales units that a merchant or partner has access to.
       description: |-
         Status: Idea/proposal.
@@ -435,7 +438,7 @@ paths:
 
     patch:
       tags:
-        - Sales units
+        - Ideas
       summary: Update sales unit
       description: |-
         Status: Idea/proposal.
@@ -477,7 +480,7 @@ paths:
   /management/v1/api-quality/sales-units/{msn}:
     get:
       tags:
-        - API quality
+        - Ideas
       summary: "Get API quality info: Errors, etc"
       description: |-
         Status: Idea/proposal.
