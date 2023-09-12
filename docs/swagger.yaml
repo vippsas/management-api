@@ -25,7 +25,7 @@ tags:
   - name: Sales units
     description: |-
       Functionality for managing sales units.
-      Merchants can to this on
+      Merchants can do this on
       [portal.vipps.no](https://portal.vipps.no).
   - name: Product orders
     description: |-
@@ -55,7 +55,7 @@ paths:
     get:
       tags:
         - Ideas
-      summary:  Get information about a partner.
+      summary:  Partners - Get information about a partner.
       description: |-
         Status: Idea/proposal.
 
@@ -138,7 +138,7 @@ paths:
     get:
       tags:
       - Ideas
-      summary: Get information about a product order
+      summary: Product orders - Get information about a product order
       operationId: productOrderDetails
       description: |-
         Status: Idea/proposal.
@@ -237,7 +237,7 @@ paths:
     get:
       tags:
         - Ideas
-      summary: Get all merchants
+      summary: Merchants - Get all merchants
       description: |-
         Status: Idea/proposal.
 
@@ -303,7 +303,7 @@ paths:
     get:
       tags:
         - Ideas
-      summary: Get a merchant's contract(s)
+      summary: Merchants - Get a merchant's contract(s)
       description: |-
         Status: Idea/proposal.
 
@@ -368,7 +368,7 @@ paths:
     get:
       tags:
         - Ideas
-      summary: Get all sales units that a merchant or partner has access to.
+      summary: Sales units - Get all sales units that a merchant or partner has access to.
       description: |-
         Status: Idea/proposal.
 
@@ -439,7 +439,7 @@ paths:
     patch:
       tags:
         - Ideas
-      summary: Update sales unit
+      summary: Sales units - Update sales unit
       description: |-
         Status: Idea/proposal.
 
@@ -481,7 +481,7 @@ paths:
     get:
       tags:
         - Ideas
-      summary: "Get API quality info: Errors, etc"
+      summary: "API quality - Get API quality info: Errors, etc"
       description: |-
         Status: Idea/proposal.
 
