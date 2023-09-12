@@ -46,12 +46,12 @@ values={[
 **Please note:** To prevent your sensitive data and credentials from being synced to the Postman cloud,
 store them in the *Current Value* fields of your Postman environment.
 
-Import the following files:
+In Postman, import the following files:
 
 * [Management API Postman collection](/tools/vipps-management-api-postman-collection.json)
 * [Vipps API Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
-In Postman, tweak the environment with your own values (see
+Update the *Current Value* field the environment with your own values (see
 [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/)):
 
 * `client-id` - Partner key is required for getting the access token.
