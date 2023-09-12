@@ -39,8 +39,8 @@ These endpoints are available now (or very soon):
 | Endpoint | Description |
 | -------- | ----------- |
 | Merchants: | |
-| [`GET:/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by orgno](#get-the-sales-units-for-a-merchant-by-orgno). An easy way to get a list of all the sales units that belong to the specified merchant. |
-| [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantByOrgno) | [Get one merchant by business identifier](#get-one-merchant-by-organization-number).  _Available in Q3_ |
+| [`GET:/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by business identifier](#get-the-sales-units-for-a-merchant-by-business-identifier). An easy way to get a list of all the sales units that belong to the specified merchant. |
+| [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantBusinessIdentifier) | [Get one merchant by business identifier](#get-one-merchant-by-organization-number).  _Available in Q3_ |
 | Sales units: | | |
 | [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](#get-information-about-a-sales-unit). This endpoint is for retrieving details about one sales unit (MSN), such as the name of the sales unit, the business identifier is belongs to and the sales unit's configuration. |
 | [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllSalesUnits) | [Get all sales units](#get-all-sales-units). _Available in Q4_ |
@@ -54,7 +54,7 @@ More functionality will be available soon, see:
 
 ## Merchants
 
-### Get the sales units for a merchant by orgno
+### Get the sales units for a merchant by business identifier
 
 Status: ✅ Available.
 
@@ -209,7 +209,7 @@ Response (this improvement is provided for discussions of what we should investi
 }
 ```
 
-The `orgno` is included to make it possible to find out the merchant that is associated with an MSN.
+The `businessIdentifier` is included to make it possible to find out the merchant that is associated with an MSN.
 This is useful when only the MSN is known.
 
 Future versions of the API will _probably_ return more information,
@@ -252,7 +252,7 @@ Response:
 
 It is then possible to use
 [`GET:/management/v1/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn)
-to get each MSN's details, including the orgno of the merchant it belongs to.
+to get each MSN's details, including the `businessIdentifier` of the merchant it belongs to.
 
 ## Product orders
 
@@ -542,7 +542,7 @@ Status: 💡 Idea/proposal.
 
 For partners using
 [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
-Get a (long) list of all `orgno`s that have one or more sales units registered with the partner making the API call.
+Get a (long) list of all `businessIdentifier`s that have one or more sales units registered with the partner making the API call.
 
 [`GET:/management/v1/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllMerchants)
 
