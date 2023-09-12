@@ -34,16 +34,14 @@ tags:
       [portal.vipps.no](https://portal.vipps.no).
   - name: Partners
     description: |-
-      Functionality for (or about) partners. See:
-      [Vipps Partners](https://developer.vippsmobilepay.com/docs/partner/).
+      Functionality relating to
+      [Partners](https://developer.vippsmobilepay.com/docs/partner/).
   - name: Ideas
     description: |-
       Proposals and ideas for future functionality. Please give us your feedback if you are interested in these.    
   #- name: API quality
   #  description: |-
   #    Information about a partner's or merchant's API usage quality.
-  #    The data is the same as on the API Dashboard:
-  #    https://developer.vippsmobilepay.com/docs/developer-resources/api-dashboard/
 
 security:
   - Bearer-Authorization: []
@@ -481,7 +479,7 @@ paths:
     get:
       tags:
         - Ideas
-      summary: "API quality - Get API quality info: Errors, etc"
+      summary: "API quality - Get API quality info."
       description: |-
         Status: Idea/proposal.
 
@@ -1086,7 +1084,7 @@ components:
           example: "NO"
         businessAddress:
           $ref: '#/components/schemas/Address'
-        businesspostlAddress:
+        businesspostAddress:
           $ref: '#/components/schemas/Address'          
 
     bankAccountBBAN:
