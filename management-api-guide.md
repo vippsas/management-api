@@ -39,10 +39,10 @@ These endpoints are available now (or very soon):
 | Endpoint | Description |
 | -------- | ----------- |
 | Merchants: | |
-| [`GET:/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by orgno](#get-the-sales-units-for-a-merchant-by-orgno). An easy way to get a list of all the sales units that belong to the specified merchant. |
-| [`GET:/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantByOrgno) | [Get one merchant by organization number](#get-one-merchant-by-organization-number).  _Available in Q3_ |
+| [`GET:/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by orgno](#get-the-sales-units-for-a-merchant-by-orgno). An easy way to get a list of all the sales units that belong to the specified merchant. |
+| [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantByOrgno) | [Get one merchant by business identifier](#get-one-merchant-by-organization-number).  _Available in Q3_ |
 | Sales units: | | |
-| [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](#get-information-about-a-sales-unit). This endpoint is for retrieving details about one sales unit (MSN), such as the name of the sales unit, the organization number is belongs to and the sales unit's configuration. |
+| [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](#get-information-about-a-sales-unit). This endpoint is for retrieving details about one sales unit (MSN), such as the name of the sales unit, the business identifier is belongs to and the sales unit's configuration. |
 | [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllSalesUnits) | [Get all sales units](#get-all-sales-units). _Available in Q4_ |
 | Product orders: | | |
 | [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | [Pre-fill a product order](#pre-fill-a-product-order). This endpoint allows for "pre-fill" of the product order form on portal.vipps.no. The merchant simply uses a URL to get to the pre-filled product order, checks the data, and submits. This ensures that all the data in the form is correctly filled in, and can also "lock" parameters that are normally selectable. Product orders that have been pre-filled this way are processed faster, since they are correct and contain all the required information.  |
@@ -58,7 +58,7 @@ More functionality will be available soon, see:
 
 Status: ✅ Available.
 
-[`GET:/management/v1/merchants/{orgno}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
+[`GET:/management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits)
 
 Response:
 
@@ -77,13 +77,13 @@ Response:
 }
 ```
 
-### Get one merchant by organization number
+### Get one merchant by business identifier
 
 Status: 🟡 Available in Q3.
 
 This endpoint is for retrieving basic information about the merchant:
 
-[`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
+[`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchant)
 
 Response:
 
@@ -374,7 +374,7 @@ When the submitted product order has been processed, an email is sent to both th
 partner/merchant making the request and the merchant that submitted the pre-filled product order.
 This will include information about:
 
-* The merchant's organization number
+* The merchant's business identifier
 * The merchant's name
 * The sales unit's MSN
 * The sales unit's name
@@ -423,7 +423,7 @@ The user will then automatically be presented with the pre-filled PO.
    checks the details in the PO and submits it.
 6. We process the PO and send both the merchant and partner/merchant who made the pre-fill request an
    email when done. The partner/merchant who made the pre-fill request can also check with the API:
-   [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+   [`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 The most important part of the MA form is the "reelle rettighetshavere"
 ("real rights holders"), meaning the people with direct or direct ownership or
@@ -445,7 +445,7 @@ The merchant has an MA and probably also a Vipps MobilePay product.
    checks the details and submits it.
 4. We process the PO and send both the merchant and partner/merchant who made the pre-fill request an
    email when done. The partner/merchant who made the pre-fill request can also check with the API:
-   [`GET:/management/v1/merchants/{orgno}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+   [`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 In the future, we may allow the merchant to change some data pre-filled by the
 partner, but this is not trivial. If the merchant changes any data, the
@@ -525,7 +525,7 @@ Response:
 | -------- | ----------- |
 | Merchants: | |
 | [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllMerchants) | [Get all merchants](#get-all-merchants). |
-| [`GET:/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantContracts) | [Get a merchant's contract(s)](#get-a-merchants-contracts). |
+| [`GET:/merchants/{scheme}/{id}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantContracts) | [Get a merchant's contract(s)](#get-a-merchants-contracts). |
 | [`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/updateMsn) | [Update sales unit](#update-sales-unit). |
 | Product orders: | | |
 | [`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/productOrderDetails) | [Get information about a product order](#get-information-about-a-product-order). |
@@ -578,7 +578,7 @@ Status: 💡 Idea/proposal.
 
 Return a (link to a) PDF.
 
-[`GET:/management/v1/merchants/{orgno}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantContracts)
+[`GET:/management/v1/merchants/{scheme}/{id}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantContracts)
 
 Response:
 
