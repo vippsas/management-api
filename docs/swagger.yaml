@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
   title: Vipps MobilePay Management API
-  version: "1.1.1"
+  version: "1.1.2"
   description: |-
-    The Management API enables partners and merchants to manage their sales units, etc.
+    The Management API lets partners and merchants manage their sales units, etc.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api).
 
     **Please note:** The Management API documentation contains both available functionality,
-    and functionality in the idea stage. See each endpoint and the API guide for details.
+    and functionality on the idea stage. See each endpoint and the API guide for details.
   contact:
     name: Vipps MobilePay AS
     url: "https://developer.vippsmobilepay.com/"
@@ -20,31 +20,27 @@ tags:
   - name: Merchants
     description: |-
       Functionality for managing merchants.
-      Merchants can do this on
+      Merchants can to this on
       [portal.vipps.no](https://portal.vipps.no).
   - name: Sales units
     description: |-
       Functionality for managing sales units.
-      Merchants can do this on
+      Merchants can to this on
       [portal.vipps.no](https://portal.vipps.no).
   - name: Product orders
     description: |-
       Functionality for managing product orders.
-      Merchants can do this on
+      Merchants can to this on
       [portal.vipps.no](https://portal.vipps.no).
   - name: Partners
     description: |-
-      Functionality relating to 
-      [Partners](https://developer.vippsmobilepay.com/docs/partner/).
-  #- name: API quality
-  #  description: |-
-  #    Information about a partner's or merchant's API usage quality.
-  #    The data is the same as on the
-  #    [API Dashboard](https://developer.vippsmobilepay.com/docs/developer-resources/api-dashboard/).
-  - name: Ideas
+      Functionality for (or about) partners. See:
+      [Vipps Partners](https://developer.vippsmobilepay.com/docs/partner/).
+  - name: API quality
     description: |-
-      Proposals and ideas for future functionality. Please give us your feedback if you are interested in these.
-  
+      Information about a partner's or merchant's API usage quality.
+      The data is the same as on the API Dashboard:
+      https://developer.vippsmobilepay.com/docs/developer-resources/api-dashboard/
 
 security:
   - Bearer-Authorization: []
@@ -55,8 +51,8 @@ paths:
   /management/v1/partners/whoami:
     get:
       tags:
-        - Ideas
-      summary:  Partners - Get information about a partner.
+        - Partners
+      summary:  Get information about a partner.
       description: |-
         Status: Idea/proposal.
 
@@ -138,8 +134,8 @@ paths:
           example: 12345
     get:
       tags:
-      - Ideas
-      summary: Product orders - Get information about a product order
+      - Product orders
+      summary: Get information about a product order
       operationId: productOrderDetails
       description: |-
         Status: Idea/proposal.
@@ -164,8 +160,8 @@ paths:
                 $ref: "#/components/schemas/Problem"
     delete:
       tags:
-        - Ideas
-      summary: Product orders - Delete a product order
+        - Product orders
+      summary: Delete a product order
       operationId: deleteProductOrder
       description: |-
         Status: Idea/proposal.
@@ -237,13 +233,13 @@ paths:
   /management/v1/merchants:
     get:
       tags:
-        - Ideas
-      summary: Merchants - Get all merchants
+        - Merchants
+      summary: Get all merchants
       description: |-
         Status: Idea/proposal.
 
         For partners.
-        Get a (long) list of all orgnos that have one or more sale units registered with the partner making the API call.
+        Get a (long) list of all merchants that have one or more sale units registered with the partner making the API call.
       operationId: getAllMerchants
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
@@ -265,11 +261,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Problem"
 
-  /management/v1/merchants/{orgno}:
+  /management/v1/merchants/{scheme}/{id}:
     get:
       tags:
-        - Ideas
-      summary: Merchants - Get a merchant by by organization number
+        - Merchants
+      summary: Get a merchant by by organization number
       description: |-
         Status: Available in Q3.
         
@@ -277,23 +273,15 @@ paths:
         **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
         a partner, as this requires active consent from the merchant, and the merchant must also
         be able to withdraw the consent.
-      operationId: getMerchantByOrgno
+      operationId: getMerchantBusinessIdentifier
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: orgno
-          in: path
-          description: The organization number for the merchant
-          required: true
-          schema:
-            minLength: 9
-            maxLength: 9
-            pattern: ^\d{9}$
-            type: string
-            example: 987654321
+        - $ref: "#/components/parameters/scheme" 
+        - $ref: "#/components/parameters/id" 
       responses:
         "200":
           description: OK
@@ -308,11 +296,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Problem"
 
-  /management/v1/merchants/{orgno}/contracts:
+  /management/v1/merchants/{scheme}/{id}/contracts:
     get:
       tags:
-        - Ideas
-      summary: Merchants - Get a merchant's contract(s)
+        - Merchants
+      summary: Get a merchant's contract(s)
       description: |-
         Status: Idea/proposal.
 
@@ -324,16 +312,8 @@ paths:
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: orgno
-          in: path
-          description: The organization number for the merchant
-          required: true
-          schema:
-            maxLength: 9
-            minLength: 9
-            pattern: ^\d{9}$
-            type: string
-            example: 987654321
+        - $ref: "#/components/parameters/scheme" 
+        - $ref: "#/components/parameters/id" 
       responses:
         "200":
           description: OK
@@ -348,7 +328,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Problem"
 
-  /management/v1/merchants/{orgno}/sales-units:
+  /management/v1/merchants/{scheme}/{id}/sales-units:
     get:
       tags:
         - Merchants
@@ -365,16 +345,8 @@ paths:
         - $ref: "#/components/parameters/Vipps-System-Version"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Name"
         - $ref: "#/components/parameters/Vipps-System-Plugin-Version"
-        - name: orgno
-          in: path
-          description: The organization number for the merchant
-          required: true
-          schema:
-            minLength: 9
-            maxLength: 9
-            pattern: ^\d{9}$
-            type: string
-            example: 987654321
+        - $ref: "#/components/parameters/scheme" 
+        - $ref: "#/components/parameters/id" 
       responses:
         "200":
           description: OK
@@ -392,10 +364,10 @@ paths:
   /management/v1/sales-units:
     get:
       tags:
-        - Ideas
-      summary: Sales units - Get all sales units that a merchant or partner has access to.
+        - Sales units
+      summary: Get all sales units that a merchant or partner has access to.
       description: |-
-        Status: Idea/proposal. Available in Q4.
+        Status: Idea/proposal.
 
         For partners using
         [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
@@ -463,8 +435,8 @@ paths:
 
     patch:
       tags:
-        - Ideas
-      summary: Sales units - Update sales unit
+        - Sales units
+      summary: Update sales unit
       description: |-
         Status: Idea/proposal.
 
@@ -505,8 +477,8 @@ paths:
   /management/v1/api-quality/sales-units/{msn}:
     get:
       tags:
-        - Ideas
-      summary: "API quality - Get API quality info"
+        - API quality
+      summary: "Get API quality info: Errors, etc"
       description: |-
         Status: Idea/proposal.
 
@@ -1074,7 +1046,7 @@ components:
     Merchant:
       description: A merchant
       required:
-        - orgno
+        - businessIdentifier
         - name
       type: object
       properties:
@@ -1111,7 +1083,7 @@ components:
           example: "NO"
         businessAddress:
           $ref: '#/components/schemas/Address'
-        businesspostAddress:
+        businesspostlAddress:
           $ref: '#/components/schemas/Address'          
 
     bankAccountBBAN:
@@ -1164,28 +1136,34 @@ components:
         - city
         - country
       properties:
-        city:
-          type: string
-          example: Oslo
-        country:
-          type: string
-          example: 'NO'
-          pattern: '^[A-Z]{2}$'
-          description: Country code according to ISO 3166-2 (two capital letters).
         id:
           type: string
           format: uuid
-          description: 'Unique ID of the address, always provided in response from Vipps MobilePay.'
+          description: 'Unique ID of the address, always provided in response.'
+          example: 81b83246-5c19-7b94-875b-ea6d1114f099
         lines:
           type: array
-          description: 'Array of addressLines, for example street name, number, etc.'
+          description: 'Array of addressLines, for example street name, number, etc. May be empty if there is no street address.'
           items:
             type: string
+            maxLength: 30
             example: Robert Levins gate 5
         postCode:
           type: string
           description: Postcode of the address in local country format.
+          maxLength: 20
           example: '0154'
+        city:
+          type: string
+          description: The city.
+          maxLength: 30
+          example: Oslo
+        country:
+          type: string
+          description: Country code according to ISO 3166-2 (two capital letters).
+          pattern: '^[A-Z]{2}$'
+          maxLength: 2
+          example: 'NO'
 
     GetMerchantResponse:
       description: Response of a successful get merchant(s) operation
@@ -1298,7 +1276,7 @@ components:
           example: "business:NO:ORG"
         id:
           type: string
-          description: The business identifier.
+          description: The business identifier, typically the organization number.
           pattern: ^\d{9}$
           example: "9876543221"
 
@@ -1310,12 +1288,12 @@ components:
       properties:
         pricePackageId:
           type: string
-          description: The unique id for the price package
+          description: The unique id for the price package in UUID format.
           format: uuid
           example: "8a11afb7-c223-48ed-8ca6-4722b97261aa"
         name:
           type: string
-          description: The price package' name
+          description: The price package's name.
           maxLength: 30
           example: "POS standard"
         description:
@@ -1326,7 +1304,7 @@ components:
         visibleInSignupForm:
           type: boolean
           description: |-
-            An boolean indicating if the price package is visible for merchants to order on their own in our signup forms.
+            An boolean indicating whether the price package is visible for merchants to order on their own in our signup forms.
           example: True
         productType:
           type: string
@@ -1429,13 +1407,10 @@ components:
       name: Merchant-Serial-Number
       in: header
       description: |-
-        The Merchant Serial Number (MSN) is a unique id for the sale unit
-        that this payment is made for.
-        This is a required parameter if you are a partner
-        making payments on behalf of a merchant.
+        The Merchant Serial Number (MSN) is a unique id for the sale unit that this payment is made for.
+        This is a required parameter if you are a partner making payments on behalf of a merchant.
         The partner must use the merchant's MSN (not the partner's MSN).
-        This parameter is optional, and recommended, for regular Vipps
-        merchants making payments for themselves.
+        This parameter is optional, and recommended, for regular Vipps merchants making payments for themselves.
       schema:
         type: string
       example: 123456
@@ -1443,7 +1418,7 @@ components:
     msn:
       name: msn
       in: path
-      description: "MSN ((merchant serial number): The identifier of the sales unit." 
+      description: "MSN (merchant serial number): The identifier of the sales unit." 
       required: true
       schema:
         minLength: 5 
@@ -1451,3 +1426,20 @@ components:
         pattern: ^\d{5,6}$
         type: string
         example: 123456
+
+    scheme:
+      name: scheme
+      in: path
+      description: "The scheme used for identifying a merchant." 
+      required: true
+      schema:
+        type: string
+        example: "business:NO:ORG"  
+    id:
+      name: id
+      in: path
+      description: "The id used for identifying a merchant. For Norwegian companies this is the organization number." 
+      required: true
+      schema:
+        type: string
+        example: "9876543221"        
