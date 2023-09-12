@@ -3,11 +3,11 @@ info:
   title: Vipps MobilePay Management API
   version: "1.1.2"
   description: |-
-    The Management API lets partners and merchants manage their sales units, etc.
+    The Management API enables partners and merchants to manage their sales units, etc.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api).
 
     **Please note:** The Management API documentation contains both available functionality,
-    and functionality on the idea stage. See each endpoint and the API guide for details.
+    and functionality in the idea stage. See each endpoint and the API guide for details.
   contact:
     name: Vipps MobilePay AS
     url: "https://developer.vippsmobilepay.com/"
@@ -20,7 +20,7 @@ tags:
   - name: Merchants
     description: |-
       Functionality for managing merchants.
-      Merchants can to this on
+      Merchants can do this on
       [portal.vipps.no](https://portal.vipps.no).
   - name: Sales units
     description: |-
@@ -30,7 +30,7 @@ tags:
   - name: Product orders
     description: |-
       Functionality for managing product orders.
-      Merchants can to this on
+      Merchants can do this on
       [portal.vipps.no](https://portal.vipps.no).
   - name: Partners
     description: |-
