@@ -24,8 +24,7 @@ indicate that this is the actor making the API request.
 
 Authentication:
 
-* Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys)
-  if they have them, and the merchant's API keys if not.
+* Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys) to access the API
 * Soon: Merchants will be able to use their normal
   [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/).
 
