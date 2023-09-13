@@ -26,7 +26,7 @@ Authentication:
 
 * Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys)
   if they have them, and the merchant's API keys if not.
-* Soon: Merchants will be able to use their normal
+* Merchants will be able to use their normal
   [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/).
 
 See the
