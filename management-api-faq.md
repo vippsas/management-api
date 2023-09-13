@@ -33,8 +33,7 @@ and upcoming functionality.
 
 ## How can I get access?
 
-You use your
-[Partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys/).
+See:[Integrating with this API](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#integrating-with-this-api).
 
 ## What will be included in the initial version?
 
@@ -72,7 +71,7 @@ as described here:
 
 Allowing partners to log in on
 [portal.vipps.no](https://portal.vipps.no)
-_as partners_,
+_as partners_ is not possible,
 and there is no decision or concrete plan to implement the required functionality.
 
 The Management API is our priority and our aim is to offer as much functionality for partners
@@ -83,7 +82,7 @@ as possible.
 See:
 [How to check if a merchant is signed up with the partner as partner](https://developer.vippsmobilepay.com/docs/partner/#how-to-check-if-a-merchant-is-signed-up-with-the-partner-as-partner).
 
-## Where do I get the pricePackageId?
+## Where do I get the `pricePackageId`?
 
 The `pricePackageId` is a UUID, and you get it by email when you are activated as partner.
 A UUID has a format like this: `81b83246-5c19-7b94-875b-ea6d1114f099`.
@@ -100,8 +99,10 @@ environment. See
 
 ## Why is the URL for a pre-filled product order not working?
 
+It is probably because the pre-fill request was invalid.
+
 If you send an invalid request to
-[`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management#tag/Vipps-Product-Orders/operation/orderProduct),
+[`/management/v1/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct),
 the pre-fill will _in most cases_ fail with an error message.
 
 Although we do as much input validation as possible, it is not possible to validate all data, so in some cases the
@@ -116,7 +117,7 @@ an active sales unit connected with the partner.
 See:
 [How to check if a merchant is signed up with the partner as partner](https://developer.vippsmobilepay.com/docs/partner#how-to-check-if-a-merchant-is-signed-up-with-the-partner-as-partner).
 
-## When will it be possible to change an existing sales unit?
+## When will it be possible to update an existing sales unit?
 
 We are working on this now, as fast as we can!
 We know this is a very important feature, but can't give you a release date yet.
