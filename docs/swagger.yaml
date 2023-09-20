@@ -266,7 +266,7 @@ paths:
     get:
       tags:
         - Merchants
-      summary: Get a merchant by by business identifier
+      summary: Get a merchant by business identifier
       description: |-
         Status: Available in Q3.
         
@@ -333,7 +333,7 @@ paths:
     get:
       tags:
         - Merchants
-      summary: Get sales units for a merchant by by business identifier
+      summary: Get sales units for a merchant by business identifier
       description: |-
         Status: Available.
 
@@ -1167,11 +1167,10 @@ components:
           example: 'NO'
 
     GetMerchantResponse:
+      allOf:
+      - $ref: '#/components/schemas/Merchant'
       description: Response of a successful get merchant(s) operation
       type: object
-      properties:
-        merchant:
-          $ref: '#/components/schemas/Merchant'
     
     GetAllMerchantsResponse:
       description: List of the merchants a partner has access to
