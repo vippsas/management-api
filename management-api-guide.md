@@ -19,7 +19,7 @@ More functionality will soon be added in the coming months.
 
 ## Integrating with this API
 
-Both partners and _soon_ merchants can use the Management API, and we use "partner/merchant" to
+Both partners and *soon* merchants can use the Management API, and we use "partner/merchant" to
 indicate that this is the actor making the API request.
 
 Authentication:
@@ -39,10 +39,10 @@ These endpoints are available now (or very soon):
 | -------- | ----------- |
 | Merchants: | |
 | [`GET:/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by business identifier](#get-the-sales-units-for-a-merchant-by-business-identifier). An easy way to get a list of all the sales units that belong to the specified merchant. |
-| [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantBusinessIdentifier) | [Get one merchant by business identifier](#get-one-merchant-by-organization-number).  _Available in Q3_ |
+| [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantBusinessIdentifier) | [Get one merchant by business identifier](#get-one-merchant-by-business-identifier).  *Available in Q3* |
 | Sales units: | | |
 | [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](#get-information-about-a-sales-unit). This endpoint is for retrieving details about one sales unit (MSN), such as the name of the sales unit, the business identifier is belongs to and the sales unit's configuration. |
-| [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllSalesUnits) | [Get all sales units](#get-all-sales-units). _Available in Q4_ |
+| [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllSalesUnits) | [Get all sales units](#get-all-sales-units). *Available in Q4* |
 | Product orders: | | |
 | [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | [Pre-fill a product order](#pre-fill-a-product-order). This endpoint allows for "pre-fill" of the product order form on portal.vipps.no. The merchant simply uses a URL to get to the pre-filled product order, checks the data, and submits. This ensures that all the data in the form is correctly filled in, and can also "lock" parameters that are normally selectable. Product orders that have been pre-filled this way are processed faster, since they are correct and contain all the required information.  |
 | Partners: | | |
@@ -120,7 +120,7 @@ Response:
 }
 ```
 
-Future versions of the API will _probably_ return more information,
+Future versions of the API will *probably* return more information,
 and we will work with our partners to find out what is useful and possible.
 Some candidates:
 
@@ -211,7 +211,7 @@ Response (this improvement is provided for discussions of what we should investi
 The `businessIdentifier` is included to make it possible to find out the merchant that is associated with an MSN.
 This is useful when only the MSN is known.
 
-Future versions of the API will _probably_ return more information,
+Future versions of the API will *probably* return more information,
 and we will work with our partners to find out what is useful and possible.
 Some candidates:
 
@@ -272,7 +272,6 @@ The merchant simply uses the URL to get to the pre-filled product order, checks 
 **Please note:** The merchant cannot change the information provided by the partner, so if
 something needs to be corrected, the merchant must contact the partner to have
 the partner submit a new pre-fill product order with the correct details.
-
 
 <details>
 <summary>Example request</summary>
@@ -366,7 +365,6 @@ Response:
 </div>
 </details>
 
-
 #### Processing of the pre-filled product order
 
 When the submitted product order has been processed, an email is sent to both the
@@ -401,7 +399,7 @@ to sign a merchant agreement for a merchant is by using data from
 [Brønnøysundregistrene](https://brreg.no).
 It is therefore a requirement that the user logging in on
 [portal.vipps.no](https://portal.vipps.no)
-is registered as chairman of the board (_styreleder_) or CEO (_daglig leder_).
+is registered as chairman of the board (*styreleder*) or CEO (*daglig leder*).
 The user will then automatically be presented with the pre-filled PO.
 
 ##### Scenario 1: The merchant does not have a Merchant Agreement
@@ -414,7 +412,7 @@ The user will then automatically be presented with the pre-filled PO.
    [portal.vipps.no](https://portal.vipps.no).
 3. The merchant is presented with a page informing them that they need to
    sign an MA before filling in the PO.
-4. The merchant completes, signs and submits the MA.   
+4. The merchant completes, signs and submits the MA.
 5. The merchant re-uses the link or finds the link to the pre-filled PO form on the
    front page on
    [portal.vipps.no](https://portal.vipps.no)
@@ -519,7 +517,6 @@ Response:
 
 ## Ideas and proposals
 
-
 | Endpoint | Description |
 | -------- | ----------- |
 | Merchants: | |
@@ -533,7 +530,6 @@ Response:
 | [`GET:/partners/whoami`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getPartnerWhoami) | [Get information about a partner](#get-information-about-a-partner).  |
 | API quality: | | |
 | [`GET:/api-quality/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getApiQuality) | [API quality](#api-quality). |
-
 
 ### Get all merchants
 
@@ -611,12 +607,12 @@ Example `PATCH` request body:
 
 Status: 💡 Idea/proposal.
 
-For both merchants and partners. 
+For both merchants and partners.
 
 The best way to check the status of a product order is on
 [portal.vipps.no](https://portal.vipps.no).
 
-We are _considering_ an endpoint like this:
+We are *considering* an endpoint like this:
 
 [`GET:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/productOrderDetails)
 
@@ -643,7 +639,6 @@ This may be used if an incorrect PO has been pre-filled with
 [`POST:/management/v1/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/orderProduct).
 
 [`DELETE:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/deleteProductOrder)
-
 
 ### Get information about a partner
 
@@ -710,4 +705,3 @@ the checklists for all APIs. For example, see:
 * [Recurring API checklist](https://developer.vippsmobilepay.com/docs/APIs/recurring-api/vipps-recurring-api-checklist/)
 
 See [Errors](https://developer.vippsmobilepay.com/docs/common-topics/errors/) for examples of common errors.
-

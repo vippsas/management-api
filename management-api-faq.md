@@ -16,20 +16,14 @@ for all the technical details, and
 for all partner information.
 
 See also:
+
 * [Common API FAQ](https://developer.vippsmobilepay.com/docs/faqs).
 * [Vipps MobilePay Getting Started guide](https://developer.vippsmobilepay.com/docs/getting-started).
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/).
-
-<!-- END_COMMENT -->
 
 ## When will the Management API be available?
 
 It's available now. We are continuously improving it, and have documented both existing functionality
-and upcoming functionality. 
+and upcoming functionality.
 
 ## How can I get access?
 
@@ -65,13 +59,13 @@ Contact your partner manager or key account manager.
 
 It is not possible for partners to sign in on
 [portal.vipps.no](https://portal.vipps.no)
-_as partners_, but merchants may give access to individual users
+*as partners*, but merchants may give access to individual users
 as described here:
 [How to add a user on portal.vipps.no](https://developer.vippsmobilepay.com/docs/partner/add-portal-user/).
 
 Allowing partners to log in on
 [portal.vipps.no](https://portal.vipps.no)
-_as partners_ is not possible,
+*as partners* is not possible,
 and there is no decision or concrete plan to implement the required functionality.
 
 The Management API is our priority and our aim is to offer as much functionality for partners
@@ -103,7 +97,7 @@ It is probably because the pre-fill request was invalid.
 
 If you send an invalid request to
 [`/management/v1/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct),
-the pre-fill will _in most cases_ fail with an error message.
+the pre-fill will *in most cases* fail with an error message.
 
 Although we do as much input validation as possible, it is not possible to validate all data, so in some cases the
 pre-fill request will succeed, and the pre-fill URL will lead to an empty product order form.
