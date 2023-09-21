@@ -60,7 +60,7 @@
               }
             ],
             "url": {
-              "raw": "{{base_url_production}}/management/v1/merchants/:orgno/sales-units",
+              "raw": "{{base_url_production}}/management/v1/merchants/:scheme/:id/sales-units",
               "host": [
                 "{{base_url_production}}"
               ],
@@ -73,9 +73,14 @@
               ],
               "variable": [
                 {
-                  "key": "orgno",
+                  "key": "scheme",
+                  "value": "business:NO:ORG",
+                  "description": "(Required) The scheme used for identifying a merchant."
+                },
+                {
+                  "key": "id",
                   "value": "{{orgno}}",
-                  "description": "(Required) The Organization number for the merchant"
+                  "description": "(Required) The id used for identifying a merchant. For Norwegian companies this is the organization number."
                 }
               ]
             }
