@@ -291,7 +291,7 @@ Here is a sample request to
   },
   "salesUnitName": "ACME Fantastic Fitness",
   "salesUnitLogo": "VGhlIGltYWdlIGdvZXMgaGVyZQ==",
-    "bankAccount": {
+    "settlementAccount": {
       "scheme": "BBAN:NO",
       "id": "86011117947"
   },
