@@ -178,10 +178,12 @@ Response (this improvement is provided for discussions of what we should investi
       "recurringAllowed":false,
       "customerMustBePresent":false,
       "userinfoNinAllowed":false,
-   }
+   },
    "bankDetails": {
-      "bankAccountBban":"86011117947",
-      "bankAccountIban":"NO93 8601 1117 947",
+      "bankAccount": {
+         "id": "NO93 8601 1117 947",
+         "scheme": "IBAN"
+      }
    },
    "changelog": [
       {
@@ -289,9 +291,9 @@ Here is a sample request to
   },
   "salesUnitName": "ACME Fantastic Fitness",
   "salesUnitLogo": "VGhlIGltYWdlIGdvZXMgaGVyZQ==",
-    "settlementAccountNumber": {
-    "scheme": "BBAN:NO",
-    "id": "86011117947"
+    "bankAccount": {
+      "scheme": "BBAN:NO",
+      "id": "86011117947"
   },
   "pricePackageId": "8a11afb7-c223-48ed-8ca6-4722b97261aa",
   "productType": "VIPPS_PA_NETT",

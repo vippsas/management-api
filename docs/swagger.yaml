@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Vipps MobilePay Management API
-  version: "1.1.3"
+  version: "1.1.4"
   description: |-
     The Management API enables partners and merchants to manage their sales units, etc.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api).
@@ -589,7 +589,6 @@ components:
             Images not matching the above criteria will not be shown to the merchant in the merchant portal.
             The logo can be edited later on portal.vipps.no.
         bankAccount:
-          description: The settlement account for the given business.
           $ref: '#/components/schemas/BankAccount'
         pricePackageId:
           type: string
