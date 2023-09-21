@@ -588,8 +588,9 @@ components:
             The minimum size is 100 x 100 pixels.
             Images not matching the above criteria will not be shown to the merchant in the merchant portal.
             The logo can be edited later on portal.vipps.no.
-        settlementAccountNumber:
-          $ref: '#/components/schemas/bankAccountBBAN'
+        bankAccount:
+          description: The settlement account for the given business.
+          $ref: '#/components/schemas/BankAccount'
         pricePackageId:
           type: string
           format: uuid
@@ -1087,46 +1088,25 @@ components:
         businesspostAddress:
           $ref: '#/components/schemas/Address'          
 
-    bankAccountBBAN:
-      title: Bank account in BBAN format. ISO 13616.
+    BankAccount:
+      title: Bank account for the given entity.
       type: object
+      nullable: true
       required:
         - scheme
         - id
       properties:
         scheme:
           type: string
-          description: The type of identifier for the bank.
+          description: The type of identifier for the bank account. Only Norwegian bank account number ('BBAN:NO') is currently supported.
           minLength: 5
           maxLength: 20
           example: "BBAN:NO"
         id:
           type: string
           description: The account number (or id).
-          minLength: 9
-          maxLength: 20
-          pattern: ^\d{9,}$
+          pattern: ^\d{9,34}$
           example: "86011117947"
-
-    bankAccountIBAN:
-      title: Bank account in IBAN format. ISO 13616.
-      type: object
-      required:
-        - scheme
-        - id
-      properties:
-        scheme:
-          type: string
-          description: The type of identifier for the bank.
-          minLength: 5
-          maxLength: 20
-          example: "IBAN:NO"
-        id:
-          type: string
-          description: The account number (or id). No whitespace.
-          minLength: 9
-          maxLength: 20
-          example: "NO9386011117947"      
 
     Address:
       title: Address
