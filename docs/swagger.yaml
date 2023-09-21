@@ -588,7 +588,7 @@ components:
             The minimum size is 100 x 100 pixels.
             Images not matching the above criteria will not be shown to the merchant in the merchant portal.
             The logo can be edited later on portal.vipps.no.
-        settlementAccount:
+        settlementBankAccount:
           $ref: '#/components/schemas/BankAccount'
         pricePackageId:
           type: string
