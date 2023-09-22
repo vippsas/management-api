@@ -38,10 +38,7 @@ tags:
       [Partners](https://developer.vippsmobilepay.com/docs/partner/).
   - name: Ideas
     description: |-
-      Proposals and ideas for future functionality. Please give us your feedback if you are interested in these.    
-  #- name: API quality
-  #  description: |-
-  #    Information about a partner's or merchant's API usage quality.
+      Proposals and ideas for future functionality. Please give us your feedback if you are interested in these.
 
 security:
   - Bearer-Authorization: []
@@ -416,9 +413,7 @@ paths:
           description: The Vipps MSN (merchant serial number) for the sales unit.
           required: true
           schema:
-            minLength: 5
-            maxLength: 6
-            pattern: ^\d{5,6}$
+            pattern: ^\d{3,}$
             type: string
       responses:
         "200":
@@ -616,21 +611,11 @@ components:
           example: VIPPS_PA_NETT
           description: The type of product ordered for the merchant.
         productUseCase:
-          type: string
-          enum:
-            - Website
-            - WebsiteWithTest
-            - App
-            - Unknown
-          example: WebsiteWithTest
-          description: |-
-            Where will sales take place?
-            A website?
-            A website that is not yet launched, so a test website must be used?
-            A native app?
-            Something else?
+          nullable: true
+          $ref: '#/components/schemas/ProductUseCase'
         annualTurnover:
           type: integer
+          nullable: true
           minimum: 0
           maximum: 999999999
           format: int64
@@ -1242,7 +1227,7 @@ components:
       type: object
       description: |-
         Business registration number of the merchant for whom the partner is submitting the product order.
-        Only Norwegian (`business:NO:ORG``) business registration numbers are allowed for now, but this format supports all countries.
+        Only Norwegian (`business:NO:ORG`) business registration numbers are allowed for now, but this format supports all countries.
       required:
         - scheme
         - id
@@ -1258,6 +1243,22 @@ components:
           description: The business identifier, typically the business identifier.
           pattern: ^\d{9}$
           example: "9876543221"
+    
+    ProductUseCase:
+      type: string
+      nullable: true
+      enum:
+        - Website
+        - WebsiteWithTest
+        - App
+        - Unknown
+      example: WebsiteWithTest
+      description: |-
+        Where will sales take place?
+        A website?
+        A website that is not yet launched, so a test website must be used?
+        A native app?
+        Something else?
 
     PricePackage:
       required:
@@ -1290,6 +1291,7 @@ components:
           enum:
             - ePayment
             - ePaymentCustomerPresent
+            - checkout
 
     Problem:
       title: Problem
