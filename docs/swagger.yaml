@@ -1330,48 +1330,46 @@ components:
   parameters:
     Vipps-System-Name:
       name: Vipps-System-Name
-      required: true
       in: header
       description: |-
-        The name of the solution. One word in lowercase letters is good.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
+        The name of the solution.
+        One word in lowercase letters is good.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
-      example: woocommerce
-    
+        maxLength: 30
+        example: WooCommerce
     Vipps-System-Version:
       name: Vipps-System-Version
-      required: true
       in: header
       description: |-
         The version number of the solution.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
-      example: "5.4"
-    
+        maxLength: 30
+        example: 5.4.0
     Vipps-System-Plugin-Name:
       name: Vipps-System-Plugin-Name
-      required: true
       in: header
       description: |-
-        The name of the plugin. One word in lowercase letters is good.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
+        The name of the plugin (if applicable).
+        One word in lowercase letters is good.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
-      example: "vipps-woocommerce"
-    
+        maxLength: 30
+        example: woocommerce-payment
     Vipps-System-Plugin-Version:
       name: Vipps-System-Plugin-Version
       in: header
-      required: true
       description: |-
-        The version number of the plugin.
-        See [HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
+        The version number of the plugin (if applicable).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
-      example: "1.2.1"
-
+        maxLength: 30
+        example: 1.2.1
     Idempotency-Key:
       in: header
       name: Idempotency-Key
