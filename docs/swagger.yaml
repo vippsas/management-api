@@ -1316,12 +1316,8 @@ components:
           description: A human-readable explanation specific to this occurrence of the problem.
         instance:
           type: string
-          example: "/products/orders"
+          example: "urn:uuid:123e4567-e89b-12d3-a456-426655440000"
           description: A URI reference that identifies the specific occurrence of the problem
-        traceId:
-          type: string
-          example: "81b83246-5c19-7b94-875b-ea6d1114f099"
-          description: An id that can be used to facilitate in tracing the error.
         extraDetails:
           type: array
           items:
