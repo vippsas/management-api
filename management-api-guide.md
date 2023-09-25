@@ -275,8 +275,8 @@ The response from a pre-fill request contains a URL to
 [portal.vipps.no](https://portal.vipps.no).
 The merchant simply uses the URL to get to the pre-filled product order, checks the data, and submits.
 
-**Please note:** The merchant cannot change the information provided by the partner, so if
-something needs to be corrected, the merchant must contact the partner to have
+**Please note:** The merchant cannot change the `pricePackageId` provided by the partner, so if
+it needs to be corrected, the merchant must contact the partner to have
 the partner submit a new pre-fill product order with the correct details.
 
 <details>
