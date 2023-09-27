@@ -27,15 +27,8 @@ and upcoming functionality.
 
 ## How can I get access?
 
-See:[Integrating with this API](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#integrating-with-this-api).
-
-## What will be included in the initial version?
-
-See the
-[API guide](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/)
-and
-[API spec](https://developer.vippsmobilepay.com/api/management/)
-for the status of each endpoint.
+See:
+[Integrating with this API](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#integrating-with-this-api).
 
 ## What are the benefits of the Management API over the Partner API?
 
@@ -50,6 +43,8 @@ for the status of each endpoint.
   endpoint in the Management API will give an error if the partner sends incorrect or invalid data.
   In the Partner API the error will not be discovered until the merchant attempts to use the URL
   to the incorrectly submitted pre-filled product order.  
+* The Management API supports international merchants, since the `businessIdentifier`
+  also works for non-Norwegian merchants.
 
 ## How can I make feature requests and give input for the Management API?
 
