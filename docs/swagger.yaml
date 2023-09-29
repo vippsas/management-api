@@ -265,7 +265,7 @@ paths:
         - Merchants
       summary: Get a merchant by business identifier
       description: |-
-        Status: Available in Q3.
+        Status: Available first week in Q4.
         
         Get basic information about a merchant.
         **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
