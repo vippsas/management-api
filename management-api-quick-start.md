@@ -78,8 +78,6 @@ curl https://api.vipps.no/management/v1/merchants/{scheme}/{id}/sales-units \
 -H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
 -H "Vipps-System-Name: acme" \
 -H "Vipps-System-Version: 3.1.2" \
--H 'Vipps-System-Plugin-Name: vipps-postman' \
--H 'Vipps-System-Plugin-Version: 2.0' \
 -X GET
 ```
 
@@ -99,8 +97,6 @@ curl https://api.vipps.no/management/v1/sales-units/{msn} \
 -H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
 -H "Vipps-System-Name: acme" \
 -H "Vipps-System-Version: 3.1.2" \
--H 'Vipps-System-Plugin-Name: vipps-postman' \
--H 'Vipps-System-Plugin-Version: 2.0' \
 -X GET
 ```
 
