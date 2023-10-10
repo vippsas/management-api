@@ -553,7 +553,7 @@ Response:
 {
    "merchants":[
       {
-          "businessIdentifier":{
+         "businessIdentifier":{
             "scheme":"business:NO:ORG",
             "id":"987654321"
          },
