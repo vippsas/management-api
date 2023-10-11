@@ -1237,7 +1237,7 @@ components:
           description: 
             The type of organization identifier, typically
             `business:countryCode:type`, for example
-            `business:NO:org`, `business:DK:org`, `business:FI:org`, etc.
+            `business:NO:ORG`, `business:DK:ORG`, `business:FI:ORG`, etc.
           minLength: 10
           maxLength: 20
           example: "business:NO:ORG"
@@ -1416,7 +1416,7 @@ components:
         desxcription:
             The type of organization identifier, typically
             `business:countryCode:type`. For example
-            `business:NO:org`, `business:DK:org`, `business:FI:org`, etc.
+            `business:NO:ORG`, `business:DK:ORG`, `business:FI:ORG`, etc.
         example: "business:NO:ORG"  
     id:
       name: id
