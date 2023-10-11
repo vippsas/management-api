@@ -429,7 +429,7 @@ The user will then automatically be presented with the pre-filled PO.
    [`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
 
 The most important part of the MA form is the "reelle rettighetshavere"
-("real rights holders"), meaning the people with direct or direct ownership or
+("real rights holders"), meaning the people with direct or indirect ownership or
 rights for the company. This is not something the partner can be expected to
 know, and in any case this is information that must be signed with BankID by a
 person that has signatory rights for the merchant. The form looks like this:
