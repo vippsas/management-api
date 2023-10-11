@@ -1234,13 +1234,16 @@ components:
       properties:
         scheme:
           type: string
-          description: The type of identifier for the business.
+          description: 
+            The type of organization identifier, typically
+            `business:countryCode:type`, for example
+            `business:NO:org`, `business:DK:org`, `business:FI:org`, etc.
           minLength: 10
           maxLength: 20
           example: "business:NO:ORG"
         id:
           type: string
-          description: The business identifier, typically the business identifier.
+          description: The business identifier, typically the organization number, VAT registration number, etc.
           pattern: ^\d{9}$
           example: "9876543221"
     
@@ -1405,10 +1408,15 @@ components:
     scheme:
       name: scheme
       in: path
-      description: "The scheme used for identifying a merchant." 
+      description: 
+      "The scheme used for identifying a merchant." 
       required: true
       schema:
         type: string
+        desxcription:
+            The type of organization identifier, typically
+            `business:countryCode:type`. For example
+            `business:NO:org`, `business:DK:org`, `business:FI:org`, etc.
         example: "business:NO:ORG"  
     id:
       name: id
