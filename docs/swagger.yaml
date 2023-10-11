@@ -1408,12 +1408,10 @@ components:
     scheme:
       name: scheme
       in: path
-      description: 
-      "The scheme used for identifying a merchant." 
       required: true
       schema:
         type: string
-        desxcription:
+        description:
             The type of organization identifier, typically
             `business:countryCode:type`. For example
             `business:NO:ORG`, `business:DK:ORG`, `business:FI:ORG`, etc.
