@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Vipps MobilePay Management API
-  version: "1.1.4"
+  version: "1.1.5"
   description: |-
     The Management API enables partners and merchants to manage their sales units, etc.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api).
@@ -265,13 +265,13 @@ paths:
         - Merchants
       summary: Get a merchant by business identifier
       description: |-
-        Status: Available first week in Q4.
+        Status: Available.
         
         Get basic information about a merchant.
         **Please note:** There are strict rules for what information Vipps MobilePay is allowed to share with
         a partner, as this requires active consent from the merchant, and the merchant must also
         be able to withdraw the consent.
-      operationId: getMerchantBusinessIdentifier
+      operationId: getMerchantByBusinessIdentifier
       parameters:
         - $ref: "#/components/parameters/Merchant-Serial-Number"
         - $ref: "#/components/parameters/Vipps-System-Name"
@@ -1020,7 +1020,6 @@ components:
             - PENDING
             - ACTIVE
             - DEACTIVATED
-          default: ACTIVE
           example: ACTIVE  
 
     GetPartnerPricePackagesResponse:
@@ -1036,7 +1035,7 @@ components:
         - name
       type: object
       properties:
-        businessidentifier:
+        businessIdentifier:
           $ref: '#/components/schemas/businessIdentifier'
         name:
           type: string
@@ -1050,7 +1049,6 @@ components:
           enum:
             - ACTIVE
             - DEACTIVATED
-          default: ACTIVE
           example: ACTIVE  
         createdAt:
           type: string
@@ -1062,15 +1060,15 @@ components:
           description: The timestamp (ISO-8601) for when the merchant was updated (if it has been updated).
           format: date-time
           example: "2022-09-02T06:45:25.921251Z"
-        countryCode":
+        countryCode:
           type: string
           description: The merchant's country code, ISO 3166-2 (two capital letters).
           pattern: '^[A-Z]{2}$'
           example: "NO"
         businessAddress:
           $ref: '#/components/schemas/Address'
-        businesspostAddress:
-          $ref: '#/components/schemas/Address'          
+        businessPostAddress:
+          $ref: '#/components/schemas/Address' 
 
     BankAccount:
       title: Bank account for the given entity.
@@ -1095,17 +1093,10 @@ components:
     Address:
       title: Address
       type: object
+      nullable: true
       required:
         - lines
-        - postCode
-        - city
-        - country
       properties:
-        id:
-          type: string
-          format: uuid
-          description: 'Unique ID of the address, always provided in response.'
-          example: 81b83246-5c19-7b94-875b-ea6d1114f099
         lines:
           type: array
           description: 'Array of addressLines, for example street name, number, etc. May be empty if there is no street address.'
@@ -1115,16 +1106,19 @@ components:
             example: Robert Levins gate 5
         postCode:
           type: string
+          nullable: true
           description: Postcode of the address in local country format.
           maxLength: 20
           example: '0154'
         city:
           type: string
+          nullable: true
           description: The city.
           maxLength: 30
           example: Oslo
-        country:
+        countryCode:
           type: string
+          nullable: true
           description: Country code according to ISO 3166-2 (two capital letters).
           pattern: '^[A-Z]{2}$'
           maxLength: 2
@@ -1237,7 +1231,7 @@ components:
           description: 
             The type of organization identifier, typically
             `business:countryCode:type`, for example
-            `business:NO:ORG`, `business:DK:ORG`, `business:FI:ORG`, etc.
+            `business:NO:ORG`, `business:DK:CVR`, `business:FI:business:FI:Y-tunnus`, etc.
           minLength: 10
           maxLength: 20
           example: "business:NO:ORG"
@@ -1414,7 +1408,7 @@ components:
         description:
             The type of organization identifier, typically
             `business:countryCode:type`. For example
-            `business:NO:ORG`, `business:DK:ORG`, `business:FI:ORG`, etc.
+            `business:NO:ORG`, `business:DK:CVR`, `business:FI:Y-tunnus`, etc.
         example: "business:NO:ORG"  
     id:
       name: id
