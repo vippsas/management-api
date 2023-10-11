@@ -591,10 +591,10 @@ components:
           example: "8a11afb7-c223-48ed-8ca6-4722b97261aa"
           nullable: true
           description: |-
-            Only appliccable when the `productType` allows for different prices, such as:
-            `VIPPS_PA_NETT`, `VIPPS_I_KASSA` and `VIPPS_CHECKOUT`.
             This is the id for one of the price packages that are available for the partner to use.
-            The partner's price packages are retrieved with `GET:/management/v1/partners/price-packages`. 
+            The partner's price packages are retrieved with `GET:/management/v1/partners/price-packages`.
+            Only applicable when the `productType` allows for different prices, such as:
+            `VIPPS_PA_NETT`, `VIPPS_I_KASSA` and `VIPPS_CHECKOUT`. 
             If this field is not provided, the merchant must select the price manually.
             Partners may have, and specify, price packages that are not shown to merchants that order manually.
         productType:
