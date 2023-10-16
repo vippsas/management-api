@@ -631,7 +631,7 @@ Response, if the pre-fill URL has been accessed:
 }
 ```
 
-Below are some _ideas_  for statuses to be returned:
+Below are some _ideas_ for statuses to be returned:
 
 | Status       | Description                                           | Realistic?    | Comment                 |
 | ------------ | ----------------------------------------------------- | ------------- | ----------------------- |
