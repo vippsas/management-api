@@ -631,10 +631,23 @@ Response, if the pre-fill URL has been accessed:
 }
 ```
 
+Below are some _ideas_  for statuses to be returned:
+
+| Status       | Description                                           | Realistic?    | Comment                 |
+| ------------ | ----------------------------------------------------- | ------------- | ----------------------- |
+| `INITIATED`  | The PO exists, but nothing has been done with it yet. | ✅ Yes.       |                         |     
+| `OPENED`     | The PO URL has been accessed.                         | ✅ Yes.       |                         | 
+[ `SUBMITTED`  | The merchant has clicked "Send" on the PO.            | ✅ Yes.       |                         | 
+| `PENDING`    | Processing has not started yet.                       | Maybe not.    |                         | 
+| `PROCESSING` | Processing has started .                              | Maybe not.    |                         | 
+| `AWAITING-CUSTOMER` | We are waiting for the merchant to respond.    | Maybe not.    |                         |
+| `APPROVED`   | Everything OK: The merchant is approved and active.   | ✅ Yes.       |                         | 
+| `REJECTED`   | Something is not OK. High risk, suspected fraud, etc. | Maybe not.    |                         |
+
+
 **Please note:** There are strict rules for what information we are
-allowed to share with a partner, as this requires active consent from the merchant,
-and the merchant must also be able to withdraw the consent. Implementing a
-consent solution for merchants is complex, and may not be possible to prioritize.
+allowed to share with a partner. Implementing a very detailed
+status functionality may not be possible.
 
 ### Delete a product order
 
