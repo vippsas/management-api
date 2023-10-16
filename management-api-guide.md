@@ -638,11 +638,11 @@ Below are some _ideas_  for statuses to be returned:
 | `INITIATED`  | The PO exists, but nothing has been done with it yet. | ✅ Yes.       |                         |     
 | `OPENED`     | The PO URL has been accessed.                         | ✅ Yes.       |                         | 
 [ `SUBMITTED`  | The merchant has clicked "Send" on the PO.            | ✅ Yes.       |                         | 
-| `PENDING`    | Processing has not started yet.                       | Maybe not.    |                         | 
-| `PROCESSING` | Processing has started .                              | Maybe not.    |                         | 
-| `AWAITING-CUSTOMER` | We are waiting for the merchant to respond.    | Maybe not.    |                         |
-| `APPROVED`   | Everything OK: The merchant is approved and active.   | ✅ Yes.       |                         | 
-| `REJECTED`   | Something is not OK. High risk, suspected fraud, etc. | Maybe not.    |                         |
+| `PENDING`    | Processing has not started yet.                       | Maybe not.    |  We may not be able to provide this.                        | 
+| `PROCESSING` | Processing has started.                               | Maybe not.    |  We may not be able to provide this.                        | 
+| `AWAITING-CUSTOMER` | We are waiting for the merchant to respond.    | Maybe not.    |  We may not be able to provide this.                       |
+| `APPROVED`   | Everything OK: The merchant is approved and active.   | ✅ Yes.       |  Similar to ]`GET:/management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-business-identifier)                       | 
+| `REJECTED`   | Something is not OK. High risk, suspected fraud, etc. | Maybe not.    | We may not be able to provide this.                           |
 
 
 **Please note:** There are strict rules for what information we are
