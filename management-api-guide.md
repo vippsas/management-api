@@ -635,7 +635,7 @@ Below are some _ideas_ for statuses to be returned:
 
 | Status       | Description                                           | Realistic?    | Comment                 |
 | ------------ | ----------------------------------------------------- | ------------- | ----------------------- |
-| `INITIATED`  | The PO exists, but nothing has been done with it yet. | ✅ Yes.       |                         |     
+| `CREATED`    | The PO exists, but nothing has been done with it yet. | ✅ Yes.       |                         |     
 | `OPENED`     | The PO URL has been accessed.                         | ✅ Yes.       |                         | 
 | `SUBMITTED`  | The merchant has clicked "Send" on the PO.            | ✅ Yes.       |                         | 
 | `PENDING`    | Processing has not started yet.                       | Maybe not.    |  We may not be able to provide this.                        | 
