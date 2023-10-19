@@ -42,16 +42,17 @@ These endpoints are available now (or very soon):
 | Endpoint | Description |
 | -------- | ----------- |
 | Merchants: | |
-| [`GET:/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by business identifier](#get-the-sales-units-for-a-merchant-by-business-identifier). An easy way to get a list of all the sales units that belong to the specified merchant. |
+| [`GET:/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by business identifier](#get-the-sales-units-for-a-merchant-by-business-identifier). Get a list of all the sales units that belong to the specified merchant. |
 | [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantBusinessIdentifier) | [Get one merchant by business identifier](#get-one-merchant-by-business-identifier). |
-| Sales units: | | |
-| [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](#get-information-about-a-sales-unit). This endpoint is for retrieving details about one sales unit (MSN), such as the name of the sales unit, the business identifier is belongs to and the sales unit's configuration. |
-| [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllSalesUnits) | [Get all sales units](#get-all-sales-units). An easy way to get a list of all the sales units connected to the requesting merchant or partner. |
-| Product orders: | | |
-| [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | [Pre-fill a product order](#pre-fill-a-product-order). This endpoint allows for "pre-fill" of the product order form on portal.vipps.no. The merchant simply uses a URL to get to the pre-filled product order, checks the data, and submits. This ensures that all the data in the form is correctly filled in, and can also "lock" parameters that are normally selectable. Product orders that have been pre-filled this way are processed faster, since they are correct and contain all the required information.  |
-| Partners: | | |
+| Sales units: | | 
+| [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](#get-information-about-a-sales-unit). Get details about one sales unit (MSN). |
+| [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllSalesUnits) | [Get all sales units](#get-all-sales-units). *Available in Q4.* |
+| Product orders: | | 
+| [`POST:/products-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | [Pre-fill a product order](#pre-fill-a-product-order). Allows for "pre-fill" of the product order form on portal.vipps.no, ensuring correct information, a simple experience for the merchant, and speedy processing of the product order.  |
+| [`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/productOrderDetails) | [Get information about a product order](#get-information-about-a-product-order). *Available in Q4.* |
+| [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/deleteProductOrder) | [Delete a product order](#delete-a-product-order). *Available in Q4.* |
+| Partners: | | 
 | [`GET:/partners/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages) | [Get the price packages for a partner](#get-the-price-packages-for-a-partner). Enables a partner to retrieve its price package details.  The price packages are needed for pre-filling the product orders. |
-
 More functionality will be available soon, see:
 [Ideas and proposals](#ideas-and-proposals).
 
@@ -529,9 +530,6 @@ Response:
 | [`GET:/merchants`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllMerchants) | [Get all merchants](#get-all-merchants). |
 | [`GET:/merchants/{scheme}/{id}/contracts`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantContracts) | [Get a merchant's contract(s)](#get-a-merchants-contracts). |
 | [`PATCH:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/updateMsn) | [Update sales unit](#update-sales-unit). |
-| Product orders: | | |
-| [`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/productOrderDetails) | [Get information about a product order](#get-information-about-a-product-order). |
-| [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/deleteProductOrder) | [Delete a product order](#delete-a-product-order). |
 | Partners: | | |
 | [`GET:/partners/whoami`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getPartnerWhoami) | [Get information about a partner](#get-information-about-a-partner).  |
 | API quality: | | |
@@ -631,10 +629,23 @@ Response, if the pre-fill URL has been accessed:
 }
 ```
 
+Below are some _ideas_ for statuses to be returned:
+
+| Status       | Description                                           | Realistic?    | Comment                 |
+| ------------ | ----------------------------------------------------- | ------------- | ----------------------- |
+| `CREATED`    | The PO exists, but nothing has been done with it yet. | ✅ Yes.       |                         |     
+| `OPENED`     | The PO URL has been accessed.                         | ✅ Yes.       |                         | 
+| `SUBMITTED`  | The merchant has clicked "Send" on the PO.            | ✅ Yes.       |                         | 
+| `PENDING`    | Processing has not started yet.                       | Maybe not.    |  We may not be able to provide this.                        | 
+| `PROCESSING` | Processing has started.                               | Maybe not.    |  We may not be able to provide this.                        | 
+| `AWAITING-CUSTOMER` | We are waiting for the merchant to respond.    | Maybe not.    |  We may not be able to provide this.                       |
+| `APPROVED`   | Everything OK: The merchant is approved and active.   | Maybe not.    |  Similar to [`GET:/management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-business-identifier)                       | 
+| `STOPPED`   | May be: Cancelled by the partner because of incorrect pre-fill data, or rejected by us because something is not OK (high risk, etc). | Maybe not.    | We may not be able to provide this.                           |
+
+
 **Please note:** There are strict rules for what information we are
-allowed to share with a partner, as this requires active consent from the merchant,
-and the merchant must also be able to withdraw the consent. Implementing a
-consent solution for merchants is complex, and may not be possible to prioritize.
+allowed to share with a partner. Implementing a very detailed
+status functionality may not be possible.
 
 ### Delete a product order
 
