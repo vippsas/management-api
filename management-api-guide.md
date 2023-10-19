@@ -8,7 +8,7 @@ pagination_prev: null
 
 # API guide
 
-![Vipps](./images/vipps.png) *Available for Vipps now. New features may be provided in the future.*
+![Vipps](./images/vipps.png) *Available for Vipps. New features are under development now. See [Ideas and proposals](#ideas-and-proposals).*
 
 ![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
 
@@ -19,7 +19,7 @@ as much as possible without needing assistance.
 **Please note:**
 This API replaces the
 [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/) and now contains all the same functionality.
-More functionality will soon be added in the coming months.
+[More functionality](#ideas-and-proposals) will soon be added in the coming months.
 
 ## Integrating with this API
 
@@ -53,7 +53,6 @@ These endpoints are available now (or very soon):
 | [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/deleteProductOrder) | [Delete a product order](#delete-a-product-order). *Available in Q4.* |
 | Partners: | | 
 | [`GET:/partners/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages) | [Get the price packages for a partner](#get-the-price-packages-for-a-partner). Enables a partner to retrieve its price package details.  The price packages are needed for pre-filling the product orders. |
-
 More functionality will be available soon, see:
 [Ideas and proposals](#ideas-and-proposals).
 
@@ -229,7 +228,7 @@ Some candidates:
 
 ### Get all sales units
 
-Status: 🟡 Available in Q4.
+Status: ✅ Available.
 
 Get all sales units that a merchant or partner has access to.
 
