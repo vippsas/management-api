@@ -69,7 +69,8 @@ as possible.
 ## How can I check the status of a merchant's product order?
 
 See:
-[How to check if a merchant is signed up with the partner as partner](https://developer.vippsmobilepay.com/docs/partner/#how-to-check-if-a-merchant-is-signed-up-with-the-partner-as-partner).
+* [Get information about a product order](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-information-about-a-product-order)
+* [How to check if a merchant is signed up with the partner as partner](https://developer.vippsmobilepay.com/docs/partner/#how-to-check-if-a-merchant-is-signed-up-with-the-partner-as-partner).
 
 ## Where do I get the `pricePackageId`?
 
@@ -91,7 +92,7 @@ environment. See
 It is probably because the pre-fill request was invalid.
 
 If you send an invalid request to
-[`/management/v1/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct),
+[`POST:/management/v1/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct),
 the pre-fill will *in most cases* fail with an error message.
 
 Although we do as much input validation as possible, it is not possible to validate all data, so in some cases the
@@ -103,12 +104,8 @@ It depends on which request has been made.
 Partners will get this error if they attempt to retrieve data for a merchant that does not yet have
 an active sales unit connected with the partner.
 
-See:
-[How to check if a merchant is signed up with the partner as partner](https://developer.vippsmobilepay.com/docs/partner#how-to-check-if-a-merchant-is-signed-up-with-the-partner-as-partner).
-
 ## When will it be possible to update an existing sales unit?
 
-We are working on this now, as fast as we can!
 We know this is a very important feature, but can't give you a release date yet.
 
 See
