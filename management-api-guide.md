@@ -639,7 +639,7 @@ Below are some _ideas_ for statuses to be returned:
 | `PENDING`    | Processing has not started yet.                       | Maybe not.    |  We may not be able to provide this.                        | 
 | `PROCESSING` | Processing has started.                               | Maybe not.    |  We may not be able to provide this.                        | 
 | `AWAITING-CUSTOMER` | We are waiting for the merchant to respond.    | Maybe not.    |  We may not be able to provide this.                       |
-| `APPROVED`   | Everything OK: The merchant is approved and active.   | ✅ Yes.       |  Similar to [`GET:/management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-business-identifier)                       | 
+| `APPROVED`   | Everything OK: The merchant is approved and active.   | Maybe not.    |  Similar to [`GET:/management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-business-identifier)                       | 
 | `STOPPED`   | May be: Cancelled by the partner because of incorrect pre-fill data, or rejected by us because something is not OK (high risk, etc). | Maybe not.    | We may not be able to provide this.                           |
 
 
