@@ -48,7 +48,7 @@ These endpoints are available now (or very soon):
 | [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](#get-information-about-a-sales-unit). Get details about one sales unit (MSN). |
 | [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllSalesUnits) | [Get all sales units](#get-all-sales-units). *Available in Q4.* |
 | Product orders: | | 
-| [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | [Pre-fill a product order](#pre-fill-a-product-order). Allows for "pre-fill" of the product order form on portal.vipps.no, ensuring correct information, a simple experience for the merchant, and speedy processing of the product order.  |
+| [`POST:/products-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | [Pre-fill a product order](#pre-fill-a-product-order). Allows for "pre-fill" of the product order form on portal.vipps.no, ensuring correct information, a simple experience for the merchant, and speedy processing of the product order.  |
 | [`GET:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/productOrderDetails) | [Get information about a product order](#get-information-about-a-product-order). *Available in Q4.* |
 | [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/deleteProductOrder) | [Delete a product order](#delete-a-product-order). *Available in Q4.* |
 | Partners: | | 
