@@ -14,4 +14,4 @@ To learn about API versioning, see
 
 # October 2023
 
-Added [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantBusinessIdentifier), [Get one merchant by business identifier](management-api-guide.md#get-one-merchant-by-business-identifier).
+Added [Get one merchant by business identifier](management-api-guide.md#get-one-merchant-by-business-identifier). This is the [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantBusinessIdentifier) endpoint.
