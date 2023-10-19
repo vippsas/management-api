@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Vipps MobilePay Management API
-  version: "1.1.5"
+  version: "1.1.6"
   description: |-
     The Management API enables partners and merchants to manage their sales units, etc.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/management-api).
@@ -362,10 +362,10 @@ paths:
   /management/v1/sales-units:
     get:
       tags:
-        - Ideas
+        - Sales units
       summary: Sales units - Get all sales units that a merchant or partner has access to.
       description: |-
-        Status: Idea/proposal.
+        Status: Available.
 
         For partners using
         [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys):
@@ -824,9 +824,7 @@ components:
                 acceptsDonation:
                   type: boolean
                   description: true if merchant will receive donation through Vipps
-                  default: false
                   example: false
-    
     ProductOrderResponse:
       title: Product Order response
       type: object
