@@ -10,7 +10,7 @@ pagination_prev: null
 
 # Management API
 
-![Vipps](./images/vipps.png) *Available for Vipps now  New features may be provided in the future.*
+![Vipps](./images/vipps.png) *Available for Vipps. New features are under development now. See [Ideas and proposals](management-api-guide.md#ideas-and-proposals).*
 
 ![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
 

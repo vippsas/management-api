@@ -11,3 +11,7 @@ pagination_prev: null
 All notable changes to the current API will be documented in this file.
 To learn about API versioning, see
 [API Lifecycle](https://developer.vippsmobilepay.com/docs/common-topics/api-lifecycle/).
+
+# October 2023
+
+Added [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantBusinessIdentifier), [Get one merchant by business identifier](management-api-guide.md#get-one-merchant-by-business-identifier).
