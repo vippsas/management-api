@@ -46,7 +46,7 @@ These endpoints are available now (or very soon):
 | [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantBusinessIdentifier) | [Get one merchant by business identifier](#get-one-merchant-by-business-identifier). |
 | Sales units: | | |
 | [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](#get-information-about-a-sales-unit). This endpoint is for retrieving details about one sales unit (MSN), such as the name of the sales unit, the business identifier is belongs to and the sales unit's configuration. |
-| [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllSalesUnits) | [Get all sales units](#get-all-sales-units). *Available in Q4* |
+| [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllSalesUnits) | [Get all sales units](#get-all-sales-units). An easy way to get a list of all the sales units connected to the requesting merchant or partner. |
 | Product orders: | | |
 | [`POST:/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | [Pre-fill a product order](#pre-fill-a-product-order). This endpoint allows for "pre-fill" of the product order form on portal.vipps.no. The merchant simply uses a URL to get to the pre-filled product order, checks the data, and submits. This ensures that all the data in the form is correctly filled in, and can also "lock" parameters that are normally selectable. Product orders that have been pre-filled this way are processed faster, since they are correct and contain all the required information.  |
 | Partners: | | |
@@ -227,7 +227,7 @@ Some candidates:
 
 ### Get all sales units
 
-Status: 🟡 Available in Q4.
+Status: ✅ Available.
 
 Get all sales units that a merchant or partner has access to.
 
