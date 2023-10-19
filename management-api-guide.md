@@ -8,7 +8,7 @@ pagination_prev: null
 
 # API guide
 
-![Vipps](./images/vipps.png) *Available for Vipps now. New features may be provided in the future.*
+![Vipps](./images/vipps.png) *Available for Vipps. New features are under development now. See [Ideas and proposals](#ideas-and-proposals).*
 
 ![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
 
@@ -19,7 +19,7 @@ as much as possible without needing assistance.
 **Please note:**
 This API replaces the
 [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/) and now contains all the same functionality.
-More functionality will soon be added in the coming months.
+[More functionality](#ideas-and-proposals) will soon be added in the coming months.
 
 ## Integrating with this API
 
