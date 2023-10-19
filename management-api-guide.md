@@ -67,18 +67,16 @@ Status: ✅ Available.
 Response:
 
 ```json
-{
-   "salesUnits":[
-      {
-         "msn": 123456,
-         "name": "ACME Fantastic Fitness"
-      }
-      {
-         "msn": 654321,
-         "name": "ACME Candy and Ice Cream"
-      }
-   ]
-}
+[
+  {
+    "msn": 123456,
+    "name": "ACME Fantastic Fitness"
+  },
+  {
+    "msn": 654321,
+    "name": "ACME Candy and Ice Cream"
+  }
+]
 ```
 
 ### Get one merchant by business identifier
@@ -93,34 +91,30 @@ Response:
 
 ```json
 {
-  "merchant": {
-    "businessidentifier": {
-      "scheme": "business:NO:ORG",
-      "id": "9876543221"
-    },
-    "name": "ACME Fantastic Fitness",
-    "status": "ACTIVE",
-    "createdAt": "2022-09-02T06:45:25.921251Z",
-    "updatedAt": "2022-09-02T06:45:25.921251Z",
-    "countryCode\"": "NO",
-    "businessAddress": {
-      "city": "Oslo",
-      "country": "NO",
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "lines": [
-        "Robert Levins gate 5"
-      ],
-      "postCode": "0154"
-    },
-    "businesspostAddress": {
-      "city": "Oslo",
-      "country": "NO",
-      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "lines": [
-        "Robert Levins gate 5"
-      ],
-      "postCode": "0154"
-    }
+  "businessIdentifier": {
+    "scheme": "business:NO:ORG",
+    "id": "9876543221"
+  },
+  "name": "ACME Fantastic Fitness",
+  "status": "ACTIVE",
+  "createdAt": "2022-09-02T06:45:25.921251Z",
+  "updatedAt": "2022-09-02T06:45:25.921251Z",
+  "countryCode": "NO",
+  "businessAddress": {
+    "lines": [
+      "Robert Levins gate 5"
+    ],
+    "postCode": "0154",
+    "city": "Oslo",
+    "countryCode": "NO"
+  },
+  "businessPostAddress": {
+    "lines": [
+      "Robert Levins gate 5"
+    ],
+    "postCode": "0154",
+    "city": "Oslo",
+    "countryCode": "NO"
   }
 }
 ```
@@ -242,18 +236,16 @@ containing sales units that are active for an active merchant.
 Response:
 
 ```json
-{
-   "salesUnits":[
-      {
-         "msn": 123456,
-         "name": "ACME Fantastic Fitness"
-      }
-      {
-         "msn": 654321,
-         "name": "ACME Candy and Ice Cream"
-      }
-   ]
-}
+[
+  {
+    "msn": 123456,
+    "name": "ACME Fantastic Fitness"
+  },
+  {
+    "msn": 654321,
+    "name": "ACME Candy and Ice Cream"
+  }
+]
 ```
 
 It is then possible to use
@@ -295,9 +287,9 @@ Here is a sample request to
   },
   "salesUnitName": "ACME Fantastic Fitness",
   "salesUnitLogo": "VGhlIGltYWdlIGdvZXMgaGVyZQ==",
-    "settlementBankAccount": {
-      "scheme": "BBAN:NO",
-      "id": "86011117947"
+  "settlementBankAccount": {
+    "scheme": "BBAN:NO",
+    "id": "86011117947"
   },
   "pricePackageId": "8a11afb7-c223-48ed-8ca6-4722b97261aa",
   "productType": "VIPPS_PA_NETT",
