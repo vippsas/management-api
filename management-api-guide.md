@@ -495,6 +495,56 @@ sequenceDiagram
     VMP->>PM: Email with MSN and other details
 ```
 
+### Get information about a product order
+
+Status: Available in Q4, aiming for mid November.
+
+For both merchants and partners.
+
+The best way to check the status of a product order is on
+[portal.vipps.no](https://portal.vipps.no).
+
+We are *considering* an endpoint like this:
+
+[`GET:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/productOrderDetails)
+
+Response, if the pre-fill URL has been accessed:
+
+```json
+{
+  "prefilledOrderId": "81b83246-5c19-7b94-875b-ea6d1114f099",
+  "prefillStatus": "ACCESSED"
+}
+```
+
+Below are some _ideas_ for statuses to be returned:
+
+| Status       | Description                                           | Realistic?    | Comment                 |
+| ------------ | ----------------------------------------------------- | ------------- | ----------------------- |
+| `CREATED`    | The PO exists, but nothing has been done with it yet. | ✅ Yes.       |                         |     
+| `OPENED`     | The PO URL has been accessed.                         | ✅ Yes.       |                         | 
+| `SUBMITTED`  | The merchant has clicked "Send" on the PO.            | ✅ Yes.       |                         | 
+| `PENDING`    | Processing has not started yet.                       | Maybe not.    |  We may not be able to provide this.                        | 
+| `PROCESSING` | Processing has started.                               | Maybe not.    |  We may not be able to provide this.                        | 
+| `AWAITING-CUSTOMER` | We are waiting for the merchant to respond.    | Maybe not.    |  We may not be able to provide this.                       |
+| `APPROVED`   | Everything OK: The merchant is approved and active.   | Maybe not.    |  Similar to [`GET:/management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-business-identifier)                       | 
+| `STOPPED`   | May be: Cancelled by the partner because of incorrect pre-fill data, or rejected by us because something is not OK (high risk, etc). | Maybe not.    | We may not be able to provide this.                           |
+
+
+**Please note:** There are strict rules for what information we are
+allowed to share with a partner. Implementing a very detailed
+status functionality may not be possible.
+
+### Delete a product order
+
+Status: 💡 Available in Q4, aiming for mid November.
+
+An "undo" endpoint to delete a PO.
+This may be used if an incorrect PO has been pre-filled with
+[`POST:/management/v1/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/orderProduct).
+
+[`DELETE:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/deleteProductOrder)
+
 ## Partners
 
 ### Get the price packages for a partner
@@ -607,55 +657,6 @@ Example `PATCH` request body:
 }
 ```
 
-### Get information about a product order
-
-Status: 💡 Idea/proposal.
-
-For both merchants and partners.
-
-The best way to check the status of a product order is on
-[portal.vipps.no](https://portal.vipps.no).
-
-We are *considering* an endpoint like this:
-
-[`GET:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/productOrderDetails)
-
-Response, if the pre-fill URL has been accessed:
-
-```json
-{
-  "prefilledOrderId": "81b83246-5c19-7b94-875b-ea6d1114f099",
-  "prefillStatus": "ACCESSED"
-}
-```
-
-Below are some _ideas_ for statuses to be returned:
-
-| Status       | Description                                           | Realistic?    | Comment                 |
-| ------------ | ----------------------------------------------------- | ------------- | ----------------------- |
-| `CREATED`    | The PO exists, but nothing has been done with it yet. | ✅ Yes.       |                         |     
-| `OPENED`     | The PO URL has been accessed.                         | ✅ Yes.       |                         | 
-| `SUBMITTED`  | The merchant has clicked "Send" on the PO.            | ✅ Yes.       |                         | 
-| `PENDING`    | Processing has not started yet.                       | Maybe not.    |  We may not be able to provide this.                        | 
-| `PROCESSING` | Processing has started.                               | Maybe not.    |  We may not be able to provide this.                        | 
-| `AWAITING-CUSTOMER` | We are waiting for the merchant to respond.    | Maybe not.    |  We may not be able to provide this.                       |
-| `APPROVED`   | Everything OK: The merchant is approved and active.   | Maybe not.    |  Similar to [`GET:/management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-business-identifier)                       | 
-| `STOPPED`   | May be: Cancelled by the partner because of incorrect pre-fill data, or rejected by us because something is not OK (high risk, etc). | Maybe not.    | We may not be able to provide this.                           |
-
-
-**Please note:** There are strict rules for what information we are
-allowed to share with a partner. Implementing a very detailed
-status functionality may not be possible.
-
-### Delete a product order
-
-Status: 💡 Idea/proposal.
-
-An "undo" endpoint to delete a PO.
-This may be used if an incorrect PO has been pre-filled with
-[`POST:/management/v1/product-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/orderProduct).
-
-[`DELETE:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/deleteProductOrder)
 
 ### Get information about a partner
 
@@ -682,7 +683,7 @@ Response:
 
 If this endpoint is used with normal API keys (not partner keys), it will return an error.
 
-## API quality
+### API quality
 
 Status: 💡 Idea/proposal.
 
