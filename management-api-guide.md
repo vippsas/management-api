@@ -28,7 +28,9 @@ indicate that this is the actor making the API request.
 
 Authentication:
 
-* Partners use their [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys) to access the API
+* Partners use their
+  [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys)
+  to access the API
 * Soon: Merchants will be able to use their normal
   [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/).
 
@@ -497,7 +499,7 @@ sequenceDiagram
 
 ### Get information about a product order
 
-Status: Available in Q4, aiming for mid November.
+Status: 🟡 Available in Q4, aiming for mid November.
 
 For both merchants and partners.
 
@@ -537,7 +539,7 @@ status functionality may not be possible.
 
 ### Delete a product order
 
-Status: 💡 Available in Q4, aiming for mid November.
+Status: 🟡 Available in Q4, aiming for mid November.
 
 An "undo" endpoint to delete a PO.
 This may be used if an incorrect PO has been pre-filled with
