@@ -14,6 +14,9 @@ To learn about API versioning, see
 
 # October 2023
 
-Added [Get one merchant by business identifier](management-api-guide.md#get-one-merchant-by-business-identifier). This is the [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantBusinessIdentifier) endpoint.
+Added [Get one merchant by business identifier](management-api-guide.md#get-one-merchant-by-business-identifier). This is the
+[`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantByBusinessIdentifier) endpoint.
 
-Added [Get all sales units](management-api-guide.md#get-all-sales-units). This is the [`GET:/management/v1/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits) endpoint.
+Added [Get all sales units](management-api-guide.md#get-all-sales-units). This is the
+[`GET:/management/v1/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getAllSalesUnits)
+endpoint.

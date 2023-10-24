@@ -45,7 +45,7 @@ These endpoints are available now (or very soon):
 | -------- | ----------- |
 | Merchants: | |
 | [`GET:/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits) | [Get the sales units for a merchant by business identifier](#get-the-sales-units-for-a-merchant-by-business-identifier). Get a list of all the sales units that belong to the specified merchant. |
-| [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getMerchantBusinessIdentifier) | [Get one merchant by business identifier](#get-one-merchant-by-business-identifier). |
+| [`GET:/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantByBusinessIdentifier) | [Get one merchant by business identifier](#get-one-merchant-by-business-identifier). |
 | Sales units: | | 
 | [`GET:/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn) | [Get information about a sales unit](#get-information-about-a-sales-unit). Get details about one sales unit (MSN). |
 | [`GET:/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/getAllSalesUnits) | [Get all sales units](#get-all-sales-units). An easy way to get a list of all the sales units connected to the requesting merchant or partner. |
