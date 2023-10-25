@@ -52,7 +52,7 @@ These endpoints are available now (or very soon):
 | Product orders: | |
 | [`POST:/management/v1/products-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders/operation/orderProduct) | [Pre-fill a product order](#pre-fill-a-product-order). Allows for "pre-fill" of the product order form on portal.vipps.no, ensuring correct information, a simple experience for the merchant, and speedy processing of the product order.  |
 | [`GET:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/productOrderDetails) | [Get information about a product order](#get-information-about-a-product-order). *Available in Q4, aiming for mid-November.* |
-| [`DELETE:/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/deleteProductOrder) | [Delete a product order](#delete-a-product-order). *Available in Q4, aiming for mid-November.* |
+| [`DELETE:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/deleteProductOrder) | [Delete a product order](#delete-a-product-order). *Available in Q4, aiming for mid-November.* |
 | Partners: | |
 | [`GET:/management/v1/partners/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages) | [Get the price packages for a partner](#get-the-price-packages-for-a-partner). Enables a partner to retrieve its price package details.  The price packages are needed for pre-filling the product orders. |
 More functionality will be available soon, see:
