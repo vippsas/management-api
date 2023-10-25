@@ -78,7 +78,7 @@ The `pricePackageId` is a UUID, and you get it by email when you are activated a
 A UUID has a format like this: `81b83246-5c19-7b94-875b-ea6d1114f099`.
 
 Use
-[`GET:/partners/{partner-id}/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages)
+[`GET:/management/v1/partners/{partner-id}/price-packages`](https://developer.vippsmobilepay.com/api/management/#tag/Partners/operation/getPartnerPricePackages)
 to retrieve your price packages.
 
 ## Can I use the Management API in the test environment?
