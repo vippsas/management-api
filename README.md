@@ -15,8 +15,7 @@ pagination_prev: null
 ![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
 
 **Please note:**
-The Management API replaces the
-[Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/).
+The Management API in a new and improved version of the Partner API.
 All the functionality in the Partner API is available in the Management API now,
 and more functionality will be added. See each endpoint and the
 [API specification](https://developer.vippsmobilepay.com/api/management/)

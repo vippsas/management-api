@@ -32,8 +32,7 @@ See:
 
 ## What are the benefits of the Management API over the Partner API?
 
-* The Management API contains everything the
-  [Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/) does, and more.
+* The Management API contains everything as the Partner API, and more.
 * The Management API is actively developed, the Partner API will be phased out.
 * Both APIs use the same API keys.
 * The endpoints are practically identical, with the Management API endpoints offering better
