@@ -67,7 +67,7 @@ The property `access_token` should be used for all other API requests in the `Au
 ### Step 3 - Get merchant sales units by organization number
 
 Send request
-[`GET:management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits),
+[`GET:/management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantSalesUnits),
 where `orgno` is the organization number of the sales unit.
 Details about the merchant will be provided.
 
@@ -86,7 +86,7 @@ Take note of the merchant serial numbers returned and use one of these in the ne
 ### Step 4 - Get sales unit by Merchant Serial Number
 
 Send request
-[`GET:management/v1/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn), where `msn` is the Merchant Serial Number.
+[`GET:/management/v1/sales-units/{msn}`](https://developer.vippsmobilepay.com/api/management/#tag/Sales-units/operation/getMsn), where `msn` is the Merchant Serial Number.
 
 This returns a JSON structure with the details, including the org number.
 
