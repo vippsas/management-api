@@ -17,9 +17,8 @@ self-service for the most common tasks. Our goal is to enable partners and merch
 as much as possible without needing assistance.
 
 **Please note:**
-This API replaces the
-[Partner API](https://developer.vippsmobilepay.com/docs/APIs/partner-api/) and now contains all the same functionality.
-[More functionality](#ideas-and-proposals) will soon be added in the coming months.
+This API replaces the Partner API and expands upon the functionality.
+[More new features](#ideas-and-proposals) will soon be added in the coming months.
 
 ## Integrating with this API
 
