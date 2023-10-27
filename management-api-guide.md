@@ -10,7 +10,7 @@ pagination_prev: null
 
 ![Vipps](./images/vipps.png) *Available for Vipps. New features are under development now. See [Ideas and proposals](#ideas-and-proposals).*
 
-![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
+![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/about).*
 
 The Management API enables partners and merchants to manage their sales units, and allows for
 self-service for the most common tasks. Our goal is to enable partners and merchants to do
