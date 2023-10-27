@@ -17,7 +17,7 @@ for all partner information.
 
 See also:
 
-* [Common API FAQ](https://developer.vippsmobilepay.com/docs/faqs).
+* [Knowledge base](https://developer.vippsmobilepay.com/docs/common-topics/).
 * [Vipps MobilePay Getting Started guide](https://developer.vippsmobilepay.com/docs/getting-started).
 
 ## When will the Management API be available?
