@@ -723,4 +723,4 @@ the checklists for all APIs. For example, see:
 * [ePayment API checklist](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/checklist/)
 * [Recurring API checklist](https://developer.vippsmobilepay.com/docs/APIs/recurring-api/vipps-recurring-api-checklist/)
 
-See [Errors](https://developer.vippsmobilepay.com/docs/common-topics/errors/) for examples of common errors.
+See [HTTP response codes and errors](https://developer.vippsmobilepay.com/docs/common-topics/errors/) for examples of common errors.
