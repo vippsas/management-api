@@ -502,23 +502,9 @@ Status: 🟡 Available in Q4, aiming for mid November.
 
 For both merchants and partners.
 
-The best way to check the status of a product order is on
-[portal.vipps.no](https://portal.vipps.no).
-
-We are *considering* an endpoint like this:
-
 [`GET:/management/v1/product-orders/{product-order-id}`](https://developer.vippsmobilepay.com/api/management/#tag/Ideas/operation/productOrderDetails)
 
-Response, if the pre-fill URL has been accessed:
-
-```json
-{
-  "prefilledOrderId": "81b83246-5c19-7b94-875b-ea6d1114f099",
-  "prefillStatus": "ACCESSED"
-}
-```
-
-Below are some _ideas_ for statuses to be returned:
+Here is an overview of statuses to be returned:
 
 | Status       | Description                                           | Realistic?    | Comment                 |
 | ------------ | ----------------------------------------------------- | ------------- | ----------------------- |
@@ -531,10 +517,12 @@ Below are some _ideas_ for statuses to be returned:
 | `APPROVED`   | Everything OK: The merchant is approved and active.   | Maybe not.    |  Similar to [`GET:/management/v1/merchants/{scheme}/{id}/sales-units`](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-guide/#get-the-sales-units-for-a-merchant-by-business-identifier)                       | 
 | `STOPPED`   | May be: Cancelled by the partner because of incorrect pre-fill data, or rejected by us because something is not OK (high risk, etc). | Maybe not.    | We may not be able to provide this.                           |
 
-
-**Please note:** There are strict rules for what information we are
-allowed to share with a partner. Implementing a very detailed
-status functionality may not be possible.
+**Please note:** 
+* There are strict rules for what information we are
+  allowed to share with a partner. Implementing a very detailed
+  status functionality may not be possible.
+* The best way to check the status of a product order is on
+  [portal.vipps.no](https://portal.vipps.no).
 
 ### Delete a product order
 
