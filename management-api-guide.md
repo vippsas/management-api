@@ -31,7 +31,7 @@ Authentication:
   [partner keys](https://developer.vippsmobilepay.com/docs/partner/partner-keys)
   to access the API
 * Soon: Merchants will be able to use their normal
-  [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/).
+  [API keys](https://developer.vippsmobilepay.com/docs/knowledge-base/api-keys/).
 
 See the
 [Quick start guide](management-api-quick-start.md) for examples.
@@ -723,4 +723,4 @@ the checklists for all APIs. For example, see:
 * [ePayment API checklist](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/checklist/)
 * [Recurring API checklist](https://developer.vippsmobilepay.com/docs/APIs/recurring-api/vipps-recurring-api-checklist/)
 
-See [HTTP response codes and errors](https://developer.vippsmobilepay.com/docs/common-topics/errors/) for examples of common errors.
+See [HTTP response codes and errors](https://developer.vippsmobilepay.com/docs/knowledge-base/errors/) for examples of common errors.
