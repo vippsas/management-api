@@ -12,7 +12,7 @@ pagination_prev: null
 
 ## Before you begin
 
-Be aware that these are running on the production server, <https://api.vipps.no>.
+Be aware that these are running on the production server, [https://api.vipps.no](https://api.vipps.no).
 
 🔥 **To reduce risk of exposure, never store production keys in Postman or any similar tools.** 🔥
 
