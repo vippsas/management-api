@@ -413,7 +413,7 @@ The user will then automatically be presented with the pre-filled PO.
 ##### Scenario 1: The merchant does not have a Merchant Agreement
 
 1. The partner/merchant pre-fills the PO using
-   [`POST:/management/v1/products-orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
+   [`POST:/management/v1/products-orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders)
    and gets a link to the pre-filled PO on
    [portal.vipps.no](https://portal.vipps.no).
 2. The merchant uses the link and logs in with BankID on
@@ -428,7 +428,7 @@ The user will then automatically be presented with the pre-filled PO.
    checks the details in the PO and submits it.
 6. We process the PO and send both the merchant and partner/merchant who made the pre-fill request an
    email when done. The partner/merchant who made the pre-fill request can also check with the API:
-   [`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+   [`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantByBusinessIdentifier).
 
 The most important part of the merchant agreement form is the *reelle rettighetshavere*
 (*real rights holders*), meaning the people with direct or indirect ownership or
@@ -441,7 +441,7 @@ person that has signatory rights for the merchant. The form looks like this:
 The merchant has an MA and probably also a Vipps MobilePay product.
 
 1. The partner/merchant pre-fills the PO using
-   [`POST:/management/v1/products/orders`](https://developer.vippsmobilepay.com/api/partner#tag/Vipps-Product-Orders/operation/orderProduct)
+   [`POST:/management/v1/products/orders`](https://developer.vippsmobilepay.com/api/management/#tag/Product-orders)
    and gets a link to the pre-filled PO on
    [portal.vipps.no](https://portal.vipps.no).
 2. The merchant uses the link and logs in with BankID on
@@ -450,7 +450,7 @@ The merchant has an MA and probably also a Vipps MobilePay product.
    checks the details and submits it.
 4. We process the PO and send both the merchant and partner/merchant who made the pre-fill request an
    email when done. The partner/merchant who made the pre-fill request can also check with the API:
-   [`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/partner#tag/Merchants/operation/getMerchant).
+   [`GET:/management/v1/merchants/{scheme}/{id}`](https://developer.vippsmobilepay.com/api/management/#tag/Merchants/operation/getMerchantByBusinessIdentifier).
 
 In the future, we may allow the merchant to change some data pre-filled by the
 partner, but this is not trivial. If the merchant changes any data, the
