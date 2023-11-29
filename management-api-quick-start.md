@@ -12,7 +12,7 @@ pagination_prev: null
 
 ## Before you begin
 
-Be aware that these are running on the production server, [https://api.vipps.no](https://api.vipps.no).
+Be aware that these are only running on the production server, [https://api.vipps.no](https://api.vipps.no) and not in the [test environment](https://developer.vippsmobilepay.com/docs/APIs/management-api/management-api-faq/#can-i-use-the-management-api-in-the-test-environment).
 
 🔥 **To reduce risk of exposure, never store production keys in Postman or any similar tools.** 🔥
 
