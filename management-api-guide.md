@@ -396,7 +396,7 @@ without an existing Merchant Agreement ("merchant agreement", "MA").
 
 **Please note:** The only way we can verify that a user is allowed
 to sign a merchant agreement for a merchant is by using data from the
-[Brønnøysund Register](https://brreg.no).
+[Brønnøysundregistrene, the Norwegian business registry](https://brreg.no).
 It is therefore a requirement that the user signed in to the
 [merchant portal](https://portal.vipps.no)
 is registered as chairman of the board (*styreleder*) or CEO (*daglig leder*).
